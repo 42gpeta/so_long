@@ -7,6 +7,10 @@
 
 [Introduction to MiniLibx](https://elearning.intra.42.fr/notions/minilibx/subnotions/mlx-introduction/videos/introduction-to-minilibx)
 
+[MAN MinilibX](https://qst0.github.io/ft_libgfx/man_mlx.html)
+
+[Aide 42](https://github.com/agavrel/42_CheatSheet#0x04--choosing-your-path)
+
 ## Plan
 
 ### 1. Gestion de la fênetre

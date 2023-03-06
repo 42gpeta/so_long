@@ -6,12 +6,13 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/04 21:00:11 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/06 17:54:09 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "so_long.h"
-#include	"mlx.h"
+// #include "mlx.h"
+#include "/mnt/nfs/homes/gpeta/Documents/CURSUS/PROJECT_so_long/so_long/minilibx-linux/mlx.h"
 
 
 int main(void)
