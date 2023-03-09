@@ -6,74 +6,100 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/08 18:49:06 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/09 16:22:11 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-###############################################
-##	ARGUMENTS
+NAME 		:= so_long
 
-NAME =			so_long
-CC = 			cc
-CFLAGS = 		-Wall -Wextra -Werror
-# pour les fichiers *.h
-CPPFLAG =		-I minilibx-linux
-MLX_FLAGS =	-lmlx -lXext -lX11
-DIR_DUP = mkdir -p $(@D)
-RM := rm -f
-NORMINETTE =	norminette -R CheckForbiddenSourceHeader *.c *.h
-MAKEFLAGS += --no-print-directory
 
-###############################################
-##	SOURCES
+#-------------------------------------------------------#
+#	INGREDIENTS											#
+#-------------------------------------------------------#
 
-#*********** MANDATORY ***********#
+LIBS		:= mlx ft
+LIBS_TARGET := \
+lib/libft/libft.a \
+lib/libmlx/libmlx_Linux.a \
+lib/libmlx/libmlx.a
 
-SRC_DIR := src
-OBJ_DIR := obj
-SRCS := main.c
+INCS		:= \
+include \
+lib/libmlx \
+lib/libft/include
 
-SRCS := $(SRCS:%=$(SRC_DIR)/%)
-OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-#*********** BONUS ***********#
+SRC_DIR		:= src
+SRCS		:= main.c
+SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
-BONUS_SRC_DIR := src_bonus
-BONUS_OBJ_DIR := obj_bonus
-BONUS_SRCS := 
+BUILD_DIR	:= .build
+OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+DEPS		:= $(OBJS:.o=.d)
 
-BONUS_SRCS := $(BONUS_SRCS:%=$(BONUS_SRCS_DIR)/%)
-BONUS_OBJ := $(BONUS_SRCS:$(BONUS_SRCS_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
+CC 			:= cc
+CFLAGS 		:= -Wall -Wextra -Werror
+CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
+LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
+LDLIBS		:= $(addprefix -l ,$(LIBS))
+MLX_FLAGS	:= -lXext -lX11 -lz -lm
+NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader *.c *.h
 
-###############################################
-##	RULES
+#-------------------------------------------------------#
+#	UTENSILS											#
+#-------------------------------------------------------#
+
+RM			:= rm -f
+MAKEFLAGS	+= --silent --no-print-directory
+# MAKEFLAGS	+= --no-print-directory
+DIR_DUP		= mkdir -p $(@D)
+
+
+# #*********** BONUS ***********#
+
+# BONUS_SRC_DIR := src_bonus
+# BONUS_OBJ_DIR := obj_bonus
+# BONUS_SRCS := 
+
+# BONUS_SRCS := $(BONUS_SRCS:%=$(BONUS_SRCS_DIR)/%)
+# BONUS_OBJ := $(BONUS_SRCS:$(BONUS_SRCS_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
+
+#-------------------------------------------------------#
+#	RECIPES												#
+#-------------------------------------------------------#
 
 all : $(NAME)
 
 # linker tous les *.o dans l'executable $(NAME)
-$(NAME) : $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBS_TARGET)
+	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 	$(info EXE ./$(NAME) CREATED)
 #	$(CC) $(OBJS) -Lminilibx-linux -lminilibx-linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
 #	$(CC) $(OBJS) -L./../minilibx-linux -l./../minilibx-linux -L/usr/lib -I./../minilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
 
+$(LIBS_TARGET):
+	$(MAKE) -C $(@D)
+
 # compilation des *.c en *.o sans linker
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAG) -c -o $@ $<
-	$(info FILES $(@F) LINKED)
+#	$(info FILES $(@F) LINKED)
 #	$(CC) $(CFLAGS) $(CPPFLAG) $(MLX_FLAGS) -03 -c -o $@ $<
 
 # bonus : $(OBJS) $(BONUS_OBJ)
 # 	ar rc $(NAME) $(OBJS) $(BONUS_OBJ)
 
-clean :
-	$(RM) $(OBJS) $(BONUS_OBJ)
+clean:
+	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f clean; done
+	$(RM) $(OBJS) $(DEPS)
+#	$(RM) $(OBJS) $(BONUS_OBJ)
 
-fclean : clean
+fclean: clean
+	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f fclean; done
 	$(RM) $(NAME)
 
-re : 
+re:
 	$(MAKE) fclean
 	$(MAKE) all
 
@@ -81,25 +107,22 @@ re :
 #				MINILIBX				#
 # ************************************* #
 
-test :
-	$(CC) $(MLX_FLAGS) main.c
-
-man_init :
+man_init:
 	man ../minilibx-linux/man/man3/mlx.3
 
-man_window :
+man_window:
 	man ../minilibx-linux/man/man3/mlx_new_window.3
 
-man_pixel :
+man_pixel:
 	man ../minilibx-linux/man/man3/mlx_pixel_put.3
 
-man_image :
+man_image:
 	man ../minilibx-linux/man/man3/mlx_new_image.3
 
-man_loop :
+man_loop:
 	man ../minilibx-linux/man/man3/mlx_loop.3
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re
 .SILENT:
 
 
@@ -109,7 +132,8 @@ man_loop :
 RED          =    \033[0;91m
 LIGHT_RED    =    \033[0;31m
 GREEN        =    \033[0;92m
-norminette :
+
+norminette:
 	@$(NORMINETTE) | grep -v Norme | awk '{\
 	if ($$NF == "OK!") { \
 	    print "$(GREEN)"$$0"$(END)" \
@@ -122,5 +146,5 @@ norminette :
 ###############################################
 ##	NORMINETTE : verif norminette (@VEGRET)
 
-norm_verif :
+norm_verif:
 	nm $(NAME)
