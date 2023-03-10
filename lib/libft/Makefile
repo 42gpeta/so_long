@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/09 14:56:33 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/10 10:08:35 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ NORMINETTE	:= norminette -R CheckForbiddenSourceHeader *.c *.h
 #-------------------------------------------------------#
 
 RM			:= rm -f
-MAKEFLAGS	+= --no-print-directory
+MAKEFLAGS	+= --silent --no-print-directory
+# MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
 
 # BONUS =
@@ -72,7 +73,7 @@ $(NAME): $(OBJS)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(info $@ ready)
+#	$(info $@ ready)
 
 -include $(DEPS)
 

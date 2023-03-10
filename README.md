@@ -1,17 +1,27 @@
 # PROJET SO_LONG v2.1 2023
 
-## Ressources
-[Markdown sheet cheat](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+## Ressources du projet
 
 [Project subject](https://cdn.intra.42.fr/pdf/pdf/67637/fr.subject.pdf)
 
-[Introduction to MiniLibx](https://elearning.intra.42.fr/notions/minilibx/subnotions/mlx-introduction/videos/introduction-to-minilibx)
+[Introduction to MiniLibx (42)](https://elearning.intra.42.fr/notions/minilibx/subnotions/mlx-introduction/videos/introduction-to-minilibx)
 
 [MAN MinilibX](https://qst0.github.io/ft_libgfx/man_mlx.html)
 
+### Liens utiles
+
+[42 docs](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html)
+[Aurelienbrabant - Getting started](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx)
+[Aurelienbrabant - Events](https://aurelienbrabant.fr/blog/managing-events-with-the-minilibx)
+[Aurelienbrabant - Pixel drawing](https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx)
+
+## Ressources Générales
+
 [MAKEFILE Tuto](https://github.com/clemedon/Makefile_tutor#version-3)
 
-[Aide 42](https://github.com/agavrel/42_CheatSheet#0x04--choosing-your-path)
+[Aide générale pour 42](https://github.com/agavrel/42_CheatSheet#0x04--choosing-your-path)
+
+[Markdown sheet cheat](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 ## Plan
 

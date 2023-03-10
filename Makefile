@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/09 16:22:11 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/10 15:39:00 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ lib/libft/include
 
 
 SRC_DIR		:= src
-SRCS		:= main.c
+SRCS		:= \
+main.c \
+event_utils.c
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build
@@ -38,7 +40,8 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC 			:= cc
-CFLAGS 		:= -Wall -Wextra -Werror
+# CFLAGS 		:= -Wall -Wextra -Werror
+CFLAGS 		:= -Wall -Wextra
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
@@ -72,7 +75,7 @@ all : $(NAME)
 
 # linker tous les *.o dans l'executable $(NAME)
 $(NAME): $(OBJS) $(LIBS_TARGET)
-	$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 	$(info EXE ./$(NAME) CREATED)
 #	$(CC) $(OBJS) -Lminilibx-linux -lminilibx-linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
 #	$(CC) $(OBJS) -L./../minilibx-linux -l./../minilibx-linux -L/usr/lib -I./../minilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
@@ -96,7 +99,7 @@ clean:
 #	$(RM) $(OBJS) $(BONUS_OBJ)
 
 fclean: clean
-	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f fclean; done
+	for f in $(strip(dir $(LIBS_TARGET))) ; do $(MAKE) -C $$f fclean; done
 	$(RM) $(NAME)
 
 re:
