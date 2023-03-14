@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/10 17:13:09 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/14 13:32:30 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_vars
 
 int	ft_close(int key_symbol, t_vars *vars);
 int	ft_close2(int key_symbol, void *vars);
+int	ft_close3(t_vars *vars);
 
 
 #endif

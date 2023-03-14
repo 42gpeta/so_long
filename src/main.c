@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/10 17:16:05 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/14 13:43:02 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 
 
-int main(void)		// v2 : avec structure
+int main(int ac, char **av)		// v2 : avec structure
 {
 	t_vars	vars;
 
@@ -24,18 +24,18 @@ int main(void)		// v2 : avec structure
 		return (1);
 
 /* Ouverture de la fenêtre */
-	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, "first_windows");
+	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
 	if (!vars.mlx_ptr)
 		return (1);
+
+/* Bouton croix pour fermer la fenêtre */
+	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, ft_close3, &vars);
+	// mlx_hook(vars.win_ptr, , SubstructureNotifyMask, ft_close3, &vars);
 
 /* Touche echap pour fermer la fenêtre */
 
 	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, ft_close, &vars);
 	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, ft_close2, &vars);
-
-/* Bouton croix pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, ClientMessage, KeyPressMask, ft_close, &vars);
-	mlx_hook(vars.win_ptr, StructureNotifyMask, KeyReleaseMask, ft_close2, &vars);
 
 /* Boucle infini qui attend des actions */
 	mlx_loop(vars.mlx_ptr);
