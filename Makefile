@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/10 15:39:00 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/14 16:04:42 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ lib/libft/include
 SRC_DIR		:= src
 SRCS		:= \
 main.c \
-event_utils.c
+event_utils.c \
+error_message.c 
+
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build
@@ -41,7 +43,6 @@ DEPS		:= $(OBJS:.o=.d)
 
 CC 			:= cc
 # CFLAGS 		:= -Wall -Wextra -Werror
-CFLAGS 		:= -Wall -Wextra
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))

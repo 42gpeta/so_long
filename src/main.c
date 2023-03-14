@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/14 13:43:02 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/14 16:04:24 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,40 @@
 int main(int ac, char **av)		// v2 : avec structure
 {
 	t_vars	vars;
+	t_data	img;
 
 /* Initialisation du programme */
 	vars.mlx_ptr = mlx_init();
-	if (!vars.mlx_ptr)
-		return (1);
+	if (vars.mlx_ptr == NULL)
+		(ft_message_error_mlx_init("MLX_INIT FAIL"));
 
-/* Ouverture de la fenêtre */
+/* Ouverture de la fenêtre en affichant le nom du programme en haut */
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
-	if (!vars.mlx_ptr)
-		return (1);
+	if (vars.win_ptr == NULL)
+	{
+		free(vars.mlx_ptr);
+		(ft_message_error_mlx_init("MLX_NEW_WINDOW FAIL"));
+	}
+
+/* Affichage d'un pixel */
+	img.img = mlx_new_image(vars.mlx_ptr, 1920, 1080);
 
 /* Bouton croix pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, ft_close3, &vars);
-	// mlx_hook(vars.win_ptr, , SubstructureNotifyMask, ft_close3, &vars);
+	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, ft_close_red_cross, &vars);
 
 /* Touche echap pour fermer la fenêtre */
-
-	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, ft_close, &vars);
-	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, ft_close2, &vars);
+	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, ft_close_bt_esc, &vars);
+	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, ft_close_with_release, &vars);
 
 /* Boucle infini qui attend des actions */
 	mlx_loop(vars.mlx_ptr);
+
+/* Fermeture fenetre */
+	mlx_destroy_window(vars.mlx_ptr, vars.win_ptr);
+	mlx_destroy_display(vars.mlx_ptr);
+	free(vars.mlx_ptr);
+	// free(vars.mlx_ptr);
+
 
 	// printf("PROG Shutdown !\n");
 	return (0);

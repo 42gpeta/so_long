@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/14 13:32:30 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/14 15:49:01 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 /**** INCLUDE ****/
 #include "X11/keysym.h"
 #include "X11/X.h"
+#include <stdlib.h>
 
 
 
@@ -39,12 +40,22 @@ typedef struct s_vars
 	void	*win_ptr;
 }	t_vars;
 
+/* Image/Pixel */
+typedef struct s_data
+{
+	void	*img;
+}	t_data;
 
 /**** FUNCTIONS ****/
 
-int	ft_close(int key_symbol, t_vars *vars);
-int	ft_close2(int key_symbol, void *vars);
-int	ft_close3(t_vars *vars);
+/* event_utils.c */
+int	ft_close_bt_esc(int key_symbol, t_vars *vars);
+int	ft_close_with_release(int key_symbol);
+int	ft_close_red_cross(t_vars *vars);
+
+/* error_message.c */
+void	ft_message_error_mlx_init(char *message);
+
 
 
 #endif
