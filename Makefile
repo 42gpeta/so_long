@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/15 15:10:42 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/15 18:59:12 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS		:= \
 main.c \
 event_utils.c \
 error_message.c \
-pixel.c
+pixel.c pixel_utils.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 

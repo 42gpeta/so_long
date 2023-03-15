@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/15 15:28:31 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/15 19:15:05 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,46 @@
 
 int main(int ac, char **av)		// v2 : avec structure
 {
-	t_vars	vars;
-	t_data	img;
+	t_data	data;
+	// t_data	img;
 
 /* Initialisation du programme */
-	vars.mlx_ptr = mlx_init();
-	if (vars.mlx_ptr == NULL)
+	data.mlx_ptr = mlx_init();
+	if (data.mlx_ptr == NULL)
 		(ft_message_error_mlx_init("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
-	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
-	if (vars.win_ptr == NULL)
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
+	if (data.win_ptr == NULL)
 	{
-		free(vars.win_ptr);
+		free(data.win_ptr);
 		(ft_message_error_mlx_init("MLX_NEW_WINDOW FAIL"));
 	}
 
-/* Affichage d'un pixel */
-	// img.img = mlx_new_image(vars.mlx_ptr, 1920, 1080);
+/* Création d'une image */
+	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 
 /* Permet de arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
-	// mlx_loop_hook(vars.mlx_ptr, &ft_no_event, &vars);
+	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
 
 /* Print d'un pixel */
-	mlx_loop_hook(vars.mlx_ptr, &render, &vars);
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
 
 /* Bouton croix pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &vars);
+	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &data);
 
 /* Touche echap pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, &ft_close_keypress, &vars);
-	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &vars);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_keypress, &data);
+	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &data);
 
 /* Boucle infini qui attend des actions */
-	mlx_loop(vars.mlx_ptr);
+	mlx_loop(data.mlx_ptr);
 
 /* Fermeture fenêtre */
-	// mlx_destroy_image(vars.mlx_ptr, img.img);
-	mlx_destroy_display(vars.mlx_ptr);
-	free(vars.mlx_ptr);
+	// mlx_destroy_image(data.mlx_ptr, img.img);
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
 
 
 	return (0);
