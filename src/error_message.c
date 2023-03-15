@@ -6,12 +6,11 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:36:58 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/14 15:58:19 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/14 17:08:45 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
-#include "../lib/libft/include/libft.h"
+#include "so_long.h"
 
 void	ft_message_error_mlx_init(char *message)
 {

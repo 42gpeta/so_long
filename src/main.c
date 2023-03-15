@@ -6,12 +6,12 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/14 16:04:24 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/15 14:53:51 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "../include/so_long.h"
 #include "so_long.h"
-#include "mlx.h"
 
 
 int main(int ac, char **av)		// v2 : avec structure
@@ -28,31 +28,30 @@ int main(int ac, char **av)		// v2 : avec structure
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
 	if (vars.win_ptr == NULL)
 	{
-		free(vars.mlx_ptr);
+		free(vars.win_ptr);
 		(ft_message_error_mlx_init("MLX_NEW_WINDOW FAIL"));
 	}
 
 /* Affichage d'un pixel */
-	img.img = mlx_new_image(vars.mlx_ptr, 1920, 1080);
+	// img.img = mlx_new_image(vars.mlx_ptr, 1920, 1080);
 
+	mlx_loop_hook(vars.mlx_ptr, &ft_no_event, &vars);
 /* Bouton croix pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, ft_close_red_cross, &vars);
+	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &vars);
 
 /* Touche echap pour fermer la fenêtre */
-	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, ft_close_bt_esc, &vars);
-	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, ft_close_with_release, &vars);
+	mlx_hook(vars.win_ptr, KeyPress, KeyPressMask, &ft_close_keypress, &vars);
+	mlx_hook(vars.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &vars);
 
 /* Boucle infini qui attend des actions */
 	mlx_loop(vars.mlx_ptr);
 
 /* Fermeture fenetre */
-	mlx_destroy_window(vars.mlx_ptr, vars.win_ptr);
+	// mlx_destroy_image(vars.mlx_ptr, img.img);
 	mlx_destroy_display(vars.mlx_ptr);
 	free(vars.mlx_ptr);
-	// free(vars.mlx_ptr);
 
 
-	// printf("PROG Shutdown !\n");
 	return (0);
 }
 
