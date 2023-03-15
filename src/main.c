@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/15 14:53:51 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/15 15:28:31 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Affichage d'un pixel */
 	// img.img = mlx_new_image(vars.mlx_ptr, 1920, 1080);
 
-	mlx_loop_hook(vars.mlx_ptr, &ft_no_event, &vars);
+/* Permet de arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
+	// mlx_loop_hook(vars.mlx_ptr, &ft_no_event, &vars);
+
+/* Print d'un pixel */
+	mlx_loop_hook(vars.mlx_ptr, &render, &vars);
+
 /* Bouton croix pour fermer la fenêtre */
 	mlx_hook(vars.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &vars);
 
@@ -46,7 +51,7 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Boucle infini qui attend des actions */
 	mlx_loop(vars.mlx_ptr);
 
-/* Fermeture fenetre */
+/* Fermeture fenêtre */
 	// mlx_destroy_image(vars.mlx_ptr, img.img);
 	mlx_destroy_display(vars.mlx_ptr);
 	free(vars.mlx_ptr);

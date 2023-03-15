@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:12 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/15 15:16:50 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ int	ft_no_event(void *vars);
 /* error_message.c */
 
 void	ft_message_error_mlx_init(char *message);
+
+/* pixel.c */
+
+int	render(t_vars *vars);
 
 
 
