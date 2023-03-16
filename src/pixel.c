@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:45 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/15 19:04:29 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/16 14:17:38 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ int	render(t_data *data) // v2
 	if (data->win_ptr == NULL)
 		return (1);
 	render_background(&data->img, WHITE_PIXEL);
-	render_rect(&data->img, (t_rect){WINDOW_WIDHT - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
-	render_rect(&data->img, (t_rect){0, 0, 500, 300, RED_PIXEL});
+	/* Affiche 2 carrés : 1 en haut à gauche l'autre en bas à droite */
+	// render_rect(&data->img, (t_rect){WINDOW_WIDHT - 50, WINDOW_HEIGHT - 50, 50, 50, GREEN_PIXEL}); // y < nombre soustrait a WINDOW_HEIGHT
+	// render_rect(&data->img, (t_rect){0, 0, 50, 50, RED_PIXEL});
+
+	/* Affiche 2 carrés cote à cote */
+	render_rect(&data->img, (t_rect){WINDOW_WIDHT / 2 + 30, WINDOW_HEIGHT / 2, 50, 50, GREEN_PIXEL}); // y < nombre soustrait a WINDOW_HEIGHT
+	render_rect(&data->img, (t_rect){WINDOW_WIDHT / 2 - 30, WINDOW_HEIGHT / 2, 50, 50, RED_PIXEL});
 
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 
