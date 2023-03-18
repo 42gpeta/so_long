@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/15 19:16:39 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/18 14:51:47 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 
 // x = widht = largeur
 // y = height = hauteur
+
+/* COLORS */
+#define RED_PIXEL 0xFF0000
+#define GREEN_PIXEL 0xFF00
+#define BLUE_PIXEL 0x0000FF
+#define WHITE_PIXEL 0xFFFFFF
+// Format : 0xTTRRGGBB
+// R = red ; G = green ; B = blue ; T = transparency 
 
 /**** INCLUDE A supprimer ****/
 # include <stdio.h>
@@ -52,6 +60,9 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	char	*relative_path;
+	int		img_widht;
+	int		img_height;
 }	t_img;
 
 	/* pixel_tils.c */
@@ -69,6 +80,7 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	// void	*img_reading;
 	t_img	img;
 }	t_data;
 
@@ -92,11 +104,12 @@ void	ft_message_error_mlx_init(char *message);
 int	render(t_data *data);
 int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
+int	render_img(t_data *data);
 
 /* pixel_utils.c */
 
 void	img_pix_put(t_img *img, int x, int y, int color);
-
+int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/16 13:27:50 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/18 17:02:52 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int main(int ac, char **av)		// v2 : avec structure
 {
 	t_data	data;
-	// t_data	img;
+	t_data	img;
 
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
@@ -33,15 +33,45 @@ int main(int ac, char **av)		// v2 : avec structure
 		(ft_message_error_mlx_init("MLX_NEW_WINDOW FAIL"));
 	}
 
+data.img.img_widht = 50;
+data.img.img_height = 50;
+
+
+/* Chemin du fichier .xpm */
+	// data.img.relative_path = av[1];
+	data.img.relative_path = "lib/libmlx/test/open24.xpm";
+
 /* Création d'une image */
-	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
+		/* Pixel */
+	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
+	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+		/* XPM */
+	// if (!(data.img.mlx_img = mlx_new_image(data.mlx_ptr, 50, 50))) // 1st try
+	if (!(mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	{
+		printf("KO mlx_xpm_file_to_image\n\n");
+		return(1);
+	}
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+	printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+	
+	
+	// mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height);
+	// data.img.addr = mlx_get_data_addr();
+	// data.img.mlx_img = (data.mlx_ptr, data.img.relative_path, data.img.img_widht, data.img.img_height);
+
+/* 	if (data.img_reading == NULL)
+		printf("NULL, reading failed\n");
+	else
+		printf("OK img xpm valable : %s\n", av[1]); */
 
 /* Permet de arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
 
-/* Print d'un pixel */
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
+/* Print d'un pixel/image */
+	// mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_loop_hook(data.mlx_ptr, &render_img, &data);
 
 /* Bouton croix pour fermer la fenêtre */
 	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &data);
@@ -54,7 +84,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_loop(data.mlx_ptr);
 
 /* Fermeture fenêtre */
-	// mlx_destroy_image(data.mlx_ptr, img.img);
+	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 

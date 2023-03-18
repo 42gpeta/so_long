@@ -9,6 +9,7 @@
             "name": "so_long", //I named it Pusk because i can 
             "type": "cppdbg",
             "request": "launch",
+            // "program": "${workspaceFolder}/lib/libmlx/test/mlx-test", //path to your programs exe and exe name
             "program": "${workspaceFolder}/so_long", //path to your programs exe and exe name
             "args": [],
             "stopAtEntry": false,
