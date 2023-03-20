@@ -34,7 +34,7 @@ SRCS		:= \
 event_utils.c \
 error_message.c \
 pixel.c pixel_utils.c \
-# main.c \
+main.c \
 
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
@@ -76,16 +76,23 @@ DIR_DUP		= mkdir -p $(@D)
 
 all : $(NAME)
 
+#*******************************************************#
 # (NORMAL) linker tous les *.o dans l'executable $(NAME)
-# $(NAME): $(OBJS) $(LIBS_TARGET)
-# 	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
-# 	$(info EXE ./$(NAME) CREATED)
+# /!\ ATTENTION /!\ :il faut DE-masquer le main.c dans src plus haut
+#*******************************************************#
 
-# (TEST) linker tous les *.o dans l'executable $(NAME)
-# /!\ ATTENTION /!\ :il faut masquer le main.c dans src plus haut
-$(NAME): $(OBJS) $(LIBS_TARGET) mlxtest
-	$(CC) -g $(LDFLAGS) $(OBJS) .build/main-test.o $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBS_TARGET)
+	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 	$(info EXE ./$(NAME) CREATED)
+
+#*******************************************************#
+# (TEST) linker tous les *.o dans l'executable $(NAME)
+# /!\ ATTENTION /!\ :il faut MASquer le main.c dans src plus haut
+#*******************************************************#
+
+# $(NAME): $(OBJS) $(LIBS_TARGET) mlxtest
+# 	$(CC) -g $(LDFLAGS) $(OBJS) .build/main-test.o $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
+# 	$(info EXE ./$(NAME) CREATED)
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)

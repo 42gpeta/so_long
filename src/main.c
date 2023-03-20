@@ -18,6 +18,7 @@ int main(int ac, char **av)		// v2 : avec structure
 {
 	t_data	data;
 	t_data	img;
+	char	*file = "lib/libmlx/test/open30.xpm";
 
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
@@ -39,7 +40,7 @@ data.img.img_height = 50;
 
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1];
-	data.img.relative_path = "lib/libmlx/test/open24.xpm";
+	data.img.relative_path = file;
 
 /* Création d'une image */
 		/* Pixel */
@@ -47,7 +48,7 @@ data.img.img_height = 50;
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 		/* XPM */
 	// if (!(data.img.mlx_img = mlx_new_image(data.mlx_ptr, 50, 50))) // 1st try
-	if (!(mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
 	{
 		printf("KO mlx_xpm_file_to_image\n\n");
 		return(1);
