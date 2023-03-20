@@ -26,7 +26,6 @@ int main(int ac, char **av)		// v2 : avec structure
 		(ft_message_error_mlx_init("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
-	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1980, 1080, av[0]);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
 	if (data.win_ptr == NULL)
 	{
@@ -39,7 +38,7 @@ data.img.img_height = 50;
 
 
 /* Chemin du fichier .xpm */
-	// data.img.relative_path = av[1];
+	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
 	data.img.relative_path = file;
 
 /* Création d'une image */
@@ -47,7 +46,6 @@ data.img.img_height = 50;
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_new_image(data.mlx_ptr, 50, 50))) // 1st try
 	if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
 	{
 		printf("KO mlx_xpm_file_to_image\n\n");
@@ -56,23 +54,15 @@ data.img.img_height = 50;
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 50, 0);
 	
 	
-	// mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height);
-	// data.img.addr = mlx_get_data_addr();
-	// data.img.mlx_img = (data.mlx_ptr, data.img.relative_path, data.img.img_widht, data.img.img_height);
-
-/* 	if (data.img_reading == NULL)
-		printf("NULL, reading failed\n");
-	else
-		printf("OK img xpm valable : %s\n", av[1]); */
-
-/* Permet de arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
+/* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
 
 /* Print d'un pixel/image */
 	// mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_loop_hook(data.mlx_ptr, &render_img, &data);
+	mlx_loop_hook(data.mlx_ptr, &render_no_action, &data);
 
 /* Bouton croix pour fermer la fenêtre */
 	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &data);

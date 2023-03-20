@@ -104,7 +104,7 @@ void	ft_message_error_mlx_init(char *message);
 int	render(t_data *data);
 int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
-int	render_img(t_data *data);
+int	render_no_action(t_data *data);
 
 /* pixel_utils.c */
 

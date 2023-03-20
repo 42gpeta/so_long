@@ -69,11 +69,7 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-int	render_img(t_data *data)
+int	render_no_action(t_data *data)
 {
-	// data->img_reading = mlx_xpm_file_to_image(data->mlx_ptr, data->img.relative_path, 0, 0);
-	// data->img.mlx_img = mlx_new_image(data->mlx_ptr, 50, 50);
-	// data->img_reading = mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, data->img.img_widht, data->img.img_height);
-	// data->img.mlx_img = mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 50, 50);
 	return (0);
 }
