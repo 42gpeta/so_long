@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/18 14:51:47 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/21 11:10:36 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 # define SO_LONG_H
 
 /**** DEFINE ****/
-# define WINDOW_WIDHT 600
-# define WINDOW_HEIGHT 300
+// # define WINDOW_WIDHT 600
+// # define WINDOW_HEIGHT 300
+# define WINDOW_WIDHT 600	// (X ; largeur)
+# define WINDOW_HEIGHT 300 // (Y ; longeur)
 
-// x = widht = largeur
-// y = height = hauteur
+/*
+1920 x 1080 :
+- 1920 pixel in each row (largeur)
+- 1080 rows (hauteur)
+
+x = widht = largeur
+y = height = hauteur
+
+*/
 
 /* COLORS */
 #define RED_PIXEL 0xFF0000

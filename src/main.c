@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/18 17:02:52 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/21 11:10:03 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(int ac, char **av)		// v2 : avec structure
 		(ft_message_error_mlx_init("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
+	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
 	if (data.win_ptr == NULL)
 	{
@@ -39,7 +40,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
 	data.img.relative_path = file;
 
-/* Création d'une image */
+/* Création d'une image */ // OK
 		/* Pixel */
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
@@ -54,7 +55,33 @@ int main(int ac, char **av)		// v2 : avec structure
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 50, 0);
 
-/* Création de plusieurs lignes d'images */
+/* Création de plusieurs lignes d'images */ // OK
+		/* XPM */
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	// {
+	// 	printf("KO mlx_xpm_file_to_image\n\n");
+	// 	return(1);
+	// }
+	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+	// data.img.img_widht = 0;
+	// data.img.img_height = 0;
+	// printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
+	// printf("ligne l1= %d\n", data.img.img_height);
+	// while (data.img.img_widht < WINDOW_WIDHT)
+	// {
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
+	// data.img.img_widht += 50;
+	// }
+	// data.img.img_widht = 0; // remise a 0 pour revenir a la premiere colone (x ; weidht)
+	// data.img.img_height += 60; // saut de ligne 
+	// printf("ligne l2= %d\n", data.img.img_height);
+	// while (data.img.img_widht < WINDOW_WIDHT)
+	// {
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.img_widht, data.img.img_height);
+	// data.img.img_widht += 50;
+	// }
+	
+/* Création de plusieurs lignes d'images automatisé */
 		/* XPM */
 	if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
 	{
@@ -64,21 +91,19 @@ int main(int ac, char **av)		// v2 : avec structure
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	data.img.img_widht = 0;
 	data.img.img_height = 0;
-	printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
-	printf("ligne l1= %d\n", data.img.img_height);
-	while (data.img.img_widht < WINDOW_WIDHT)
+	while (data.img.img_height < WINDOW_HEIGHT)
 	{
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.img_widht, data.img.img_height);
-	data.img.img_widht += 50;
+		while (data.img.img_widht < WINDOW_WIDHT)
+		{
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
+		data.img.img_widht += 50;
+		}
+		data.img.img_height += 60;
+		data.img.img_widht = 0;
 	}
-	data.img.img_widht = 0; // remise a 0 pour revenir a la premiere colone (x ; weidht)
-	data.img.img_height += 60; // saut de ligne 
-	printf("ligne l2= %d\n", data.img.img_height);
-	while (data.img.img_widht < WINDOW_WIDHT)
-	{
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.img_widht, data.img.img_height);
-	data.img.img_widht += 50;
-	}
+	
+
+
 	
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
