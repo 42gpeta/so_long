@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/21 11:10:03 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:46:34 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,26 @@ int main(int ac, char **av)		// v2 : avec structure
 {
 	t_data	data;
 	t_data	img;
-	char	*file = "lib/libmlx/test/open30.xpm";
+	int		compteurWASD = 0;
+	// char	*file[5];
+	char	*file_xpm = "lib/libmlx/test/open30.xpm";
+	// char	*file_xpm = "maps/xpm/xpm-file_xpm.xpm";
+	char	*file_ber = "maps/map1.ber";
+
+/* ************************************************************************** */
+/*							      	 MAPS								      */
+/* ************************************************************************** */
+	
+	printf("AV[1] = %s\n", av[1]);
+	ft_map_control_extention(file_ber, av[1]);
+	// printf("Extension = %s\n\n", ft_map_control_extention(file_ber, av[1]));
+
+
+
+
+/* ************************************************************************** */
+/*							       GRAPHIQUE							      */
+/* ************************************************************************** */
 
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
@@ -35,10 +54,9 @@ int main(int ac, char **av)		// v2 : avec structure
 	}
 
 
-
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
-	data.img.relative_path = file;
+	data.img.relative_path = file_xpm;
 
 /* Création d'une image */ // OK
 		/* Pixel */
@@ -81,7 +99,28 @@ int main(int ac, char **av)		// v2 : avec structure
 	// data.img.img_widht += 50;
 	// }
 	
-/* Création de plusieurs lignes d'images automatisé */
+/* Création de plusieurs lignes de la même image automatisé */ // OK
+		/* XPM */
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	// {
+	// 	printf("KO mlx_xpm_file_to_image\n\n");
+	// 	return(1);
+	// }
+	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+	// data.img.img_widht = 0;
+	// data.img.img_height = 0;
+	// while (data.img.img_height < WINDOW_HEIGHT)
+	// {
+	// 	while (data.img.img_widht < WINDOW_WIDHT)
+	// 	{
+	// 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
+	// 	data.img.img_widht += 50;
+	// 	}
+	// 	data.img.img_height += 60;
+	// 	data.img.img_widht = 0;
+	// }
+
+/* Création de plusieurs lignes de plusieurs images automatisé */
 		/* XPM */
 	if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
 	{
@@ -101,7 +140,6 @@ int main(int ac, char **av)		// v2 : avec structure
 		data.img.img_height += 60;
 		data.img.img_widht = 0;
 	}
-	
 
 
 	
@@ -113,10 +151,18 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_loop_hook(data.mlx_ptr, &render_no_action, &data);
 
 /* Bouton croix pour fermer la fenêtre */
-	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_close_red_cross, &data);
+	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_bouton_red_cross, &data);
 
 /* Touche echap pour fermer la fenêtre */
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_keypress, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
+/* Autres touche dont W, A, S, D */ // ne marche pas pour l'instant
+	// while ((mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &data) == 119))
+	// {
+	// 	printf("------------------\nCOMPTEUR MVT : %d\n------------------\n", compteurWASD);
+	// 	compteurWASD++;
+	// }
+
+
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &data);
 
 /* Boucle infini qui attend des actions */

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/21 11:10:36 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:49:47 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_data
 	void	*win_ptr;
 	// void	*img_reading;
 	t_img	img;
+	
 }	t_data;
 
 
@@ -99,9 +100,10 @@ typedef struct s_data
 /* event_utils.c */
 
 // void	ft_close_bt_esc(int key_symbol, t_vars *data);
-int	ft_close_keypress(int key_symbol, t_data *data);
+int	ft_close_s_keypress(int key_symbol, t_data *data);
 int	ft_close_release(int key_symbol);
-int	ft_close_red_cross(t_data *data);
+// int	ft_close_release(int key_symbol, int i);
+int	ft_bouton_red_cross(t_data *data);
 int	ft_no_event(void *data);
 
 /* error_message.c */
@@ -120,6 +122,9 @@ int	render_no_action(t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type);
 
+/* map.c */
 
+// char	*ft_map_control_extention(char *filename, char *av);
+void	ft_map_control_extention(char *filename, char **av);
 
 #endif

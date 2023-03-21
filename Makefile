@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/21 10:24:54 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/21 17:02:05 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS		:= \
 event_utils.c \
 error_message.c \
 pixel.c pixel_utils.c \
+map.c \
 main.c \
 
 
@@ -112,7 +113,7 @@ mlxtest: ./lib/libmlx/test/main.c
 clean:
 	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
-	rm .build/main-test.o
+	rm -f .build/main-test.o
 #	$(RM) $(OBJS) $(BONUS_OBJ)
 
 fclean: clean
