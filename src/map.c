@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/22 15:57:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/22 16:03:56 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_map_control_extention(char *filename, char *filename_main)
 	len = ft_strlen(filename) - 4;
 	endfile = malloc(sizeof(char) * (4 + 1));
 	if (!endfile)
-		exit(EXIT_FAILURE);
-		// return (NULL);
+		return (NULL);
+		// exit(EXIT_FAILURE);
 	i = 0;
 
 	printf("Filename = %s\n", filename);
