@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/21 17:46:34 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/22 15:56:43 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int main(int ac, char **av)		// v2 : avec structure
 	t_data	data;
 	t_data	img;
 	int		compteurWASD = 0;
-	// char	*file[5];
 	char	*file_xpm = "lib/libmlx/test/open30.xpm";
 	// char	*file_xpm = "maps/xpm/xpm-file_xpm.xpm";
 	char	*file_ber = "maps/map1.ber";
@@ -29,9 +28,13 @@ int main(int ac, char **av)		// v2 : avec structure
 /* ************************************************************************** */
 	
 	printf("AV[1] = %s\n", av[1]);
-	ft_map_control_extention(file_ber, av[1]);
-	// printf("Extension = %s\n\n", ft_map_control_extention(file_ber, av[1]));
+	/* #1 */
+	// ft_map_control_extention(av[1], file_ber);
+	// printf("Extension = %s\n\n", ft_map_control_extention(file_ber, &av[1]));
 
+	/* #2 */
+	ft_map_check_extention(av[1], file_ber);
+	// free() // ft_map_*
 
 
 

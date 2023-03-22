@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/21 17:02:05 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/22 15:50:05 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC 			:= cc
-# CFLAGS 		:= -Wall -Wextra -Werror
+# CFLAGS 		:= -Wall -Wextra -Werror 
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
@@ -101,7 +101,7 @@ $(LIBS_TARGET):
 # compilation des *.c en *.o sans linker
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAG) -c -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAG) -ggdb -c -o $@ $<
 
 # compilation fichier main de test : mlx-test
 mlxtest: ./lib/libmlx/test/main.c
