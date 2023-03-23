@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/22 16:03:56 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/23 14:46:17 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,49 @@ int	ft_map_check_extention(char *filename, char *filename_main)
 
 	free(file);
 	return (1);
+}
+
+void	ft_generate_xpm(t_data *data, t_generate *generate)
+{
+	t_img	img1;
+	t_img	img2;
+	// t_img	img3;
+	// t_img	img4;
+	// t_img	img5;
+
+	img1.relative_path = data->file_xpm1;
+	img2.relative_path = data->file_xpm2;
+	// img3.relative_path = data->file_xpm3;
+	// img4.relative_path = data->file_xpm4;
+	// img5.relative_path = data->file_xpm5;
+
+	/* classic */
+	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+	// 	ft_message_error_mlx_init("Error open xpm 1 \n");
+ 	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
+	// 	ft_message_error_mlx_init("Error open xpm 2 \n");
+	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
+	// img1.img_widht = 0;
+	// img1.img_height = 0;
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
+	// img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
+	// img2.img_widht = 50;
+	// img2.img_height = 50;
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img2.mlx_img,img2.img_widht, img2.img_height);	
+
+	if (!(generate->mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+		ft_message_error_mlx_init("Error open xpm 1 \n");
+
+ 	if (!(generate->mlx_img2 = mlx_xpm_file_to_image(data->mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
+		ft_message_error_mlx_init("Error open xpm 2 \n");
+
+	img1.addr = mlx_get_data_addr(generate->mlx_img1, &img1.bpp, &img1.line_len, &img1.endian);
+	img1.img_widht = 0;
+	img1.img_height = 0;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht, img1.img_height);
+
+	img2.addr = mlx_get_data_addr(generate->mlx_img2, &img2.bpp, &img2.line_len, &img2.endian);
+	img2.img_widht = 50;
+	img2.img_height = 50;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2,img2.img_widht, img2.img_height);	
 }

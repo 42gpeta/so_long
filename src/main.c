@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/22 16:45:21 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/23 15:54:24 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 int main(int ac, char **av)		// v2 : avec structure
 {
 	t_data	data;
-	// t_data	data2;
-	t_img	img1;
-	t_img	img2;
+	t_generate generate;
+	// t_img	img1;
+	// t_img	img2;
 	int		compteurWASD = 0;
-	char	*file_xpm1 = "lib/libmlx/test/open30.xpm";
-	// char	*file_xpm2 = "lib/libmlx/test/open24.xpm";
-	char	*file_xpm2 = "maps/xpm/basketball.xpm";
+	// char	*file_xpm1 = "lib/libmlx/test/open30.xpm";
+	// char	*file_xpm2 = "maps/xpm/basketball.xpm";
 	char	*file_ber = "maps/map1.ber";
 
+	data.file_xpm1 = "lib/libmlx/test/open30.xpm";
+	data.file_xpm2 = "maps/xpm/basketball.xpm";
+	
 /* ************************************************************************** */
 /*							      	 MAPS								      */
 /* ************************************************************************** */
@@ -61,8 +63,9 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
-	img1.relative_path = file_xpm1;
-	img2.relative_path = file_xpm2;
+
+	// img1.relative_path = file_xpm1;
+	// img2.relative_path = file_xpm2;
 
 /* Création d'une image */ // OK
 		/* Pixel */
@@ -128,22 +131,23 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Affichage de 2 XPM */
 		/* XPM */
-	if (!(img1.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
-		ft_message_error_mlx_init("Error open xpm 1 \n");
+	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+	// 	ft_message_error_mlx_init("Error open xpm 1 \n");
+ 	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
+	// 	ft_message_error_mlx_init("Error open xpm 2 \n");
+	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
+	// img1.img_widht = 0;
+	// img1.img_height = 0;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
+	// img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
+	// img2.img_widht = 50;
+	// img2.img_height = 50;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img2.mlx_img,img2.img_widht, img2.img_height);
 
- 	if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
-		ft_message_error_mlx_init("Error open xpm 2 \n");
 
-	img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
-	img1.img_widht = 0;
-	img1.img_height = 0;
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
-
-	img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
-	img2.img_widht = 50;
-	img2.img_height = 50;
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img2.mlx_img,img2.img_widht, img2.img_height);
-
+/* Affichage XPM selon chiffre de la map .ber */
+		/* XPM */
+	ft_generate_xpm(&data, &generate);
 
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
@@ -171,8 +175,10 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_loop(data.mlx_ptr);
 
 /* Fermeture fenêtre */
-	mlx_destroy_image(data.mlx_ptr, img1.mlx_img);
-	mlx_destroy_image(data.mlx_ptr, img2.mlx_img);
+	// mlx_destroy_image(data.mlx_ptr, &img1.mlx_img);
+	// mlx_destroy_image(data.mlx_ptr, &img2.mlx_img);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_img2);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 

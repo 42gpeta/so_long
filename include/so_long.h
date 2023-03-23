@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/22 15:58:10 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/23 14:48:28 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ y = height = hauteur
 
 /* Image/Pixel (aurelienbrabant) */
 
+	/* map.c */
+typedef struct s_generate
+{
+	void	*mlx_img1;
+	void	*mlx_img2;
+	void	*mlx_img3;
+	void	*mlx_img4;
+	void	*mlx_img5;
+}	t_generate;
+
+
 	/* pixel.c */
 typedef struct s_img
 {
@@ -89,7 +100,11 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	// void	*img_reading;
+	char	*file_xpm1;
+	char	*file_xpm2;
+	char	*file_xpm3;
+	char	*file_xpm4;
+	char	*file_xpm5;
 	t_img	img;
 	
 }	t_data;
@@ -126,5 +141,7 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
 
 char	*ft_map_control_extention(char *filename, char *filename_main);
 int	ft_map_check_extention(char *filename, char *filename_main);
+// void	ft_generate_xpm(t_data *data);
+void	ft_generate_xpm(t_data *data, t_generate *generate);
 
 #endif
