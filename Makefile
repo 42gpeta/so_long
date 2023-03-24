@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/22 15:50:05 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/24 10:10:57 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ lib/libmlx/libmlx.a
 INCS		:= \
 include \
 lib/libmlx \
-lib/libft/include
+lib/libft/include \
 
 
 SRC_DIR		:= src
@@ -35,6 +35,8 @@ event_utils.c \
 error_message.c \
 pixel.c pixel_utils.c \
 map.c \
+/gnl/get_next_line.c \
+/gnl/get_next_line_utils.c \
 main.c \
 
 

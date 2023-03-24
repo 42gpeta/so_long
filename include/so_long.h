@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/23 14:48:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/24 12:09:58 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,14 @@ y = height = hauteur
 #include "mlx.h"
 #include "libft.h"
 #include <stdlib.h>
+#include "get_next_line.h"
+#include "ft_printf.h"
 
 
 
 
 
 /**** STRUCTURE ****/
-
-/* Image/Pixel (42 doc) */ // non retenu
-// typedef struct s_data
-// {
-// 	void	*img;
-// }	t_data;
-
-/* Image/Pixel (aurelienbrabant) */
 
 	/* map.c */
 typedef struct s_generate
@@ -69,6 +63,7 @@ typedef struct s_generate
 	void	*mlx_img3;
 	void	*mlx_img4;
 	void	*mlx_img5;
+	char	*string_map_ber;
 }	t_generate;
 
 
@@ -114,11 +109,10 @@ typedef struct s_data
 
 /* event_utils.c */
 
-// void	ft_close_bt_esc(int key_symbol, t_vars *data);
-int	ft_close_s_keypress(int key_symbol, t_data *data);
-int	ft_close_release(int key_symbol);
-// int	ft_close_release(int key_symbol, int i);
+// int	ft_close_s_keypress(int key_symbol, t_data *data);
 int	ft_bouton_red_cross(t_data *data);
+int	ft_key_hook(int key_symbol, t_data *data);
+// int	ft_key_hook(int key_symbol);
 int	ft_no_event(void *data);
 
 /* error_message.c */
@@ -141,6 +135,7 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
 
 char	*ft_map_control_extention(char *filename, char *filename_main);
 int	ft_map_check_extention(char *filename, char *filename_main);
+char	*ft_generate_string_map(char *file_ber);
 // void	ft_generate_xpm(t_data *data);
 void	ft_generate_xpm(t_data *data, t_generate *generate);
 

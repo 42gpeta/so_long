@@ -6,11 +6,10 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/23 15:54:24 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/24 12:11:58 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../include/so_long.h"
 #include "so_long.h"
 
 
@@ -39,7 +38,8 @@ int main(int ac, char **av)		// v2 : avec structure
 
 	/* #2 version */
 	ft_map_check_extention(av[1], file_ber);
-
+	generate.string_map_ber = ft_generate_string_map(file_ber);
+	printf("****\nMAP :\n%s\n****\n", generate.string_map_ber);
 
 
 /* ************************************************************************** */
@@ -159,17 +159,22 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Bouton croix pour fermer la fenêtre */
 	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_bouton_red_cross, &data);
 
-/* Touche echap pour fermer la fenêtre */
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
+/* Gestion touche echap, W, A, S, D */
+// mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
+//	mlx_key_hook(data.win_ptr, &ft_close_s_keypress, &data);
+	mlx_key_hook(data.win_ptr, &ft_key_hook, &data);
+
+	
 /* Autres touche dont W, A, S, D */ // ne marche pas pour l'instant
-	// while ((mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &data) == 119))
+	// while ((mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_key_hook, &data) == 119))
 	// {
 	// 	printf("------------------\nCOMPTEUR MVT : %d\n------------------\n", compteurWASD);
 	// 	compteurWASD++;
 	// }
 
 
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_close_release, &data);
+	// mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_key_hook, &data);
+
 
 /* Boucle infini qui attend des actions */
 	mlx_loop(data.mlx_ptr);

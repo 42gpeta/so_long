@@ -6,23 +6,23 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/21 16:47:54 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/24 12:10:13 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /** Ferme la fenêtre en arrêtant mlx_ptr et win_ptr issue de la structure créée */
-int	ft_close_s_keypress(int key_symbol, t_data *data)
-{
-	if (key_symbol == XK_Escape)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL; // fermeture de la fenêtre
-		// printf("Key press : %d (touche 'esc') ... APPUYER SUR 'Ctrl + C' !\n", key_symbol); // a supprimer
-	}
-	return (0);
-}
+// int	ft_close_s_keypress(int key_symbol, t_data *data) // implémenter dans ft_key_hook
+// {
+// 	if (key_symbol == XK_Escape)
+// 	{
+// 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+// 		data->win_ptr = NULL; // fermeture de la fenêtre
+// 		// printf("Key press : %d (touche 'esc') ... APPUYER SUR 'Ctrl + C' !\n", key_symbol); // a supprimer
+// 	}
+// 	return (0);
+// }
 
 int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_bt_esc
 {
@@ -33,16 +33,23 @@ int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_
 }
 
 /** Indique le numéro du symbol appuyé */
-// int	ft_close_release(int key_symbol)
+// int	ft_key_hook(int key_symbol)
 // {
 // 	printf("Key %d release\n", key_symbol);
 // 	return (0);
 // }
 
-int	ft_close_release(int key_symbol)
+int	ft_key_hook(int key_symbol, t_data *data)
 {
 	// i = 0;	
-	if (key_symbol == 119)
+	if (key_symbol == XK_Escape)
+	{
+		printf("Letter ESC | Key %d\n", key_symbol);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL; // fermeture de la fenêtre
+		// i++;
+	}
+	else if (key_symbol == XK_w)
 	{
 		printf("Letter W | Key %d\n", key_symbol);
 		// i++;
@@ -68,7 +75,7 @@ int	ft_close_release(int key_symbol)
 	return (key_symbol);
 }
 
-// int	ft_mouvement_s_keypress(int key_sumbol, t_data *data)
+// int	ft_mouvement_s_keypress(int key_sumbol, t_data *data) // a voir
 // {
 // 	if (key_symbol == )
 // }

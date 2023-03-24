@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/23 14:46:17 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/24 10:26:10 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,46 @@ int	ft_map_check_extention(char *filename, char *filename_main)
 	return (1);
 }
 
+char	*ft_generate_string_map(char *file_ber)
+{
+	int		fd;
+	int		index;
+	char	*line;
+	char	*string_map;
+
+	fd = open(file_ber, O_RDONLY);
+
+	line = 0;
+	line = get_next_line(fd);
+	string_map = ft_strdup(line);		
+
+	if (line == NULL)
+		printf("c'est NULL 1\n");
+
+	while (line)
+	{
+		if (!line)
+			break;
+		free(line);
+		line = get_next_line(fd);
+		string_map = ft_strdup(line);		
+		if (line == NULL)
+			break;
+	}
+	free(line);
+
+	if (close(fd) == -1)
+	{
+		printf("close() fail : %d\n", fd);
+		return (NULL);
+		// return (1);
+	}
+	else
+		printf("close() succes : %d\n", fd);
+	
+	return (string_map);
+}
+
 void	ft_generate_xpm(t_data *data, t_generate *generate)
 {
 	t_img	img1;
@@ -98,10 +138,52 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	img1.addr = mlx_get_data_addr(generate->mlx_img1, &img1.bpp, &img1.line_len, &img1.endian);
 	img1.img_widht = 0;
 	img1.img_height = 0;
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht, img1.img_height);
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht, img1.img_height);
 
 	img2.addr = mlx_get_data_addr(generate->mlx_img2, &img2.bpp, &img2.line_len, &img2.endian);
-	img2.img_widht = 50;
-	img2.img_height = 50;
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2,img2.img_widht, img2.img_height);	
+	img2.img_widht = 0;
+	img2.img_height = 0;
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2,img2.img_widht, img2.img_height);
+	
+	char *ber = "212122110111111111111111112";
+	int	i = 0;
+	int	x = 0;
+	int y = 0;
+	
+		/* v1 : echap, red cross OK mais affiche qu'une image */
+	// while (y < WINDOW_HEIGHT) 
+	// {
+	// 	while (x < WINDOW_WIDHT)
+	// 	{
+	// 		while (ber[i] != '\0')
+	// 		{
+	// 			if (ber[i] == '1')
+	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
+	// 			else if (ber[i] == '2')
+	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2, img2.img_widht + x, img2.img_height + y);
+	// 			i++;
+	// 		}
+	// 		x += 60;
+	// 	}
+	// 	x = 0;
+	// 	y += 60;
+	// }	
+
+		/* v2 : echap, red cross OK mais affiche toutes les images mais ne poursuit pas le programme */
+
+	while (ber[i] != '\0' || y < WINDOW_HEIGHT)
+	{
+		while (ber[i] != '\0' && x < WINDOW_WIDHT)
+		{
+			if (ber[i] == '1')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
+			else if (ber[i] == '2')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2, img2.img_widht + x, img2.img_height + y);
+
+			i++;
+			x += 70;
+		}
+		x = 0;
+		y += 70;
+	}
 }
