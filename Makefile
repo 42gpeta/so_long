@@ -34,10 +34,11 @@ SRCS		:= \
 event_utils.c \
 error_message.c \
 pixel.c pixel_utils.c \
-map.c \
+map2.c \
 /gnl/get_next_line.c \
 /gnl/get_next_line_utils.c \
 main.c \
+#map.c \
 
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)

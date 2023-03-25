@@ -39,7 +39,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	/* #2 version */
 	ft_map_check_extention(av[1], file_ber);
 	generate.string_map_ber = ft_generate_string_map(file_ber);
-	printf("****\nMAP :\n%s\n****\n", generate.string_map_ber);
+	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
 
 
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
-
+	//
 	// img1.relative_path = file_xpm1;
 	// img2.relative_path = file_xpm2;
 
@@ -77,6 +77,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
 	// }
+	// 
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	// printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
@@ -89,19 +90,23 @@ int main(int ac, char **av)		// v2 : avec structure
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
 	// }
+	// 
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	// data.img.img_widht = 0;
 	// data.img.img_height = 0;
 	// printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
 	// printf("ligne l1= %d\n", data.img.img_height);
+	// 
 	// while (data.img.img_widht < WINDOW_WIDHT)
 	// {
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
 	// data.img.img_widht += 50;
 	// }
+	// 
 	// data.img.img_widht = 0; // remise a 0 pour revenir a la premiere colone (x ; weidht)
 	// data.img.img_height += 60; // saut de ligne 
 	// printf("ligne l2= %d\n", data.img.img_height);
+	// 
 	// while (data.img.img_widht < WINDOW_WIDHT)
 	// {
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.img_widht, data.img.img_height);
@@ -115,9 +120,11 @@ int main(int ac, char **av)		// v2 : avec structure
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
 	// }
+	// 
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	// data.img.img_widht = 0;
 	// data.img.img_height = 0;
+	// 
 	// while (data.img.img_height < WINDOW_HEIGHT)
 	// {
 	// 	while (data.img.img_widht < WINDOW_WIDHT)
@@ -135,10 +142,12 @@ int main(int ac, char **av)		// v2 : avec structure
 	// 	ft_message_error_mlx_init("Error open xpm 1 \n");
  	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
 	// 	ft_message_error_mlx_init("Error open xpm 2 \n");
+	// 
 	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
 	// img1.img_widht = 0;
 	// img1.img_height = 0;
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
+	// 
 	// img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
 	// img2.img_widht = 50;
 	// img2.img_height = 50;
