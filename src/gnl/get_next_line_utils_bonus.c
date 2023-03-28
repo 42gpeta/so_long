@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:22:51 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/01 17:50:43 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:45:18 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*f_ret(int fd, char **stash, int ret)
 			if (!*stash)
 				*stash = ft_strdup2(buf);
 			else
-				*stash = ft_strjoin(*stash, buf);
+				*stash = ft_strjoin_gnl(*stash, buf);
 			if (ft_strchr(*stash, '\n'))
 				return (f_search_bn2(*stash, stash, buf));
 		}

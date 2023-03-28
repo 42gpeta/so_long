@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 10:26:10 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 13:38:05 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,34 +70,50 @@ char	*ft_generate_string_map(char *file_ber)
 
 	fd = open(file_ber, O_RDONLY);
 
-	line = 0;
+	/* v1 */
+	// line = get_next_line(fd);
+	// 
+	// if (line == NULL)
+	// 	printf("c'est NULL 1\n");
+	// 
+	// line = get_next_line(fd);
+	// string_map = ft_strdup(line);
+	// line = get_next_line(fd);
+	// string_map = ft_strjoin(line, string_map);
+	// line = get_next_line(fd);
+	// string_map = ft_strjoin(line, string_map);
+	// 
+	// 
+	// line = get_next_line(fd);
+	// while (line)
+	// {
+	// 	string_map = ft_strdup(line);
+	// 	string_map = ft_strjoin(line, string_map);
+	// 	free(line);
+	// 	line = get_next_line(fd);
+	// 
+	// }
+	// free(line);
+
+
+	/* v2 */ // OK
+	string_map = get_next_line(fd);
 	line = get_next_line(fd);
-	string_map = ft_strdup(line);		
-
-	if (line == NULL)
+	if (string_map == NULL || line == NULL)
 		printf("c'est NULL 1\n");
-
-	while (line)
+	while (string_map)
 	{
-		if (!line)
-			break;
+		string_map = ft_strjoin(string_map, line);
 		free(line);
 		line = get_next_line(fd);
-		string_map = ft_strdup(line);		
 		if (line == NULL)
 			break;
 	}
 	free(line);
 
 	if (close(fd) == -1)
-	{
-		printf("close() fail : %d\n", fd);
 		return (NULL);
-		// return (1);
-	}
-	else
-		printf("close() succes : %d\n", fd);
-	
+
 	return (string_map);
 }
 
@@ -120,10 +136,12 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// 	ft_message_error_mlx_init("Error open xpm 1 \n");
  	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
 	// 	ft_message_error_mlx_init("Error open xpm 2 \n");
+	// 
 	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
 	// img1.img_widht = 0;
 	// img1.img_height = 0;
 	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
+	// 
 	// img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
 	// img2.img_widht = 50;
 	// img2.img_height = 50;
@@ -145,7 +163,8 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	img2.img_height = 0;
 	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img2,img2.img_widht, img2.img_height);
 	
-	char *ber = "212122110111111111111111112";
+	// char *ber = "212122110111111111111111112";
+	char *ber = generate->string_map_ber;
 	int	i = 0;
 	int	x = 0;
 	int y = 0;
