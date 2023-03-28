@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 12:11:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 18:04:36 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int main(int ac, char **av)		// v2 : avec structure
 
 	/* #2 version */
 	ft_map_check_extention(av[1], file_ber);
-	generate.string_map_ber = ft_generate_string_map(file_ber);
+	generate.string_map_ber = ft_generate_string_map(file_ber, &data);
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
-
+	printf("x = %d (MAX %d) | y = %d (MAX %d)\n", data.window_widht, WINDOW_WIDHT_MAX, data.window_height, WINDOW_HEIGHT_MAX);
 
 /* ************************************************************************** */
 /*							       GRAPHIQUE							      */
@@ -52,8 +52,9 @@ int main(int ac, char **av)		// v2 : avec structure
 		(ft_message_error_mlx_init("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
-	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
+	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]); // ! v1
+	// data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]); // ! v2
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.window_widht, data.window_height, av[0]); // ! v3
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);

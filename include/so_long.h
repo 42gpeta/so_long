@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 12:09:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 17:44:42 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define SO_LONG_H
 
 /**** DEFINE ****/
-// # define WINDOW_WIDHT 600
-// # define WINDOW_HEIGHT 300
-# define WINDOW_WIDHT 600	// (X ; largeur)
-# define WINDOW_HEIGHT 300 // (Y ; longeur)
+# define WINDOW_WIDHT 600
+# define WINDOW_HEIGHT 300
+# define WINDOW_WIDHT_MAX 2560	// (X ; largeur)
+# define WINDOW_HEIGHT_MAX 300 // (Y ; longeur)
 
 /*
 1920 x 1080 :
@@ -100,6 +100,9 @@ typedef struct s_data
 	char	*file_xpm3;
 	char	*file_xpm4;
 	char	*file_xpm5;
+	int		window_widht;
+	int		window_height;
+	
 	t_img	img;
 	
 }	t_data;
@@ -135,8 +138,9 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
 
 char	*ft_map_control_extention(char *filename, char *filename_main);
 int	ft_map_check_extention(char *filename, char *filename_main);
-char	*ft_generate_string_map(char *file_ber);
-// void	ft_generate_xpm(t_data *data);
+// char	*ft_generate_string_map(char *file_ber); // ! v1
+char	*ft_generate_string_map(char *file_ber, t_data *data);
+// void	ft_generate_xpm(t_data *data); // ! v1
 void	ft_generate_xpm(t_data *data, t_generate *generate);
 
 #endif

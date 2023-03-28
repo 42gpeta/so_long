@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map2.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/28 13:38:05 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 17:59:42 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ int	ft_map_check_extention(char *filename, char *filename_main)
 	return (1);
 }
 
-char	*ft_generate_string_map(char *file_ber)
+// char	*ft_generate_string_map(char *file_ber)
+char	*ft_generate_string_map(char *file_ber, t_data *data)
 {
 	int		fd;
-	int		index;
 	char	*line;
 	char	*string_map;
 
 	fd = open(file_ber, O_RDONLY);
+	data->window_widht = 0;
+	data->window_height = 0;
 
 	/* v1 */
 	// line = get_next_line(fd);
@@ -98,7 +100,10 @@ char	*ft_generate_string_map(char *file_ber)
 
 	/* v2 */ // OK
 	string_map = get_next_line(fd);
+	data->window_widht = ft_strlen(string_map);
+	data->window_height++;
 	line = get_next_line(fd);
+	data->window_height++;
 	if (string_map == NULL || line == NULL)
 		printf("c'est NULL 1\n");
 	while (string_map)
@@ -108,8 +113,12 @@ char	*ft_generate_string_map(char *file_ber)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
+		data->window_height++;
 	}
 	free(line);
+
+	data->window_height *= 70;
+	data->window_widht *= 65;
 
 	if (close(fd) == -1)
 		return (NULL);
@@ -190,9 +199,12 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 
 		/* v2 : echap, red cross OK mais affiche toutes les images mais ne poursuit pas le programme */
 
-	while (ber[i] != '\0' || y < WINDOW_HEIGHT)
+	if (data->window_height > WINDOW_HEIGHT_MAX || data->window_height > WINDOW_WIDHT_MAX)
+		ft_message_error_mlx_init("Error : Widht or Height is too big");
+	
+	while (ber[i] != '\0' || y < data->window_height)
 	{
-		while (ber[i] != '\0' && x < WINDOW_WIDHT)
+		while (ber[i] != '\0' && x < data->window_widht)
 		{
 			if (ber[i] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
