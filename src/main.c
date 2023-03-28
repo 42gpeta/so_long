@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/28 19:42:34 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 19:52:25 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Affichage XPM selon chiffre de la map .ber */
 		/* XPM */
-	ft_generate_xpm(&data, &generate); // ! Boris
+	ft_generate_xpm(&data, &generate);
 
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
@@ -202,11 +202,11 @@ int main(int ac, char **av)		// v2 : avec structure
 	// mlx_destroy_image(data.mlx_ptr, data.file_xpm0);
 	// mlx_destroy_image(data.mlx_ptr, &img2.mlx_img);
 	
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img0); // ! Boris
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1); // ! Boris
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgC); // ! Boris
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE); // ! Boris
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP); // ! Boris
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_img0);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgC);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE);
+	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.string_map);
 	free(data.mlx_ptr);

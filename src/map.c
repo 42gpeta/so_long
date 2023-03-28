@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/28 19:43:43 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 19:51:39 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
 	while (data->string_map)
 	{
 		data->string_map = ft_strjoin_gnl(data->string_map, line);
-		// free(data->string_map);
 		free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
@@ -165,9 +164,6 @@ char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
 		data->row_size++;
 	}
 	free(line);
-
-	data->window_height *= 70;
-	data->window_widht *= 65;
 
 	if (close(fd) == -1)
 		return (NULL);
