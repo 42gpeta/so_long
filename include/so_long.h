@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 12:09:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 16:22:38 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define SO_LONG_H
 
 /**** DEFINE ****/
-// # define WINDOW_WIDHT 600
-// # define WINDOW_HEIGHT 300
-# define WINDOW_WIDHT 600	// (X ; largeur)
-# define WINDOW_HEIGHT 300 // (Y ; longeur)
+# define WINDOW_WIDHT 600
+# define WINDOW_HEIGHT 300
+# define WINDOW_WIDHT_MAX 2560	// (X ; largeur)
+# define WINDOW_HEIGHT_MAX 1440 // (Y ; longeur)
 
 /*
 1920 x 1080 :
@@ -58,11 +58,11 @@ y = height = hauteur
 	/* map.c */
 typedef struct s_generate
 {
+	void	*mlx_img0;
 	void	*mlx_img1;
-	void	*mlx_img2;
-	void	*mlx_img3;
-	void	*mlx_img4;
-	void	*mlx_img5;
+	void	*mlx_imgC;
+	void	*mlx_imgE;
+	void	*mlx_imgP;
 	char	*string_map_ber;
 }	t_generate;
 
@@ -78,6 +78,8 @@ typedef struct s_img
 	char	*relative_path;
 	int		img_widht;
 	int		img_height;
+	int		window_widht; // ! test
+	int		window_height; // ! test
 }	t_img;
 
 	/* pixel_tils.c */
@@ -90,16 +92,18 @@ typedef struct s_rect
 	int		color;
 }	t_rect;
 
-/* Events */
+/* Events */ /* map.c */
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	char	*file_xpm0;
 	char	*file_xpm1;
-	char	*file_xpm2;
-	char	*file_xpm3;
-	char	*file_xpm4;
-	char	*file_xpm5;
+	char	*file_xpmC;
+	char	*file_xpmE;
+	char	*file_xpmP;
+	int		row_size; // ! test
+	int		colomn_size; // ! test
 	t_img	img;
 	
 }	t_data;
@@ -117,7 +121,7 @@ int	ft_no_event(void *data);
 
 /* error_message.c */
 
-void	ft_message_error_mlx_init(char *message);
+void	ft_message_error(char *message);
 
 /* pixel.c */
 
@@ -135,8 +139,9 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
 
 char	*ft_map_control_extention(char *filename, char *filename_main);
 int	ft_map_check_extention(char *filename, char *filename_main);
-char	*ft_generate_string_map(char *file_ber);
-// void	ft_generate_xpm(t_data *data);
+// char	*ft_generate_string_map(char *file_ber); // ? v1
+char	*ft_generate_string_map(char *file_ber, t_data *data);
+// void	ft_generate_xpm(t_data *data); // ? v1
 void	ft_generate_xpm(t_data *data, t_generate *generate);
 
 #endif

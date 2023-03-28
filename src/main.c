@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 12:11:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/28 16:48:43 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@ int main(int ac, char **av)		// v2 : avec structure
 	// t_img	img1;
 	// t_img	img2;
 	int		compteurWASD = 0;
-	// char	*file_xpm1 = "lib/libmlx/test/open30.xpm";
-	// char	*file_xpm2 = "maps/xpm/basketball.xpm";
-	char	*file_ber = "maps/map1.ber";
+	// char	*file_xpm0 = "lib/libmlx/test/open30.xpm";
+	// char	*file_xpm1 = "maps/xpm/basketball.xpm";
+	char	*file_ber = "maps/map3.ber";
+	// char	*file_ber = "maps/map-sujet.ber";
 
-	data.file_xpm1 = "lib/libmlx/test/open30.xpm";
-	data.file_xpm2 = "maps/xpm/basketball.xpm";
+	// data.file_xpm0 = "lib/libmlx/test/open30.xpm";
+	
+	data.file_xpm0 = "maps/xpm/sol_foret.xpm";
+	data.file_xpm1 = "maps/xpm/tree.xpm";
+	data.file_xpmC = "maps/xpm/framboise.xpm";
+	data.file_xpmE = "maps/xpm/sortie_foret.xpm";
+	data.file_xpmP = "maps/xpm/randonneur.xpm";
 	
 /* ************************************************************************** */
 /*							      	 MAPS								      */
@@ -38,8 +44,12 @@ int main(int ac, char **av)		// v2 : avec structure
 
 	/* #2 version */
 	ft_map_check_extention(av[1], file_ber);
-	generate.string_map_ber = ft_generate_string_map(file_ber);
+	generate.string_map_ber = ft_generate_string_map(file_ber, &data);
+	// data.colomn_size *= 70;
+	data.colomn_size *= 65;
+	data.row_size *= 70;
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
+	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size, data.row_size);
 
 
 /* ************************************************************************** */
@@ -49,39 +59,40 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
-		(ft_message_error_mlx_init("MLX_INIT FAIL"));
+		(ft_message_error("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
 	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]);
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]); // ? v1
+	// data.win_ptr = mlx_new_window(data.mlx_ptr, data.colomn_size, data.row_size, av[0]); // ? v2
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		(ft_message_error_mlx_init("MLX_NEW_WINDOW FAIL"));
+		(ft_message_error("MLX_NEW_WINDOW FAIL"));
 	}
 
 
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
 	//
-	// img1.relative_path = file_xpm1;
-	// img2.relative_path = file_xpm2;
+	// img1.relative_path = file_xpm0;
+	// img2.relative_path = file_xpm1;
 
-/* Création d'une image */ // OK
+/* Création d'une " image " "*/ // OK
 		/* Pixel */
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
-	// {
-	// 	printf("KO mlx_xpm_file_to_image\n\n");
-	// 	return(1);
-	// }
-	// 
-	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	// printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 50, 0);
+	if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.file_xpm0, &data.img.img_widht, &data.img.img_height)))
+	{
+		printf("KO mlx_xpm_file_to_image\n\n");
+		return(1);
+	}
+	
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+	printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 50, 0);
 
 /* Création de plusieurs lignes d'images */ // OK
 		/* XPM */
@@ -139,9 +150,9 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Affichage de 2 XPM */
 		/* XPM */
 	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
-	// 	ft_message_error_mlx_init("Error open xpm 1 \n");
+	// 	ft_message_error("Error open xpm 1 \n");
  	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
-	// 	ft_message_error_mlx_init("Error open xpm 2 \n");
+	// 	ft_message_error("Error open xpm 2 \n");
 	// 
 	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
 	// img1.img_widht = 0;
@@ -156,7 +167,7 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Affichage XPM selon chiffre de la map .ber */
 		/* XPM */
-	ft_generate_xpm(&data, &generate);
+	// ft_generate_xpm(&data, &generate); // ! Boris
 
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
@@ -189,10 +200,13 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_loop(data.mlx_ptr);
 
 /* Fermeture fenêtre */
-	// mlx_destroy_image(data.mlx_ptr, &img1.mlx_img);
+	mlx_destroy_image(data.mlx_ptr, data.file_xpm0);
 	// mlx_destroy_image(data.mlx_ptr, &img2.mlx_img);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img2);
+	// mlx_destroy_image(data.mlx_ptr, generate.mlx_img0); // ! Boris
+	// mlx_destroy_image(data.mlx_ptr, generate.mlx_img1); // ! Boris
+	// mlx_destroy_image(data.mlx_ptr, generate.mlx_imgC); // ! Boris
+	// mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE); // ! Boris
+	// mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP); // ! Boris
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 
