@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/28 19:52:25 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:27:32 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,36 @@ int main(int ac, char **av)		// v2 : avec structure
 	// t_img	img1;
 	// t_img	img2;
 	int		compteurWASD = 0;
-	// char	*file_xpm0 = "lib/libmlx/test/open30.xpm";
-	// char	*file_xpm1 = "maps/xpm/basketball.xpm";
-	char	*file_ber = "maps/map-sujet.ber";
-	// char	*file_ber = "maps/map-sujet.ber";
+	char	*file_ber = "maps/good/map-sujet.ber";
+	// char	*file_ber = "maps/map1.ber";
 
 	// data.file_xpm0 = "lib/libmlx/test/open30.xpm";
-	
+
+
+/* ************************************************************************** */
+/*							      	 FILES XPM							      */
+/* ************************************************************************** */
+
+
 	data.file_xpm0 = "maps/xpm/sol_foret.xpm";
 	data.file_xpm1 = "maps/xpm/tree.xpm";
 	data.file_xpmC = "maps/xpm/framboise.xpm";
 	data.file_xpmE = "maps/xpm/sortie_foret.xpm";
 	data.file_xpmP = "maps/xpm/randonneur.xpm";
-	
+
 /* ************************************************************************** */
 /*							      	 MAPS								      */
 /* ************************************************************************** */
 	
 	printf("AV[1] = %s\n", av[1]);
+	data.filename = av[1];
 	/* #1 version */
 	// ft_map_control_extention(av[1], file_ber);
 	// printf("Extension = %s\n\n", ft_map_control_extention(file_ber, &av[1]));
 
 	/* #2 version */
-	ft_map_check_extention(av[1], file_ber);
-	generate.string_map_ber = ft_generate_string_map(file_ber, &data);
+	ft_map_check_extention(&data, file_ber);
+	generate.string_map_ber = ft_generate_string_map(&data);
 	data.colomn_size *= 70;
 	data.row_size *= 70;
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
@@ -183,7 +188,7 @@ int main(int ac, char **av)		// v2 : avec structure
 //	mlx_key_hook(data.win_ptr, &ft_close_s_keypress, &data);
 	mlx_key_hook(data.win_ptr, &ft_key_hook, &data);
 
-	
+
 /* Autres touche dont W, A, S, D */ // ne marche pas pour l'instant
 	// while ((mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &ft_key_hook, &data) == 119))
 	// {
@@ -201,7 +206,7 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Fermeture fenêtre */
 	// mlx_destroy_image(data.mlx_ptr, data.file_xpm0);
 	// mlx_destroy_image(data.mlx_ptr, &img2.mlx_img);
-	
+
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_img0);
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1);
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgC);
@@ -211,34 +216,5 @@ int main(int ac, char **av)		// v2 : avec structure
 	free(data.string_map);
 	free(data.mlx_ptr);
 
-
 	return (0);
 }
-
-
-/* int main(void)		// v1 : sans structure
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-// ** Initialisation du programme **
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		return (1);
-
-// ** Ouverture de la fenêtre **
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "first_windows");
-	if (!win_ptr)
-		return (1);
-
-// ** Nettoyage de fenêtre **
-	
-
-
-
-// ** Boucle infini qui attend des actions **
-	mlx_loop(mlx_ptr);
-
-	// printf("cool\n");
-	return (0);
-} */

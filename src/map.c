@@ -6,35 +6,67 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/28 19:51:39 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:33:19 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_map_control_extention(char *filename, char *filename_main)
+// char	*ft_map_control_extention(char *filename, char *filename_main) // ? v1
+// {
+// 	int i;
+// 	int len;
+// 	char *endfile;
+// 
+// 	if (filename == NULL)
+// 	{
+// 		filename = filename_main;
+// 		printf("** filename du main\n"); // ! a supprimer
+// 	}
+// 
+// 	len = ft_strlen(filename) - 4;
+// 	endfile = malloc(sizeof(char) * (4 + 1));
+// 	if (!endfile)
+// 		return (NULL);
+// 		// exit(EXIT_FAILURE);
+// 	i = 0;
+// 
+// 	printf("Filename = %s\n", filename);
+// 	while (filename[len] != '\0')
+// 	{
+// 		endfile[i] = filename[len];
+// 		i++;
+// 		len++;
+// 	}
+// 	endfile[i] = '\0';
+// 	return (endfile);
+// }
+
+char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
 {
 	int i;
 	int len;
 	char *endfile;
 
-	if (filename == NULL)
+	if (data->filename == NULL)
 	{
-		filename = filename_main;
-		printf("** filename du main\n"); // a supprimer
+		data->filename = filename_main;
+		printf("** filename du main : %s **\n\n", data->filename); // ! a supprimer
 	}
+	else
+		printf("** filename AV[1] : %s **\n\n", data->filename); // ! a supprimer
 
-	len = ft_strlen(filename) - 4;
+	len = ft_strlen(data->filename) - 4;
 	endfile = malloc(sizeof(char) * (4 + 1));
 	if (!endfile)
 		return (NULL);
 		// exit(EXIT_FAILURE);
 	i = 0;
 
-	printf("Filename = %s\n", filename);
-	while (filename[len] != '\0')
+	// printf("Filename = %s\n", data->filename);
+	while (data->filename[len] != '\0')
 	{
-		endfile[i] = filename[len];
+		endfile[i] = data->filename[len];
 		i++;
 		len++;
 	}
@@ -42,20 +74,20 @@ char	*ft_map_control_extention(char *filename, char *filename_main)
 	return (endfile);
 }
 
-int	ft_map_check_extention(char *filename, char *filename_main)
+int	ft_map_check_extention(t_data *data, char *filename_main)
 {
 	char	*file;
 	char	*extension;
 	int		result;
 
 	extension = ".ber";
-	file = ft_map_control_extention(filename, filename_main);
+	file = ft_map_control_extention(data, filename_main);
 	result = ft_strncmp(extension, file, 4);
 
 	if(result == 0)
-		printf("STRNCMP s1 == s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // a supprimer
+		printf("STRNCMP s1 == s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
 	else
-		printf("STRNCMP s1 != s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // a supprimer
+		printf("STRNCMP s1 != s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
 
 	free(file);
 	return (1);
@@ -138,12 +170,45 @@ int	ft_map_check_extention(char *filename, char *filename_main)
 // 	return (string_map);
 // }
 
-char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
+// char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
+// {
+// 	int		fd;
+// 	char	*line;
+//
+// 	fd = open(file_ber, O_RDONLY);
+// 	data->row_size = 0;
+//
+// 	/* v3 */ // OK
+// 	data->string_map = get_next_line(fd);
+// 	data->colomn_size = ft_strlen(data->string_map);
+// 	data->row_size++;
+// 	line = get_next_line(fd);
+// 	data->row_size++;
+// 	if (data->string_map == NULL || line == NULL)
+// 		printf("c'est NULL 1\n");
+// 	while (data->string_map)
+// 	{
+// 		data->string_map = ft_strjoin_gnl(data->string_map, line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		if (line == NULL)
+// 			break;
+// 		data->row_size++;
+// 	}
+// 	free(line);
+//
+// 	if (close(fd) == -1)
+// 		return (NULL);
+//
+// 	return (data->string_map);
+// }
+
+char	*ft_generate_string_map(t_data *data) // ? v4
 {
 	int		fd;
 	char	*line;
 
-	fd = open(file_ber, O_RDONLY);
+	fd = open(data->filename, O_RDONLY);
 	data->row_size = 0;
 
 	/* v3 */ // OK
@@ -170,6 +235,7 @@ char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
 
 	return (data->string_map);
 }
+
 
 void	ft_generate_xpm(t_data *data, t_generate *generate)
 {

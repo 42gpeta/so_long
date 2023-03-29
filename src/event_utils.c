@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/24 12:10:13 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/29 16:18:28 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	{
 // 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 // 		data->win_ptr = NULL; // fermeture de la fenêtre
-// 		// printf("Key press : %d (touche 'esc') ... APPUYER SUR 'Ctrl + C' !\n", key_symbol); // a supprimer
+// 		// printf("Key press : %d (touche 'esc') ... APPUYER SUR 'Ctrl + C' !\n", key_symbol); // ! a supprimer
 // 	}
 // 	return (0);
 // }
@@ -28,7 +28,7 @@ int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL; // fermeture de la fenêtre
-	// printf("Crose apply ... APPUYER SUR 'Ctrl + C' !\n"); // a supprimer
+	// printf("Crose apply ... APPUYER SUR 'Ctrl + C' !\n"); // ! a supprimer
 	return (0);
 }
 

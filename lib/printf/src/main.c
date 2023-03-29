@@ -13,7 +13,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h> 		// a supprimer
+#include <stdio.h> 		// ! a supprimer
 
 // main pour CHAR - HEXA - NBR - NBR_U - STR
 int	main(void)
