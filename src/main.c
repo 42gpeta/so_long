@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/29 16:27:32 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:41:53 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,16 @@ int main(int ac, char **av)		// v2 : avec structure
 	// ft_map_control_extention(av[1], file_ber);
 	// printf("Extension = %s\n\n", ft_map_control_extention(file_ber, &av[1]));
 
-	/* #2 version */
+	/* extention */
 	ft_map_check_extention(&data, file_ber);
 	generate.string_map_ber = ft_generate_string_map(&data);
 	data.colomn_size *= 70;
 	data.row_size *= 70;
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
 	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size, data.row_size);
+
+	/* content */
+	ft_check_content(&generate);
 
 
 /* ************************************************************************** */

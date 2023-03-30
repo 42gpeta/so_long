@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/28 13:39:08 by gpeta            ###   ########.fr        #
+#    Updated: 2023/03/30 16:29:21 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,11 @@ lib/libft/include \
 
 SRC_DIR		:= src
 SRCS		:= \
-event_utils.c \
 error_message.c \
+event_utils.c \
+map_check.c map_utils.c \
 pixel.c pixel_utils.c \
-map.c \
-/gnl/get_next_line.c \
-/gnl/get_next_line_utils.c \
+/gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
 
 
