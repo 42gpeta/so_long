@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 15:35:13 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:58:24 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,19 +268,24 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img,img1.img_widht, img1.img_height);	
 
 	if (!(generate->mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.img_widht, &img0.img_height)))
-		ft_message_error("Open xpm 0 fail");
+		ft_message_error("Open xpm 0 fail", data, generate);
+		// ft_message_error("Open xpm 0 fail");
 
  	if (!(generate->mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
-		ft_message_error("Open xpm 1 fail");
+		ft_message_error("Open xpm 1 fail", data, generate);
+		// ft_message_error("Open xpm 1 fail");
 
 	if (!(generate->mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, imgC.relative_path, &imgC.img_widht, &imgC.img_height)))
-		ft_message_error("Open xpm C fail");
+		ft_message_error("Open xpm C fail", data, generate);
+		// ft_message_error("Open xpm C fail");
 
  	if (!(generate->mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, imgE.relative_path, &imgE.img_widht, &imgE.img_height)))
-		ft_message_error("Open xpm E fail");
+		ft_message_error("Open xpm E fail", data, generate);
+		// ft_message_error("Open xpm E fail");
 
 	if (!(generate->mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, imgP.relative_path, &imgP.img_widht, &imgP.img_height)))
-		ft_message_error("Open xpm P fail");
+		ft_message_error("Open xpm P fail", data, generate);
+		// ft_message_error("Open xpm P fail");
 
 	img0.addr = mlx_get_data_addr(generate->mlx_img0, &img0.bpp, &img0.line_len, &img0.endian);
 	img0.img_widht = 0;
@@ -351,9 +356,9 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 			else if (ber[i] == 'P')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht + x, imgP.img_height + y);
 			i++;
-			x += 70;
+			x += ECART_XPM;
 		}
 		x = 0;
-		y += 70;
+		y += ECART_XPM;
 	}
 }

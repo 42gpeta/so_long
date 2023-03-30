@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 16:41:53 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/30 19:04:47 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int main(int ac, char **av)		// v2 : avec structure
 /*							      	 MAPS								      */
 /* ************************************************************************** */
 	
+	data.string_map = 0;
+	data.mlx_ptr = 0;
+
+	
 	printf("AV[1] = %s\n", av[1]);
 	data.filename = av[1];
 	/* #1 version */
@@ -50,13 +54,14 @@ int main(int ac, char **av)		// v2 : avec structure
 	/* extention */
 	ft_map_check_extention(&data, file_ber);
 	generate.string_map_ber = ft_generate_string_map(&data);
-	data.colomn_size *= 70;
-	data.row_size *= 70;
+	data.colomn_size *= ECART_XPM;
+	data.row_size *= ECART_XPM;
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
 	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size, data.row_size);
 
 	/* content */
-	ft_check_content(&generate);
+	ft_check_content(&generate, &data);
+	ft_check_surrounded_by_one(&generate, &data);
 
 
 /* ************************************************************************** */
@@ -66,7 +71,8 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
-		(ft_message_error("MLX_INIT FAIL"));
+		(ft_message_error("MLX_INIT FAIL", &data, &generate));
+		// (ft_message_error("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
 	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]);
@@ -75,7 +81,8 @@ int main(int ac, char **av)		// v2 : avec structure
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		(ft_message_error("MLX_NEW_WINDOW FAIL"));
+		(ft_message_error("MLX_NEW_WINDOW FAIL", &data, &generate));
+		// (ft_message_error("MLX_NEW_WINDOW FAIL"));
 	}
 
 
@@ -216,6 +223,8 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE);
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP);
 	mlx_destroy_display(data.mlx_ptr);
+	free(generate.map.up);
+	free(generate.map.down);
 	free(data.string_map);
 	free(data.mlx_ptr);
 

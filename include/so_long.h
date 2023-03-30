@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 16:39:09 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:44:04 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define WINDOW_WIDHT 600
 # define WINDOW_HEIGHT 300
+# define ECART_XPM 65
 # define WINDOW_WIDHT_MAX 2560	// (X ; largeur)
 # define WINDOW_HEIGHT_MAX 1440 // (Y ; longeur)
 
@@ -61,7 +62,16 @@ y = height = hauteur
 /*							      	 STRUCTURE							      */
 /* ************************************************************************** */
 
-	/* map_utils.c */
+	/* map_utils.c */ /* map_check.c */
+typedef struct s_map
+{
+	char	*up;
+	char	*down;
+	char	*left;
+	char	*right;
+}	t_map;
+
+
 typedef struct s_generate
 {
 	void	*mlx_img0;
@@ -71,6 +81,7 @@ typedef struct s_generate
 	void	*mlx_imgP;
 	char	*string_map_ber;
 	int		number_of_C;
+	t_map	map;
 }	t_generate;
 
 
@@ -135,7 +146,9 @@ int	ft_no_event(void *data);
 error_message.c
 *************/
 
-void	ft_message_error(char *message);
+// void	ft_message_error(char *message); // ? v1
+void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v2
+
 
 /*************
 pixel.c
@@ -176,14 +189,14 @@ void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2
 map_check.c
 *************/
 
-void	ft_check_content(t_generate *generate);
+void	ft_check_content(t_generate *generate, t_data *data);
 void	ft_check_content_doublon(t_generate *generate);
 
 
 void	ft_check_map_is_an_rectangle();
 
 
-void	ft_check_surrounded_by_one();
+void	ft_check_surrounded_by_one(t_generate *generate, t_data *data);
 
 
 void	ft_check_possible_exit();

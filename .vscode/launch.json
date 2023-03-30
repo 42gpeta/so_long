@@ -11,7 +11,8 @@
             "request": "launch",
             // "program": "${workspaceFolder}/lib/libmlx/test/mlx-test", //path to your programs exe and exe name
             "program": "${workspaceFolder}/so_long", //path to your programs exe and exe name
-            "args": [],
+            // "args": [], // WITHOUT AV[1]
+            "args": ["maps/bad/map1.ber"], // WITH AV[1]
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
