@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 18:58:24 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:35:36 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,37 +203,45 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 	return (data->string_map);
 // }
 
-char	*ft_generate_string_map(t_data *data) // ? v4
+void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 {
-	int		fd;
+	// int		fd;
 	char	*line;
 
-	fd = open(data->filename, O_RDONLY);
+	generate->fd = open(data->filename, O_RDWR);
+	if (generate->fd < 0 || generate->fd > 1024)
+		ft_message_error("Cannot open this !", data, generate);
 	data->row_size = 0;
 
 	/* v3 */ // OK
-	data->string_map = get_next_line(fd);
+	data->string_map = get_next_line(generate->fd);
 	data->colomn_size = ft_strlen(data->string_map);
 	data->row_size++;
-	line = get_next_line(fd);
+	line = get_next_line(generate->fd);
 	data->row_size++;
 	if (data->string_map == NULL || line == NULL)
-		printf("c'est NULL 1\n");
+		printf("c'est NULL 1\n"); // ! a supprimer
 	while (data->string_map)
 	{
 		data->string_map = ft_strjoin_gnl(data->string_map, line);
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(generate->fd);
 		if (line == NULL)
 			break;
 		data->row_size++;
 	}
 	free(line);
 
-	if (close(fd) == -1)
-		return (NULL);
+	if (close(generate->fd) == -1)
+		ft_message_error("Close of file failed.", data, generate);
+		// return (NULL);
+	ft_generate_string_map_tab(data, generate);
+	// generate->string_map_ber = data->string_map;
+}
 
-	return (data->string_map);
+void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
+{
+	generate->string_map_ber_tab = ft_split(data->string_map, '\n');
 }
 
 
@@ -311,7 +319,8 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 
 
 	// char *ber = "212122110111111111111111112";
-	char *ber = generate->string_map_ber;
+	char *ber ;
+	ber = data->string_map;
 	int	i = 0;
 	int	x = 0;
 	int y = 0;

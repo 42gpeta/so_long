@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/29 16:18:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/31 16:15:46 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,41 +39,69 @@ int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_
 // 	return (0);
 // }
 
-int	ft_key_hook(int key_symbol, t_data *data)
+int	ft_key_hook(int key_symbol, t_data *data) // ? v1
 {
-	// i = 0;	
+	static long long int i = 0;	
+
 	if (key_symbol == XK_Escape)
 	{
 		printf("Letter ESC | Key %d\n", key_symbol);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL; // fermeture de la fenêtre
-		// i++;
 	}
 	else if (key_symbol == XK_w)
 	{
+		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter W | Key %d\n", key_symbol);
-		// i++;
+		i++;
 	}
 	else if (key_symbol == 97)
 	{
+		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter A | Key %d\n", key_symbol);
-		// i++;
+		i++;
 	}
 	else if (key_symbol == 115)
 	{
+		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter S | Key %d\n", key_symbol);
-		// i++;
+		i++;
 	}
 	else if (key_symbol == 100)
 	{
+		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter D | Key %d\n", key_symbol);
-		// i++;
+		i++;
 	}
 	else
 		printf("Key %d\n", key_symbol);
-	// printf("------------------\nCOMPTEUR MVT : %d\n------------------\n", i);
+	printf("------------------\nCOMPTEUR MVT : %lld\n", i);
 	return (key_symbol);
 }
+
+// int	ft_key_hook(int key_symbol, t_data *data) // ? v2
+// {
+// 	static long long int i = 0;
+
+// 	if (key_symbol == XK_Escape)
+// 	{
+// 		printf("Letter ESC | Key %d\n", key_symbol);
+// 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+// 		data->win_ptr = NULL; // fermeture de la fenêtre
+// 	}
+// 	else if (key_symbol == XK_w)
+// 		// TODO ajouter les fonctions lié aux déplacements
+// 	else if (key_symbol == 97)
+// 		// TODO ajouter les fonctions lié aux déplacements
+// 	else if (key_symbol == 115)
+// 		// TODO ajouter les fonctions lié aux déplacements
+// 	else if (key_symbol == 100)
+// 		// TODO ajouter les fonctions lié aux déplacements
+// 		printf("Key W, A, S or D : %d\n", key_symbol);
+// 	if ()
+// 	printf("------------------\nCOMPTEUR MVT : %lld\n", i);
+// 	return (key_symbol);
+// }
 
 // int	ft_mouvement_s_keypress(int key_sumbol, t_data *data) // a voir
 // {

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 18:44:04 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:22:25 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,14 @@ typedef struct s_map
 
 typedef struct s_generate
 {
+	int		fd;
 	void	*mlx_img0;
 	void	*mlx_img1;
 	void	*mlx_imgC;
 	void	*mlx_imgE;
 	void	*mlx_imgP;
-	char	*string_map_ber;
+	char	*string_map_ber; 
+	char	**string_map_ber_tab;
 	int		number_of_C;
 	t_map	map;
 }	t_generate;
@@ -123,7 +125,7 @@ typedef struct s_data
 	char	*file_xpmP;
 	int		row_size;
 	int		colomn_size;
-	char	*string_map;
+	char	*string_map; // colecte la map dans 1 ligne
 	t_img	img;
 }	t_data;
 
@@ -147,7 +149,8 @@ error_message.c
 *************/
 
 // void	ft_message_error(char *message); // ? v1
-void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v2
+// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v2
+void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v3
 
 
 /*************
@@ -179,7 +182,10 @@ int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
 // char	*ft_generate_string_map(char *file_ber); // ? v1
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v3
-char	*ft_generate_string_map(t_data *data); // ? v4
+void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
+
+void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
+
 
 // void	ft_generate_xpm(t_data *data); // ? v1
 void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2

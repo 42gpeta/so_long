@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/30 19:04:47 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:28:34 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int main(int ac, char **av)		// v2 : avec structure
 
 	// data.file_xpm0 = "lib/libmlx/test/open30.xpm";
 
+	int		element = 0;
+	char * str;
 
 /* ************************************************************************** */
 /*							      	 FILES XPM							      */
@@ -53,10 +55,14 @@ int main(int ac, char **av)		// v2 : avec structure
 
 	/* extention */
 	ft_map_check_extention(&data, file_ber);
-	generate.string_map_ber = ft_generate_string_map(&data);
+	// generate.string_map_ber = ft_generate_string_map(&data, &generate);
+	// str = ft_generate_string_map(&data, &generate);
+	// generate.string_map_ber = str;
+	ft_generate_string_map(&data, &generate);
 	data.colomn_size *= ECART_XPM;
 	data.row_size *= ECART_XPM;
-	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
+	// printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
+	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data.string_map);
 	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size, data.row_size);
 
 	/* content */
@@ -195,8 +201,9 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Gestion touche echap, W, A, S, D */
 // mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
+mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_key_hook, &data);
 //	mlx_key_hook(data.win_ptr, &ft_close_s_keypress, &data);
-	mlx_key_hook(data.win_ptr, &ft_key_hook, &data);
+	// mlx_key_hook(data.win_ptr, &ft_key_hook, &data);
 
 
 /* Autres touche dont W, A, S, D */ // ne marche pas pour l'instant
@@ -225,6 +232,9 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_destroy_display(data.mlx_ptr);
 	free(generate.map.up);
 	free(generate.map.down);
+	while (generate.string_map_ber_tab[element])
+		free(generate.string_map_ber_tab[element++]);
+	free(generate.string_map_ber_tab);
 	free(data.string_map);
 	free(data.mlx_ptr);
 
