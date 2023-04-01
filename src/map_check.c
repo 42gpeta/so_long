@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 18:03:40 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:17:06 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_check_content(t_generate *generate, t_data *data)
 	letter_C = 0;
 	letter_P = 0;
 	i = 0;
-
+	// printf("ft_check_content : %s\n", data->string_map); // ! a supprimer
 	while (data->string_map[i] != '\0')
 	{
 		if (data->string_map[i] == 'E')
@@ -102,31 +102,39 @@ void	ft_check_content(t_generate *generate, t_data *data)
 // 	printf("up : %s\ndown : %s\n", *first, generate->map.down);
 // }
 
-void	ft_check_surrounded_by_one(t_generate *generate, t_data *data) // ? v2  // TODO finir la vérif des côtés
+// void	ft_check_surrounded_by_one(t_generate *generate, t_data *data) // ? v2  // TODO finir la vérif des côtés
+// {
+// 	int i;
+//
+// 	i = 0;
+// 	generate->map.up = 0;
+// 	generate->map.down = 0;
+//
+// 	generate->map.up = ft_substr(data->string_map, 0, (ft_strlen(data->string_map) - ft_strlen(ft_strchr(data->string_map, '\n'))));
+//
+// 	generate->map.down = ft_substr(data->string_map,
+// 		(ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n'))) + 1,
+// 		(ft_strlen(data->string_map) - (ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n')))));
+// 	printf("up :\n%s\ndown :\n%s\n", generate->map.up, generate->map.down);
+//
+// 	if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
+// 		ft_message_error("Wall on top or on bottom is not complete. (1)", data, generate);
+// 	while (generate->map.up[i] == '1' && generate->map.down[i] == '1')
+// 	{
+// 		if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
+// 			ft_message_error("Wall on top or on bottom is not complete. (2)", data, generate);
+// 		i++;
+// 		// generate->map.up++;
+// 		// generate->map.down++;
+// 	}
+// }
+
+void	ft_check_surrounded_by_one(t_generate *generate, t_data *data) // ? v3  // TODO finir la vérif des côtés
 {
-	int i;
-
-	i = 0;
-	generate->map.up = 0;
-	generate->map.down = 0;
-
-	generate->map.up = ft_substr(data->string_map, 0, (ft_strlen(data->string_map) - ft_strlen(ft_strchr(data->string_map, '\n'))));
-
-	generate->map.down = ft_substr(data->string_map,
-		(ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n'))) + 1,
-		(ft_strlen(data->string_map) - (ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n')))));
-	printf("up :\n%s\ndown :\n%s\n", generate->map.up, generate->map.down);
-
-	if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
-		ft_message_error("Wall on top or on bottom is not complete. (1)", data, generate);
-	while (generate->map.up[i] == '1' && generate->map.down[i] == '1')
-	{
-		if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
-			ft_message_error("Wall on top or on bottom is not complete. (2)", data, generate);
-		i++;
-		// generate->map.up++;
-		// generate->map.down++;
-	}
+	ft_check_surrounded_by_one_up(generate, data);
+	ft_check_surrounded_by_one_down(generate, data);
+	ft_check_surrounded_by_one_left(generate, data);
+	ft_check_surrounded_by_one_right(generate, data);
 }
 
 /* Vérification s'il est possible de sortir de la map */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 18:28:34 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:36:32 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int main(int ac, char **av)		// v2 : avec structure
 	// str = ft_generate_string_map(&data, &generate);
 	// generate.string_map_ber = str;
 	ft_generate_string_map(&data, &generate);
-	data.colomn_size *= ECART_XPM;
-	data.row_size *= ECART_XPM;
+	// data.colomn_size_map *= ECART_XPM; // ! test
+	// data.row_size_map *= ECART_XPM; // ! test
 	// printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data.string_map);
-	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size, data.row_size);
+	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size_win, data.row_size_win);
 
 	/* content */
 	ft_check_content(&generate, &data);
@@ -83,7 +83,7 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
 	// data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, av[0]);
 	// data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT, av[0]); // ? v1
-	data.win_ptr = mlx_new_window(data.mlx_ptr, data.colomn_size, data.row_size, av[0]); // ? v2
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.colomn_size_win, data.row_size_win, av[0]); // ? v2
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -230,8 +230,8 @@ mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_key_hook, &data);
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE);
 	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP);
 	mlx_destroy_display(data.mlx_ptr);
-	free(generate.map.up);
-	free(generate.map.down);
+	// free(generate.map.up);
+	// free(generate.map.down);
 	while (generate.string_map_ber_tab[element])
 		free(generate.string_map_ber_tab[element++]);
 	free(generate.string_map_ber_tab);

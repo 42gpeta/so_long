@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 18:35:36 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/01 17:55:17 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 	char	*string_map;
 // 
 // 	fd = open(file_ber, O_RDONLY);
-// 	data->row_size = 0;
+// 	data->row_size_map = 0;
 // 	/* v1 */
 // 	// line = get_next_line(fd);
 // 	// 
@@ -146,10 +146,10 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 
 // 	/* v3 */ // OK
 // 	string_map = get_next_line(fd);
-// 	data->colomn_size = ft_strlen(string_map);
-// 	data->row_size++;
+// 	data->colomn_size_map = ft_strlen(string_map);
+// 	data->row_size_map++;
 // 	line = get_next_line(fd);
-// 	data->row_size++;
+// 	data->row_size_map++;
 // 	if (string_map == NULL || line == NULL)
 // 		printf("c'est NULL 1\n");
 // 	while (string_map)
@@ -160,7 +160,7 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 		line = get_next_line(fd);
 // 		if (line == NULL)
 // 			break;
-// 		data->row_size++;
+// 		data->row_size_map++;
 // 	}
 // 	free(line);
 // 
@@ -176,14 +176,14 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 	char	*line;
 //
 // 	fd = open(file_ber, O_RDONLY);
-// 	data->row_size = 0;
+// 	data->row_size_map = 0;
 //
 // 	/* v3 */ // OK
 // 	data->string_map = get_next_line(fd);
-// 	data->colomn_size = ft_strlen(data->string_map);
-// 	data->row_size++;
+// 	data->colomn_size_map = ft_strlen(data->string_map);
+// 	data->row_size_map++;
 // 	line = get_next_line(fd);
-// 	data->row_size++;
+// 	data->row_size_map++;
 // 	if (data->string_map == NULL || line == NULL)
 // 		printf("c'est NULL 1\n");
 // 	while (data->string_map)
@@ -193,7 +193,7 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 // 		line = get_next_line(fd);
 // 		if (line == NULL)
 // 			break;
-// 		data->row_size++;
+// 		data->row_size_map++;
 // 	}
 // 	free(line);
 //
@@ -205,22 +205,21 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 
 void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 {
-	// int		fd;
 	char	*line;
 
 	generate->fd = open(data->filename, O_RDWR);
 	if (generate->fd < 0 || generate->fd > 1024)
 		ft_message_error("Cannot open this !", data, generate);
-	data->row_size = 0;
-
+	data->row_size_map = 0;
 	/* v3 */ // OK
 	data->string_map = get_next_line(generate->fd);
-	data->colomn_size = ft_strlen(data->string_map);
-	data->row_size++;
+	data->colomn_size_map = ft_strlen(data->string_map);
+	data->row_size_map++;
 	line = get_next_line(generate->fd);
-	data->row_size++;
+	data->row_size_map++;
 	if (data->string_map == NULL || line == NULL)
-		printf("c'est NULL 1\n"); // ! a supprimer
+		ft_message_error("First line of this file is empty.", data, generate);
+		// printf("c'est NULL 1\n"); // ! a supprimer
 	while (data->string_map)
 	{
 		data->string_map = ft_strjoin_gnl(data->string_map, line);
@@ -228,20 +227,33 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 		line = get_next_line(generate->fd);
 		if (line == NULL)
 			break;
-		data->row_size++;
+		data->row_size_map++;
 	}
 	free(line);
-
 	if (close(generate->fd) == -1)
 		ft_message_error("Close of file failed.", data, generate);
-		// return (NULL);
 	ft_generate_string_map_tab(data, generate);
-	// generate->string_map_ber = data->string_map;
 }
 
 void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 {
 	generate->string_map_ber_tab = ft_split(data->string_map, '\n');
+	data->colomn_size_win = data->colomn_size_map * ECART_XPM;
+	data->row_size_win = data->row_size_map * ECART_XPM;
+	int x = 0; // ! a supprimer
+	int y = 0; // ! a supprimer
+	 // ! a supprimer
+	x = 0; // ! a supprimer
+	y = 0; // ! a supprimer
+	while (generate->string_map_ber_tab[y]) // ! a supprimer
+	{ // ! a supprimer
+		// x = 0; // ! a supprimer
+		printf("\n~ string_map_ber_tab[%d] : %s\n", y, generate->string_map_ber_tab[y]); // ! a supprimer
+		y++; // ! a supprimer
+		// while (generate->string_map_ber_tab[y][x]) // ! a supprimer
+		// { // ! a supprimer
+		// } // ! a supprimer
+	} // ! a supprimer
 }
 
 
@@ -345,14 +357,14 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// }	
 
 		/* v2 : echap, red cross OK mais affiche toutes les images mais ne poursuit pas le programme */
-	// if (data->row_size > WINDOW_HEIGHT_MAX || data->colomn_size > WINDOW_WIDHT_MAX)
+	// if (data->row_size_map > WINDOW_HEIGHT_MAX || data->colomn_size_map > WINDOW_WIDHT_MAX)
 		// ft_message_error("Error : map's height or map's widht is too big");
 
 	// while (ber[i] != '\0' || y < WINDOW_HEIGHT) // ? v1
-	while (ber[i] != '\0' || y < data->row_size)
+	while (ber[i] != '\0' || y < data->row_size_win)
 	{
 		// while (ber[i] != '\0' && x < WINDOW_WIDHT) // ? v1
-		while (ber[i] != '\0' && x < data->colomn_size)
+		while (ber[i] != '\0' && x < data->colomn_size_win)
 		{
 			if (ber[i] == '0')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht + x, img0.img_height + y);

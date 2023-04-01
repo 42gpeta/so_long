@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_message.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:36:58 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 18:05:31 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/01 18:36:20 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v3
 	write(1, "\n", 1);
 	if (generate->fd > 0 && generate->fd < 1024)
 	{
-		if (generate->map.up)
-			free(generate->map.up);
-		if (generate->map.down)
-			free(generate->map.down);
 		while (generate->string_map_ber_tab[i] != NULL)
 			free(generate->string_map_ber_tab[i++]);
 		if (generate->string_map_ber_tab)

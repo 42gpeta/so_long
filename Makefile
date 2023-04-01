@@ -33,7 +33,7 @@ SRC_DIR		:= src
 SRCS		:= \
 error_message.c \
 event_utils.c \
-map_check.c map_utils.c \
+map_check.c map_check_parameters.c map_utils.c \
 pixel.c pixel_utils.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \

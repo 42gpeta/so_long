@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 18:22:25 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/01 17:36:22 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,10 @@ typedef struct s_data
 	char	*file_xpmC;
 	char	*file_xpmE;
 	char	*file_xpmP;
-	int		row_size;
-	int		colomn_size;
+	int		row_size_map;
+	int		colomn_size_map;
+	int		row_size_win;
+	int		colomn_size_win;
 	char	*string_map; // colecte la map dans 1 ligne
 	t_img	img;
 }	t_data;
@@ -208,8 +210,13 @@ void	ft_check_surrounded_by_one(t_generate *generate, t_data *data);
 void	ft_check_possible_exit();
 
 
-
-
+/*************
+map_check_paraneters.c
+*************/
+void	ft_check_surrounded_by_one_up(t_generate *generate, t_data *data);
+void	ft_check_surrounded_by_one_down(t_generate *generate, t_data *data);
+void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data);
+void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data);
 
 
 #endif
