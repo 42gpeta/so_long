@@ -11,9 +11,10 @@
             "request": "launch",
             // "program": "${workspaceFolder}/lib/libmlx/test/mlx-test", //path to your programs exe and exe name
             "program": "${workspaceFolder}/so_long", //path to your programs exe and exe name
-            "args": [], // WITHOUT AV[1]  ~~ Good file
-            // "args": ["maps/bad/map1.ber"], // WITH AV[1]    ~~ Bad file
+            // "args": [], // WITHOUT AV[1]  ~~ Good file
+            "args": ["maps/bad/map6.ber"], // WITH AV[1]    ~~ Bad file
             // "args": ["maps/bad/bad.ber"], // WITH AV[1]    ~~ Bad folder
+            // "args": ["maps/good/map-sujet.ber"], // WITH AV[1]    ~~ Bad folder
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

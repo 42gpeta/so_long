@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/01 18:36:32 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/04 18:01:52 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int main(int ac, char **av)		// v2 : avec structure
 /* ************************************************************************** */
 	
 	data.string_map = 0;
+	generate.string_map_ber = 0;
+	generate.string_map_ber_tab = 0;
 	data.mlx_ptr = 0;
 
 	
@@ -65,9 +67,10 @@ int main(int ac, char **av)		// v2 : avec structure
 	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data.string_map);
 	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size_win, data.row_size_win);
 
-	/* content */
+	/* map's content */
 	ft_check_content(&generate, &data);
 	ft_check_surrounded_by_one(&generate, &data);
+	ft_check_map_is_an_rectangle(&data, &generate);
 
 
 /* ************************************************************************** */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/01 17:36:22 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/04 16:19:21 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,8 @@ map_utils.c
 char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
 
 // int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
-int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
+// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
+// void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 
 // char	*ft_generate_string_map(char *file_ber); // ? v1
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
@@ -198,10 +199,9 @@ map_check.c
 *************/
 
 void	ft_check_content(t_generate *generate, t_data *data);
-void	ft_check_content_doublon(t_generate *generate);
 
 
-void	ft_check_map_is_an_rectangle();
+void	ft_check_map_is_an_rectangle(t_data *data, t_generate *s_generate);
 
 
 void	ft_check_surrounded_by_one(t_generate *generate, t_data *data);
@@ -217,6 +217,11 @@ void	ft_check_surrounded_by_one_up(t_generate *generate, t_data *data);
 void	ft_check_surrounded_by_one_down(t_generate *generate, t_data *data);
 void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data);
 void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data);
+
+/*************
+map_check_is_rectangle.c
+*************/
+
 
 
 #endif

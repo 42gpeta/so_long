@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/01 17:55:17 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/04 19:31:06 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
 	return (endfile);
 }
 
-int	ft_map_check_extention(t_data *data, char *filename_main)
+void	ft_map_check_extention(t_data *data, char *filename_main)
 {
 	char	*file;
 	char	*extension;
@@ -90,7 +90,7 @@ int	ft_map_check_extention(t_data *data, char *filename_main)
 		printf("STRNCMP s1 != s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
 
 	free(file);
-	return (1);
+	// return (1);
 }
 
 // char	*ft_generate_string_map(char *file_ber) // ? v1
@@ -209,16 +209,18 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 
 	generate->fd = open(data->filename, O_RDWR);
 	if (generate->fd < 0 || generate->fd > 1024)
-		ft_message_error("Cannot open this !", data, generate);
+// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
+		ft_message_error("ft_generate_string_map : Cannot open this !", data, generate);
 	data->row_size_map = 0;
 	/* v3 */ // OK
 	data->string_map = get_next_line(generate->fd);
-	data->colomn_size_map = ft_strlen(data->string_map);
+	// if (data->string_map && !(data->string_map[0] == '1'))
+
 	data->row_size_map++;
 	line = get_next_line(generate->fd);
 	data->row_size_map++;
 	if (data->string_map == NULL || line == NULL)
-		ft_message_error("First line of this file is empty.", data, generate);
+		ft_message_error("ft_generate_string_map : First line of this file is empty.", data, generate);
 		// printf("c'est NULL 1\n"); // ! a supprimer
 	while (data->string_map)
 	{
@@ -230,30 +232,38 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 		data->row_size_map++;
 	}
 	free(line);
+	if (!(data->string_map[0] == '1'))
+	{
+		// printf("bonjour\n");
+		// free(data->string_map);
+		close(generate->fd);
+		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data, generate);
+	}
 	if (close(generate->fd) == -1)
-		ft_message_error("Close of file failed.", data, generate);
+		ft_message_error("ft_generate_string_map : Close of file failed.", data, generate);
 	ft_generate_string_map_tab(data, generate);
 }
 
 void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 {
 	generate->string_map_ber_tab = ft_split(data->string_map, '\n');
+	data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]);
 	data->colomn_size_win = data->colomn_size_map * ECART_XPM;
 	data->row_size_win = data->row_size_map * ECART_XPM;
-	int x = 0; // ! a supprimer
-	int y = 0; // ! a supprimer
-	 // ! a supprimer
-	x = 0; // ! a supprimer
-	y = 0; // ! a supprimer
-	while (generate->string_map_ber_tab[y]) // ! a supprimer
-	{ // ! a supprimer
-		// x = 0; // ! a supprimer
-		printf("\n~ string_map_ber_tab[%d] : %s\n", y, generate->string_map_ber_tab[y]); // ! a supprimer
-		y++; // ! a supprimer
-		// while (generate->string_map_ber_tab[y][x]) // ! a supprimer
-		// { // ! a supprimer
-		// } // ! a supprimer
-	} // ! a supprimer
+	// int x = 0; // ! a supprimer
+	// int y = 0; // ! a supprimer
+	//  // ! a supprimer
+	// x = 0; // ! a supprimer
+	// y = 0; // ! a supprimer
+	// while (generate->string_map_ber_tab[y]) // ! a supprimer
+	// { // ! a supprimer
+	// 	// x = 0; // ! a supprimer
+	// 	printf("\n~ string_map_ber_tab[%d] : %s\n", y, generate->string_map_ber_tab[y]); // ! a supprimer
+	// 	y++; // ! a supprimer
+	// 	// while (generate->string_map_ber_tab[y][x]) // ! a supprimer
+	// 	// { // ! a supprimer
+	// 	// } // ! a supprimer
+	// } // ! a supprimer
 }
 
 
@@ -288,51 +298,50 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img,img1.img_widht, img1.img_height);	
 
 	if (!(generate->mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.img_widht, &img0.img_height)))
-		ft_message_error("Open xpm 0 fail", data, generate);
+		ft_message_error("ft_generate_xpm : Open xpm 0 fail", data, generate);
 		// ft_message_error("Open xpm 0 fail");
 
  	if (!(generate->mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
-		ft_message_error("Open xpm 1 fail", data, generate);
+		ft_message_error("ft_generate_xpm : Open xpm 1 fail", data, generate);
 		// ft_message_error("Open xpm 1 fail");
 
 	if (!(generate->mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, imgC.relative_path, &imgC.img_widht, &imgC.img_height)))
-		ft_message_error("Open xpm C fail", data, generate);
+		ft_message_error("ft_generate_xpm : Open xpm C fail", data, generate);
 		// ft_message_error("Open xpm C fail");
 
  	if (!(generate->mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, imgE.relative_path, &imgE.img_widht, &imgE.img_height)))
-		ft_message_error("Open xpm E fail", data, generate);
+		ft_message_error("ft_generate_xpm : Open xpm E fail", data, generate);
 		// ft_message_error("Open xpm E fail");
 
 	if (!(generate->mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, imgP.relative_path, &imgP.img_widht, &imgP.img_height)))
-		ft_message_error("Open xpm P fail", data, generate);
+		ft_message_error("ft_generate_xpm : Open xpm P fail", data, generate);
 		// ft_message_error("Open xpm P fail");
 
-	img0.addr = mlx_get_data_addr(generate->mlx_img0, &img0.bpp, &img0.line_len, &img0.endian);
-	img0.img_widht = 0;
-	img0.img_height = 0;
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht, img0.img_height);
+	// img0.addr = mlx_get_data_addr(generate->mlx_img0, &img0.bpp, &img0.line_len, &img0.endian); // ! fonctionne sans
+	// img0.img_widht = 0;
+	// img0.img_height = 0;
+	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht, img0.img_height);
 
-	img1.addr = mlx_get_data_addr(generate->mlx_img1, &img1.bpp, &img1.line_len, &img1.endian);
-	img1.img_widht = 0;
-	img1.img_height = 0;
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1,img1.img_widht, img1.img_height);
+	// // img1.addr = mlx_get_data_addr(generate->mlx_img1, &img1.bpp, &img1.line_len, &img1.endian); // ! fonctionne sans
+	// img1.img_widht = 0;
+	// img1.img_height = 0;
+	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1,img1.img_widht, img1.img_height);
 
-	imgC.addr = mlx_get_data_addr(generate->mlx_imgC, &imgC.bpp, &imgC.line_len, &imgC.endian);
-	imgC.img_widht = 0;
-	imgC.img_height = 0;
+	// // imgC.addr = mlx_get_data_addr(generate->mlx_imgC, &imgC.bpp, &imgC.line_len, &imgC.endian); // ! fonctionne sans
+	// imgC.img_widht = 0;
+	// imgC.img_height = 0;
 
-	imgE.addr = mlx_get_data_addr(generate->mlx_imgE, &imgE.bpp, &imgE.line_len, &imgE.endian);
-	imgE.img_widht = 0;
-	imgE.img_height = 0;
+	// // imgE.addr = mlx_get_data_addr(generate->mlx_imgE, &imgE.bpp, &imgE.line_len, &imgE.endian); // ! fonctionne sans
+	// imgE.img_widht = 0;
+	// imgE.img_height = 0;
 
-	imgP.addr = mlx_get_data_addr(generate->mlx_imgP, &imgP.bpp, &imgP.line_len, &imgP.endian);
-	imgP.img_widht = 0;
-	imgP.img_height = 0;
+	// // imgP.addr = mlx_get_data_addr(generate->mlx_imgP, &imgP.bpp, &imgP.line_len, &imgP.endian); // ! fonctionne sans
+	// imgP.img_widht = 0;
+	// imgP.img_height = 0;
 
 
 	// char *ber = "212122110111111111111111112";
-	char *ber ;
-	ber = data->string_map;
+	
 	int	i = 0;
 	int	x = 0;
 	int y = 0;
@@ -357,29 +366,58 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// }	
 
 		/* v2 : echap, red cross OK mais affiche toutes les images mais ne poursuit pas le programme */
-	// if (data->row_size_map > WINDOW_HEIGHT_MAX || data->colomn_size_map > WINDOW_WIDHT_MAX)
-		// ft_message_error("Error : map's height or map's widht is too big");
+	// char *ber = data->string_map;
+	// // if (data->row_size_map > WINDOW_HEIGHT_MAX || data->colomn_size_map > WINDOW_WIDHT_MAX)
+	// 	// ft_message_error("Error : map's height or map's widht is too big");
+	//
+	// // while (ber[i] != '\0' || y < WINDOW_HEIGHT) // ? v1
+	// while (ber[i] != '\0' || y < data->row_size_win)
+	// {
+	// 	// while (ber[i] != '\0' && x < WINDOW_WIDHT) // ? v1
+	// 	while (ber[i] != '\0' && x < data->colomn_size_win)
+	// 	{
+	// 		if (ber[i] == '0')
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.img_height + y);
+	// 			// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht + x, img0.img_height + y);
+	// 		else if (ber[i] == '1')
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
+	// 		else if (ber[i] == 'C')
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht + x, imgC.img_height + y);
+	// 		else if (ber[i] == 'E')
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht + x, imgE.img_height + y);
+	// 		else if (ber[i] == 'P')
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht + x, imgP.img_height + y);
+	// 		i++;
+	// 		x += ECART_XPM;
+	// 	}
+	// 	x = 0;
+	// 	y += ECART_XPM;
+	// }
 
-	// while (ber[i] != '\0' || y < WINDOW_HEIGHT) // ? v1
-	while (ber[i] != '\0' || y < data->row_size_win)
+	/* v3 : */
+	
+	char **ber = generate->string_map_ber_tab;
+	
+	while (ber[y])
 	{
-		// while (ber[i] != '\0' && x < WINDOW_WIDHT) // ? v1
-		while (ber[i] != '\0' && x < data->colomn_size_win)
-		{
-			if (ber[i] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht + x, img0.img_height + y);
-			else if (ber[i] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
-			else if (ber[i] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht + x, imgC.img_height + y);
-			else if (ber[i] == 'E')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht + x, imgE.img_height + y);
-			else if (ber[i] == 'P')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht + x, imgP.img_height + y);
-			i++;
-			x += ECART_XPM;
-		}
 		x = 0;
-		y += ECART_XPM;
+		while (ber[y][x])
+		{
+			if (ber[y][x] == '0')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
+				// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.img_height + y);
+			else if (ber[y][x] == '1')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht * x, img1.img_height * y);
+			else if (ber[y][x] == 'C')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht * x, imgC.img_height * y);
+			else if (ber[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht * x, imgE.img_height * y);
+			else if (ber[y][x] == 'P')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht * x, imgP.img_height * y);
+			x++;
+			// x += ECART_XPM;
+		}
+		y++;
+		// y += ECART_XPM;
 	}
 }
