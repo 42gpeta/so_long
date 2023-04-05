@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/04 19:31:06 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/05 13:35:37 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,6 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 			break;
 		data->row_size_map++;
 	}
-	free(line);
 	if (!(data->string_map[0] == '1'))
 	{
 		// printf("bonjour\n");
@@ -239,6 +238,7 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 		close(generate->fd);
 		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data, generate);
 	}
+	free(line);
 	if (close(generate->fd) == -1)
 		ft_message_error("ft_generate_string_map : Close of file failed.", data, generate);
 	ft_generate_string_map_tab(data, generate);

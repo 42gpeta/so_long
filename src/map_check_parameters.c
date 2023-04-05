@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 16:50:11 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/04 19:06:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/05 13:53:25 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data) // ? v
     // printf("ft_check_surrounded_by_one_right :\n%s\ndernier élément : %ld\n", generate->string_map_ber_tab[1] ,ft_strlen(generate->string_map_ber_tab[1]));
     // printf("ft_check_surrounded_by_one_right :\ndernier char : %c\n", generate->string_map_ber_tab[1][36]);
     
-    if (!(generate->string_map_ber_tab[y][data->colomn_size_map]))
+    if (!(generate->string_map_ber_tab[y][data->colomn_size_map - 1]))
         ft_message_error("ft_check_surrounded_by_one_right : The right side is smaller than the left side", data, generate);
     while (generate->string_map_ber_tab[y][data->colomn_size_map] && y < data->row_size_map - 1)
     {
