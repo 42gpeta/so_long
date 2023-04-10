@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   event_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/31 16:15:46 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/10 17:06:52 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** Ferme la fenêtre en arrêtant mlx_ptr et win_ptr issue de la structure créée */
 // int	ft_close_s_keypress(int key_symbol, t_data *data) // implémenter dans ft_key_hook
 // {
 // 	if (key_symbol == XK_Escape)
@@ -24,6 +23,7 @@
 // 	return (0);
 // }
 
+/** Ferme la fenêtre en arrêtant mlx_ptr et win_ptr issue de la structure créée */
 int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_bt_esc
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -39,7 +39,8 @@ int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_
 // 	return (0);
 // }
 
-int	ft_key_hook(int key_symbol, t_data *data) // ? v1
+/** Indique le numéro du symbol appuyé + gère les mouvements */
+int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 {
 	static long long int i = 0;	
 
@@ -53,24 +54,29 @@ int	ft_key_hook(int key_symbol, t_data *data) // ? v1
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter W | Key %d\n", key_symbol);
+		ft_move_up(data, generate);
+
 		i++;
 	}
-	else if (key_symbol == 97)
+	else if (key_symbol == XK_a)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter A | Key %d\n", key_symbol);
+		ft_move_left(data, generate);
 		i++;
 	}
-	else if (key_symbol == 115)
+	else if (key_symbol == XK_s)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter S | Key %d\n", key_symbol);
+		ft_move_down(data, generate);
 		i++;
 	}
-	else if (key_symbol == 100)
+	else if (key_symbol == XK_d)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter D | Key %d\n", key_symbol);
+		ft_move_right(data, generate);
 		i++;
 	}
 	else
@@ -103,14 +109,8 @@ int	ft_key_hook(int key_symbol, t_data *data) // ? v1
 // 	return (key_symbol);
 // }
 
-// int	ft_mouvement_s_keypress(int key_sumbol, t_data *data) // a voir
-// {
-// 	if (key_symbol == )
-// }
 
 int	ft_no_event(void *data)
 {
 	return (0);
 }
-
-// int	ft_keypress_mouvement()

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
+#    By: glodi <glodi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/04/03 19:12:57 by gpeta            ###   ########.fr        #
+#    Updated: 2023/04/10 11:37:41 by glodi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ error_message.c \
 event_utils.c \
 map_check.c map_check_parameters.c map_utils.c \
 pixel.c pixel_utils.c \
+move.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
 

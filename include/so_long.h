@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:21 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/10 17:02:49 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ y = height = hauteur
 /*							      	 STRUCTURE							      */
 /* ************************************************************************** */
 
+typedef struct s_player
+{
+	int	pos_y;
+	int	pos_x;
+	char	*y;
+	char	*x;
+}	t_player;
+
+
+
 	/* map_utils.c */ /* map_check.c */
 typedef struct s_map
 {
@@ -74,16 +84,17 @@ typedef struct s_map
 
 typedef struct s_generate
 {
-	int		fd;
-	void	*mlx_img0;
-	void	*mlx_img1;
-	void	*mlx_imgC;
-	void	*mlx_imgE;
-	void	*mlx_imgP;
-	char	*string_map_ber; 
-	char	**string_map_ber_tab;
-	int		number_of_C;
-	t_map	map;
+	int			fd;
+	void		*mlx_img0;
+	void		*mlx_img1;
+	void		*mlx_imgC;
+	void		*mlx_imgE;
+	void		*mlx_imgP;
+	char		*string_map_ber; 
+	char		**string_map_ber_tab;
+	int			number_of_C;
+	t_map		map;
+	t_player	player;
 }	t_generate;
 
 
@@ -115,20 +126,21 @@ typedef struct s_rect
 /* Events */ /* map_utils.c */
 typedef struct s_data
 {
-	char	*filename;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	char	*file_xpm0;
-	char	*file_xpm1;
-	char	*file_xpmC;
-	char	*file_xpmE;
-	char	*file_xpmP;
-	int		row_size_map;
-	int		colomn_size_map;
-	int		row_size_win;
-	int		colomn_size_win;
-	char	*string_map; // colecte la map dans 1 ligne
-	t_img	img;
+	char		*filename;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		*file_xpm0;
+	char		*file_xpm1;
+	char		*file_xpmC;
+	char		*file_xpmE;
+	char		*file_xpmP;
+	int			row_size_map;
+	int			colomn_size_map;
+	int			row_size_win;
+	int			colomn_size_win;
+	char		*string_map; // colecte la map dans 1 ligne
+	t_img		img;
+	t_generate	generate;
 }	t_data;
 
 
@@ -142,8 +154,9 @@ event_utils.c
 
 // int	ft_close_s_keypress(int key_symbol, t_data *data);
 int	ft_bouton_red_cross(t_data *data);
-int	ft_key_hook(int key_symbol, t_data *data);
-// int	ft_key_hook(int key_symbol);
+// int	ft_key_hook(int key_symbol); // ? v1
+// int	ft_key_hook(int key_symbol, t_data *data); // ? v2
+int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate); // ? v2
 int	ft_no_event(void *data);
 
 /*************
@@ -180,7 +193,7 @@ char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
 
 // int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
 // int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
-// void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
+void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 
 // char	*ft_generate_string_map(char *file_ber); // ? v1
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
@@ -219,9 +232,13 @@ void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data);
 void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data);
 
 /*************
-map_check_is_rectangle.c
+move.c
 *************/
 
+void	ft_move_up(t_data *data, t_generate *generate);
+void	ft_move_down(t_data *data, t_generate *generate);
+void	ft_move_left(t_data *data, t_generate *generate);
+void	ft_move_right(t_data *data, t_generate *generate);
 
 
 #endif

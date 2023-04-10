@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/05 13:35:37 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/10 16:45:34 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 // 	return (endfile);
 // }
 
+/*** Verifie si l'AV 1 est bien remplis  */
 char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
 {
 	int i;
@@ -74,6 +75,8 @@ char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
 	return (endfile);
 }
 
+
+/*** Verifie si le fichier est un ".ber"  */
 void	ft_map_check_extention(t_data *data, char *filename_main)
 {
 	char	*file;
@@ -90,7 +93,6 @@ void	ft_map_check_extention(t_data *data, char *filename_main)
 		printf("STRNCMP s1 != s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
 
 	free(file);
-	// return (1);
 }
 
 // char	*ft_generate_string_map(char *file_ber) // ? v1
@@ -203,18 +205,17 @@ void	ft_map_check_extention(t_data *data, char *filename_main)
 // 	return (data->string_map);
 // }
 
+/*** Génère le string_map dans un tableau  */
 void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 {
 	char	*line;
 
 	generate->fd = open(data->filename, O_RDWR);
 	if (generate->fd < 0 || generate->fd > 1024)
-// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
 		ft_message_error("ft_generate_string_map : Cannot open this !", data, generate);
 	data->row_size_map = 0;
 	/* v3 */ // OK
 	data->string_map = get_next_line(generate->fd);
-	// if (data->string_map && !(data->string_map[0] == '1'))
 
 	data->row_size_map++;
 	line = get_next_line(generate->fd);
@@ -244,10 +245,14 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 	ft_generate_string_map_tab(data, generate);
 }
 
+/*** Génère le string_map dans un tableau de tableau  */
 void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 {
-	generate->string_map_ber_tab = ft_split(data->string_map, '\n');
-	data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]);
+	// generate->string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v1
+	data->generate.string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v2
+	// data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]); // ? v1
+	data->colomn_size_map = ft_strlen(data->generate.string_map_ber_tab[0]); // ? v2
+	
 	data->colomn_size_win = data->colomn_size_map * ECART_XPM;
 	data->row_size_win = data->row_size_map * ECART_XPM;
 	// int x = 0; // ! a supprimer
@@ -267,6 +272,7 @@ void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 }
 
 
+/*** Génère l'afichage des XPM  */
 void	ft_generate_xpm(t_data *data, t_generate *generate)
 {
 	t_img	img0;
@@ -396,7 +402,8 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 
 	/* v3 : */
 	
-	char **ber = generate->string_map_ber_tab;
+	// char **ber = generate->string_map_ber_tab; // ? v1
+	char **ber = data->generate.string_map_ber_tab; // ? v2
 	
 	while (ber[y])
 	{
@@ -413,7 +420,13 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 			else if (ber[y][x] == 'E')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht * x, imgE.img_height * y);
 			else if (ber[y][x] == 'P')
+			{
+				// generate->player.pos_y = y; // ? v1
+				// generate->player.pos_x = x; // ? v1
+				data->generate.player.pos_y = y; // ? v2
+				data->generate.player.pos_x = x; // ? v2
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht * x, imgP.img_height * y);
+			}
 			x++;
 			// x += ECART_XPM;
 		}

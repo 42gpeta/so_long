@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/04 17:36:23 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/10 16:48:16 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 * OK	1) regarder si map contient E C P 
 *	géré les doublons
 * 
-* 2) carte rectangulaire
+* OK	2) carte rectangulaire
 * 
-* ON WORK	3) carte entouré de 1
+* OK	3) carte entouré de 1
 * 
 * 4) chemin valide
  */
 
-/* Vérification si map contient 1 : E, C, P */
+/* Vérification si map contient 1 : E, C, P */ // TODO == OK
 void	ft_check_content(t_generate *generate, t_data *data)
 {
 	int		letter_E;
@@ -83,7 +83,6 @@ void	ft_check_content(t_generate *generate, t_data *data)
 // 	}
 // }
 
-/* Vérification si map est un rectangle */ // TODO 
 // void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v1
 // {
 // 	int left;
@@ -140,36 +139,64 @@ void	ft_check_content(t_generate *generate, t_data *data)
 // 	printf("ft_check_map_is_an_rectangle OK !");
 // }
 
-void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v3
+// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v3
+// {
+// 	int left;
+//     int right;
+//
+// 	if (ft_strlen(generate->string_map_ber_tab[0]) != ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]))
+// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (up and down are not equal)", data, generate);
+//
+//     left = 0;
+//     while (generate->string_map_ber_tab[left][0] && left < data->row_size_map - 1)
+//     {
+//         if (generate->string_map_ber_tab[left][0] != '1')
+//             ft_message_error("ft_check_map_is_an_rectangle : The left side of the map isn't a wall of '1'", data, generate);
+//         left++;
+//     }
+//     right = 0;
+//     while (generate->string_map_ber_tab[right][data->colomn_size_map - 1] && right < data->row_size_map - 1)
+//     {
+//         if (generate->string_map_ber_tab[right][data->colomn_size_map - 1] != '1')
+//             ft_message_error("ft_check_map_is_an_rectangle : The right side of the map isn't a wall of '1'", data, generate);
+//         right++;
+//     }
+// 	if (left != right)
+// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (left and right are not equal)", data, generate);
+// 	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(generate->string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]), left, right);
+// 	printf("ft_check_map_is_an_rectangle OK !\n");
+// }
+
+
+/* Vérification si map est un rectangle */ // TODO == OK
+void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v4
 {
 	int left;
     int right;
 
-	if (ft_strlen(generate->string_map_ber_tab[0]) != ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]))
+	if (ft_strlen(data->generate.string_map_ber_tab[0]) != ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]))
 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (up and down are not equal)", data, generate);
 
     left = 0;
-    while (generate->string_map_ber_tab[left][0] && left < data->row_size_map - 1)
+    while (data->generate.string_map_ber_tab[left][0] && left < data->row_size_map - 1)
     {
-        if (generate->string_map_ber_tab[left][0] != '1')
+        if (data->generate.string_map_ber_tab[left][0] != '1')
             ft_message_error("ft_check_map_is_an_rectangle : The left side of the map isn't a wall of '1'", data, generate);
         left++;
     }
     right = 0;
-    while (generate->string_map_ber_tab[right][data->colomn_size_map - 1] && right < data->row_size_map - 1)
+    while (data->generate.string_map_ber_tab[right][data->colomn_size_map - 1] && right < data->row_size_map - 1)
     {
-        if (generate->string_map_ber_tab[right][data->colomn_size_map - 1] != '1')
+        if (data->generate.string_map_ber_tab[right][data->colomn_size_map - 1] != '1')
             ft_message_error("ft_check_map_is_an_rectangle : The right side of the map isn't a wall of '1'", data, generate);
         right++;
     }
 	if (left != right)
 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (left and right are not equal)", data, generate);
-	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(generate->string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]), left, right);
+	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(data->generate.string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]), left, right);
 	printf("ft_check_map_is_an_rectangle OK !\n");
 }
 
-
-/* Vérification si map est entouré de 1 */ // TODO 
 // void	ft_check_surrounded_by_one(t_generate *generate) // ? v1
 // {
 // 	char **first;
@@ -212,6 +239,7 @@ void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v3
 // 	}
 // }
 
+/* Vérification si map est entouré de 1 */ // TODO == OK
 void	ft_check_surrounded_by_one(t_generate *generate, t_data *data) // ? v3  // TODO finir la vérif des côtés
 {
 	ft_check_surrounded_by_one_up(generate, data);

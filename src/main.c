@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/04 18:01:52 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/10 12:54:59 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(int ac, char **av)		// v2 : avec structure
 /* ************************************************************************** */
 	
 	data.string_map = 0;
+	data.generate.string_map_ber_tab = 0;
 	generate.string_map_ber = 0;
 	generate.string_map_ber_tab = 0;
 	data.mlx_ptr = 0;
@@ -203,9 +204,9 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_bouton_red_cross, &data);
 
 /* Gestion touche echap, W, A, S, D */
-// mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
-mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_key_hook, &data);
-//	mlx_key_hook(data.win_ptr, &ft_close_s_keypress, &data);
+	// mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_close_s_keypress, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &ft_key_hook, &data);
+	//	mlx_key_hook(data.win_ptr, &ft_close_s_keypress, &data);
 	// mlx_key_hook(data.win_ptr, &ft_key_hook, &data);
 
 
