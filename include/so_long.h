@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 18:08:32 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/10 19:07:52 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_player
 {
 	int	pos_y;
 	int	pos_x;
-	char	*y;
-	char	*x;
+	int	pos_exit_y;
+	int	pos_exit_x;
 }	t_player;
 
 

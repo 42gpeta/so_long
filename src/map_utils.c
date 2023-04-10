@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 18:22:08 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/10 19:14:35 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -418,7 +418,14 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 			else if (ber[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht * x, imgC.img_height * y);
 			else if (ber[y][x] == 'E')
+			{
+				data->generate.player.pos_exit_y = y;
+				data->generate.player.pos_exit_x = x;
+				if (ber[y][x] == 'E' && data->generate.number_of_C == 0)
+					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
+						
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht * x, imgE.img_height * y);
+			}	
 			else if (ber[y][x] == 'P')
 			{
 				// generate->player.pos_y = y; // ? v1
@@ -433,4 +440,7 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 		y++;
 		// y += ECART_XPM;
 	}
+	if (ber[data->generate.player.pos_exit_y][data->generate.player.pos_exit_x] == 'E' && data->generate.number_of_C == 0)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
+		
 }
