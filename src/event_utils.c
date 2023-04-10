@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 17:06:52 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/10 18:23:35 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 	}
 	else
 		printf("Key %d\n", key_symbol);
-	printf("------------------\nCOMPTEUR MVT : %lld\n", i);
+	printf("------------------\nCOMPTEUR MVT : %lld\nCOLLECTIBLES : %d\n", i, data->generate.number_of_C);
 	return (key_symbol);
 }
 

@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 17:02:49 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/10 18:08:32 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,6 @@ void	ft_move_up(t_data *data, t_generate *generate);
 void	ft_move_down(t_data *data, t_generate *generate);
 void	ft_move_left(t_data *data, t_generate *generate);
 void	ft_move_right(t_data *data, t_generate *generate);
-
+void    ft_move_verif(t_data *data);
 
 #endif

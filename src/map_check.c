@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 16:48:16 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/10 18:20:45 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_check_content(t_generate *generate, t_data *data)
 			ft_message_error("ft_check_content : This map contain an incorrect symbol !", data, generate);
 		i++;
 	}
-	generate->number_of_C = letter_C;
+	data->generate.number_of_C = letter_C;
 	if (letter_E < 1 && letter_C < 1 && letter_P < 1)
 		ft_message_error("ft_check_content : Map don't have one E,C and P !", data, generate);
 	if (letter_E > 1 || letter_P > 1)
