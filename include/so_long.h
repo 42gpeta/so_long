@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:54:43 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:48:57 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_player
 	int	pos_x;
 	int	pos_exit_y; // ! utile ?
 	int	pos_exit_x; // ! utile ?
+	// static int	mouvement;
+	int	mouvement;
 }	t_player;
 
 
@@ -265,6 +267,6 @@ void	ft_move_down(t_data *data); // ? v2
 void	ft_move_left(t_data *data); // ? v2
 // void	ft_move_right(t_data *data, t_generate *generate); // ? v1
 void	ft_move_right(t_data *data); // ? v2
-// void    ft_move_verif(t_data *data); // ! non utilisé
+void    ft_move_exit(t_data *data); // ! non utilisé
 
 #endif

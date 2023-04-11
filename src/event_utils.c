@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:41:57 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 19:01:49 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,33 +56,40 @@ int	ft_key_hook(int key_symbol, t_data *data) // ? v4
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter W | Key %d\n", key_symbol);
 		ft_move_up(data);
-
-		i++;
+		// i++;
+		data->generate.player.mouvement++;
 	}
 	else if (key_symbol == XK_a)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter A | Key %d\n", key_symbol);
 		ft_move_left(data);
-		i++;
+		// i++;
+		data->generate.player.mouvement++;
 	}
 	else if (key_symbol == XK_s)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter S | Key %d\n", key_symbol);
 		ft_move_down(data);
-		i++;
+		// i++;
+		data->generate.player.mouvement++;
 	}
 	else if (key_symbol == XK_d)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter D | Key %d\n", key_symbol);
 		ft_move_right(data);
-		i++;
+		// i++;
+		data->generate.player.mouvement++;
 	}
 	else
 		printf("Key %d\n", key_symbol);
-	printf("------------------\nCOMPTEUR MVT : %lld\nCOLLECTIBLES : %d\n", i, data->generate.number_of_C);
+	// printf("------------------\nCOMPTEUR MVT : %lld\nCOLLECTIBLES : %d\nPLAYER POSITION [%d][%d]\n", i, data->generate.number_of_C, data->generate.player.pos_y, data->generate.player.pos_x);
+	printf("------------------\nCOMPTEUR MVT : %d\nCOLLECTIBLES : %d\nPLAYER POSITION [%d][%d]\n", data->generate.player.mouvement, data->generate.number_of_C, data->generate.player.pos_y, data->generate.player.pos_x);
+	printf("EXIT POSITION [%d][%d]\n", data->generate.player.pos_exit_y, data->generate.player.pos_exit_x);
+	if (data->generate.player.pos_y == data->generate.player.pos_exit_y && data->generate.player.pos_x == data->generate.player.pos_exit_x && data->generate.number_of_C == 0)
+		printf("You finish !\n");
 	return (key_symbol);
 }
 

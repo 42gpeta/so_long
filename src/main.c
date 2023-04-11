@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:55:42 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:52:19 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int main(int ac, char **av)		// v2 : avec structure
 /*							      	 MAPS								      */
 /* ************************************************************************** */
 	
-	data.string_map = 0;
-	data.generate.string_map_ber_tab = 0;
+	// data.string_map = 0;
+	// data.generate.string_map_ber_tab = 0;
 	// generate.string_map_ber = 0;
 	// generate.string_map_ber_tab = 0;
 	data.mlx_ptr = 0;
-
+	data.generate.player.mouvement = 0;
 	
 	printf("AV[1] = %s\n", av[1]);
 	data.filename = av[1];

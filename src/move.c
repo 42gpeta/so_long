@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/11 14:54:02 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 19:01:22 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_move_up(t_data *data)
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
 
         data->generate.player.pos_y -= 1;
-        // ft_generate_xpm(data, generate);
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'C')
     {
@@ -30,7 +29,13 @@ void	ft_move_up(t_data *data)
 
         data->generate.player.pos_y -= 1;
         data->generate.number_of_C--;
-        // ft_generate_xpm(data, generate);        
+    }
+    else if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'E' && data->generate.number_of_C == 0)
+    {
+        // printf("You finish !\n");
+        data->generate.player.pos_y -= 1;
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        data->win_ptr = NULL; // fermeture de la fenêtre       
     }
 }
 
@@ -44,7 +49,6 @@ void	ft_move_down(t_data *data)
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
 
         data->generate.player.pos_y += 1;
-        // ft_generate_xpm(data, generate);
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'C')
     {
@@ -53,7 +57,13 @@ void	ft_move_down(t_data *data)
 
         data->generate.player.pos_y += 1;
         data->generate.number_of_C--;
-        // ft_generate_xpm(data, generate);        
+    }
+    else if (data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'E' && data->generate.number_of_C == 0)
+    {
+        // printf("You finish !\n");
+        data->generate.player.pos_y += 1;
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        data->win_ptr = NULL; // fermeture de la fenêtre       
     }    
 }
 
@@ -67,7 +77,6 @@ void	ft_move_left(t_data *data)
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
 
         data->generate.player.pos_x -= 1;
-        // ft_generate_xpm(data, generate);
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == 'C')
     {
@@ -76,8 +85,14 @@ void	ft_move_left(t_data *data)
 
         data->generate.player.pos_x -= 1;
         data->generate.number_of_C--;
-        // ft_generate_xpm(data, generate);        
-    }    
+    }
+    else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == 'E' && data->generate.number_of_C == 0)
+    {
+        // printf("You finish !\n");
+        data->generate.player.pos_x -= 1;
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        data->win_ptr = NULL; // fermeture de la fenêtre       
+    }
 }
 
 
@@ -90,7 +105,6 @@ void	ft_move_right(t_data *data)
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
 
         data->generate.player.pos_x += 1;
-        // ft_generate_xpm(data, generate);
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == 'C')
     {
@@ -99,12 +113,35 @@ void	ft_move_right(t_data *data)
 
         data->generate.player.pos_x += 1;
         data->generate.number_of_C--;
-        // ft_generate_xpm(data, generate);        
+    }
+    else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == 'E' && data->generate.number_of_C == 0)
+    {
+        // printf("You finish !\n");
+        data->generate.player.pos_x += 1;
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        data->win_ptr = NULL; // fermeture de la fenêtre       
     }
 }
 
-// void    ft_move_verif(t_data *data)
+// void    ft_move_exit(t_data *data)
 // {
-//     if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] != '0')
-//         ft_message_error("ft_move_verif : ce")
+// /*     if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == 'E'
+//         || data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == 'E'
+//         || data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'E'
+//         || data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'E')
+//         // && data->generate.number_of_C == 0 ) */
+//     if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'E' && data->generate.number_of_C == 0)
+//     {
+//         data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] = 'P';
+//         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
+
+//         data->generate.player.pos_y -= 1;
+//         if (data->generate.player.pos_y == data->generate.player.pos_exit_y && data->generate.player.pos_x == data->generate.player.pos_exit_x)
+//         {
+            // printf("You finish !\n");
+            // data->generate.player.pos_x += 1;
+//             mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+//             data->win_ptr = NULL; // fermeture de la fenêtre
+//         }
+//     }
 // }

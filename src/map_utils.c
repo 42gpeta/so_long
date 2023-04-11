@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:47:11 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 18:16:11 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -444,7 +444,7 @@ void	ft_generate_xpm(t_data *data)
 		y++;
 		// y += ECART_XPM;
 	}
-	if (ber[data->generate.player.pos_exit_y][data->generate.player.pos_exit_x] == 'E' && data->generate.number_of_C == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
+	// if (ber[data->generate.player.pos_exit_y][data->generate.player.pos_exit_x] == 'E' && data->generate.number_of_C == 0)
+		// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
 
 }
