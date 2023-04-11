@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 13:38:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:54:43 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_player
 {
 	int	pos_y;
 	int	pos_x;
-	int	pos_exit_y;
-	int	pos_exit_x;
+	int	pos_exit_y; // ! utile ?
+	int	pos_exit_x; // ! utile ?
 }	t_player;
 
 
@@ -75,10 +75,10 @@ typedef struct s_player
 	/* map_utils.c */ /* map_check.c */
 typedef struct s_map
 {
-	char	*up;
-	char	*down;
-	char	*left;
-	char	*right;
+	char	*up; // ! utile ?
+	char	*down; // ! utile ?
+	char	*left; // ! utile ?
+	char	*right; // ! utile ?
 }	t_map;
 
 
@@ -107,10 +107,10 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 	char	*relative_path;
-	int		img_widht;
-	int		img_height;
-	int		window_widht; // ! test
-	int		window_height; // ! test
+	int		widht;
+	int		height;
+	int		win_widht; // ! test
+	int		win_height; // ! test
 }	t_img;
 
 	/* pixel_tils.c */
@@ -156,7 +156,8 @@ event_utils.c
 int	ft_bouton_red_cross(t_data *data);
 // int	ft_key_hook(int key_symbol); // ? v1
 // int	ft_key_hook(int key_symbol, t_data *data); // ? v2
-int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate); // ? v2
+// int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate); // ? v3
+int	ft_key_hook(int key_symbol, t_data *data); // ? v4
 int	ft_no_event(void *data);
 
 /*************
@@ -165,7 +166,9 @@ error_message.c
 
 // void	ft_message_error(char *message); // ? v1
 // void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v2
-void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v3
+// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v3
+// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v4
+void	ft_message_error(char *message, t_data *data); // ? v5
 
 
 /*************
@@ -176,7 +179,8 @@ int	render(t_data *data);
 int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
 // int	render_no_action(t_data *data); // ? v1
-int	render_no_action(t_data *data, t_generate *generate); // ? v1
+// int	render_no_action(t_data *data, t_generate *generate); // ? v1
+int	render_no_action(t_data *data); // ? v2
 
 /*************
 pixel_utils.c
@@ -199,28 +203,35 @@ void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 // char	*ft_generate_string_map(char *file_ber); // ? v1
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v3
-void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
+// void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
+void	ft_generate_string_map(t_data *data); // ? v5
 
-void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
+// void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
+void	ft_generate_string_map_tab(t_data *data); // ? v2
 
 
-void	ft_generate_path_file(t_data *data, t_generate *generate);
+// void	ft_generate_path_file(t_data *data, t_generate *generate); // ? v1
+void	ft_generate_path_file(t_data *data); // ? v2
 
 // void	ft_generate_xpm(t_data *data); // ? v1
-void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2
+// void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2
+void	ft_generate_xpm(t_data *data); // ? v3
 
 
 /*************
 map_check.c
 *************/
 
-void	ft_check_content(t_generate *generate, t_data *data);
+// void	ft_check_content(t_generate *generate, t_data *data); // ? v1
+void	ft_check_content(t_data *data); // ? v2
 
 
-void	ft_check_map_is_an_rectangle(t_data *data, t_generate *s_generate);
+// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *s_generate); // ? v1
+void	ft_check_map_is_an_rectangle(t_data *data); // ? v2
 
 
-void	ft_check_surrounded_by_one(t_generate *generate, t_data *data);
+// void	ft_check_surrounded_by_one(t_generate *generate, t_data *data); // ? v1
+void	ft_check_surrounded_by_one(t_data *data); // ? v4
 
 
 void	ft_check_possible_exit();
@@ -229,19 +240,31 @@ void	ft_check_possible_exit();
 /*************
 map_check_paraneters.c
 *************/
-void	ft_check_surrounded_by_one_up(t_generate *generate, t_data *data);
-void	ft_check_surrounded_by_one_down(t_generate *generate, t_data *data);
-void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data);
-void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data);
+// void	ft_check_surrounded_by_one_up(t_generate *generate, t_data *data); // ? v1
+void	ft_check_surrounded_by_one_up(t_data *data); // ? v2
+
+// void	ft_check_surrounded_by_one_down(t_generate *generate, t_data *data); // ? v1
+void	ft_check_surrounded_by_one_down(t_data *data); // ? v2
+
+// void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data); // ? v1
+void	ft_check_surrounded_by_one_left(t_data *data); // ? v2
+
+// void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data); // ? v1
+void	ft_check_surrounded_by_one_right(t_data *data); // ? v2
+
 
 /*************
 move.c
 *************/
 
-void	ft_move_up(t_data *data, t_generate *generate);
-void	ft_move_down(t_data *data, t_generate *generate);
-void	ft_move_left(t_data *data, t_generate *generate);
-void	ft_move_right(t_data *data, t_generate *generate);
-void    ft_move_verif(t_data *data);
+// void	ft_move_up(t_data *data, t_generate *generate); // ? v1
+void	ft_move_up(t_data *data); // ? v2
+// void	ft_move_down(t_data *data, t_generate *generate); // ? v1
+void	ft_move_down(t_data *data); // ? v2
+// void	ft_move_left(t_data *data, t_generate *generate); // ? v1
+void	ft_move_left(t_data *data); // ? v2
+// void	ft_move_right(t_data *data, t_generate *generate); // ? v1
+void	ft_move_right(t_data *data); // ? v2
+// void    ft_move_verif(t_data *data); // ! non utilisé
 
 #endif

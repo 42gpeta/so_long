@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 13:09:04 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:41:57 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_bouton_red_cross(t_data *data) // voir si on peut combiner dans ft_close_
 // }
 
 /** Indique le numéro du symbol appuyé + gère les mouvements */
-int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
+int	ft_key_hook(int key_symbol, t_data *data) // ? v4
 {
 	static long long int i = 0;	
 
@@ -55,7 +55,7 @@ int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter W | Key %d\n", key_symbol);
-		ft_move_up(data, generate);
+		ft_move_up(data);
 
 		i++;
 	}
@@ -63,21 +63,21 @@ int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter A | Key %d\n", key_symbol);
-		ft_move_left(data, generate);
+		ft_move_left(data);
 		i++;
 	}
 	else if (key_symbol == XK_s)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter S | Key %d\n", key_symbol);
-		ft_move_down(data, generate);
+		ft_move_down(data);
 		i++;
 	}
 	else if (key_symbol == XK_d)
 	{
 		// TODO ajouter les fonctions lié aux déplacements
 		printf("Letter D | Key %d\n", key_symbol);
-		ft_move_right(data, generate);
+		ft_move_right(data);
 		i++;
 	}
 	else

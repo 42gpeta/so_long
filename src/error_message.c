@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:36:58 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 12:55:09 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:42:34 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v4
+void	ft_message_error(char *message, t_data *data) // ? v5
 {
 	int	i = 0;
 

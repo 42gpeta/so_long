@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:20:36 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/18 16:48:44 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:43:56 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "math.h"
 
 /* Replace mlx_pixel_put */
-void	img_pix_put(t_img *img, int x, int y, int color) // v1
+void	img_pix_put(t_img *img, int x, int y, int color) // ? v1
 {
 	char	*pixel;
 
@@ -22,7 +22,7 @@ void	img_pix_put(t_img *img, int x, int y, int color) // v1
 	*(int *)pixel = color;
 }
 
-// void	img_pix_put(t_img *img, int x, int y, int color) // v2
+// void	img_pix_put(t_img *img, int x, int y, int color) // ? v2
 // {
 // 	char	*pixel;
 // 	int		i;

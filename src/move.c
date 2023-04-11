@@ -6,14 +6,14 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/11 13:10:03 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:54:02 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /* Déplace le personnage vers le haut */
-void	ft_move_up(t_data *data, t_generate *generate)
+void	ft_move_up(t_data *data)
 {
     if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == '0')
     {
@@ -36,7 +36,7 @@ void	ft_move_up(t_data *data, t_generate *generate)
 
 
 /* Déplace le personnage vers le bas */
-void	ft_move_down(t_data *data, t_generate *generate)
+void	ft_move_down(t_data *data)
 {
     if (data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == '0')
     {
@@ -59,7 +59,7 @@ void	ft_move_down(t_data *data, t_generate *generate)
 
 
 /* Déplace le personnage vers la gauche */
-void	ft_move_left(t_data *data, t_generate *generate)
+void	ft_move_left(t_data *data)
 {
     if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == '0')
     {
@@ -82,7 +82,7 @@ void	ft_move_left(t_data *data, t_generate *generate)
 
 
 /* Déplace le personnage vers la droite */
-void	ft_move_right(t_data *data, t_generate *generate)
+void	ft_move_right(t_data *data)
 {
     if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == '0')
     {

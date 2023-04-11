@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 13:44:48 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:55:42 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	// generate.string_map_ber = ft_generate_string_map(&data, &generate);
 	// str = ft_generate_string_map(&data, &generate);
 	// generate.string_map_ber = str;
-	ft_generate_string_map(&data, &generate);
+	ft_generate_string_map(&data);
 	// data.colomn_size_map *= ECART_XPM; // ! test
 	// data.row_size_map *= ECART_XPM; // ! test
 	// printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", generate.string_map_ber);
@@ -69,9 +69,9 @@ int main(int ac, char **av)		// v2 : avec structure
 	printf("x / widht = %d \ny / height = %d\n\n", data.colomn_size_win, data.row_size_win);
 
 	/* map's content */
-	ft_check_content(&generate, &data);
-	ft_check_surrounded_by_one(&generate, &data);
-	ft_check_map_is_an_rectangle(&data, &generate);
+	ft_check_content(&data);
+	ft_check_surrounded_by_one(&data);
+	ft_check_map_is_an_rectangle(&data);
 
 
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Initialisation du programme */
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
-		(ft_message_error("MLX_INIT FAIL", &data, &generate));
+		(ft_message_error("MLX_INIT FAIL", &data));
 		// (ft_message_error("MLX_INIT FAIL"));
 
 /* Ouverture de la fenêtre en affichant le nom du programme en haut */
@@ -91,7 +91,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		(ft_message_error("MLX_NEW_WINDOW FAIL", &data, &generate));
+		(ft_message_error("MLX_NEW_WINDOW FAIL", &data));
 		// (ft_message_error("MLX_NEW_WINDOW FAIL"));
 	}
 
@@ -107,7 +107,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.path_xpm0, &data.img.img_widht, &data.img.img_height)))
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.path_xpm0, &data.img.widht, &data.img.height)))
 	// {
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
@@ -120,79 +120,79 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Création de plusieurs lignes d'images */ // OK
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.widht, &data.img.height)))
 	// {
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
 	// }
 	// 
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	// data.img.img_widht = 0;
-	// data.img.img_height = 0;
+	// data.img.widht = 0;
+	// data.img.height = 0;
 	// printf("OK (bpp: %d, line_len: %d, endian: %d)\n",data.img.bpp, data.img.line_len, data.img.endian);
-	// printf("ligne l1= %d\n", data.img.img_height);
+	// printf("ligne l1= %d\n", data.img.height);
 	// 
-	// while (data.img.img_widht < WINDOW_WIDHT)
+	// while (data.img.widht < WINDOW_WIDHT)
 	// {
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
-	// data.img.img_widht += 50;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.widht, data.img.height);
+	// data.img.widht += 50;
 	// }
 	// 
-	// data.img.img_widht = 0; // remise a 0 pour revenir a la premiere colone (x ; weidht)
-	// data.img.img_height += 60; // saut de ligne 
-	// printf("ligne l2= %d\n", data.img.img_height);
+	// data.img.widht = 0; // remise a 0 pour revenir a la premiere colone (x ; weidht)
+	// data.img.height += 60; // saut de ligne 
+	// printf("ligne l2= %d\n", data.img.height);
 	// 
-	// while (data.img.img_widht < WINDOW_WIDHT)
+	// while (data.img.widht < WINDOW_WIDHT)
 	// {
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.img_widht, data.img.img_height);
-	// data.img.img_widht += 50;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, data.img.widht, data.img.height);
+	// data.img.widht += 50;
 	// }
 	
 /* Création de plusieurs lignes de la même image automatisé */ // OK
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.img_widht, &data.img.img_height)))
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.img.relative_path, &data.img.widht, &data.img.height)))
 	// {
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
 	// }
 	// 
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	// data.img.img_widht = 0;
-	// data.img.img_height = 0;
+	// data.img.widht = 0;
+	// data.img.height = 0;
 	// 
-	// while (data.img.img_height < WINDOW_HEIGHT)
+	// while (data.img.height < WINDOW_HEIGHT)
 	// {
-	// 	while (data.img.img_widht < WINDOW_WIDHT)
+	// 	while (data.img.widht < WINDOW_WIDHT)
 	// 	{
-	// 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.img_widht, data.img.img_height);
-	// 	data.img.img_widht += 50;
+	// 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img,data.img.widht, data.img.height);
+	// 	data.img.widht += 50;
 	// 	}
-	// 	data.img.img_height += 60;
-	// 	data.img.img_widht = 0;
+	// 	data.img.height += 60;
+	// 	data.img.widht = 0;
 	// }
 
 /* Affichage de 2 XPM */
 		/* XPM */
-	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img1.relative_path, &img1.widht, &img1.height)))
 	// 	ft_message_error("Error open xpm 1 \n");
- 	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.img_widht, &img2.img_height)))
+ 	// if (!(img2.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, img2.relative_path, &img2.widht, &img2.height)))
 	// 	ft_message_error("Error open xpm 2 \n");
 	// 
 	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
-	// img1.img_widht = 0;
-	// img1.img_height = 0;
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img1.mlx_img, img1.img_widht, img1.img_height);
+	// img1.widht = 0;
+	// img1.height = 0;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img1.mlx_img, img1.widht, img1.height);
 	// 
 	// img2.addr = mlx_get_data_addr(img2.mlx_img, &img2.bpp, &img2.line_len, &img2.endian);
-	// img2.img_widht = 50;
-	// img2.img_height = 50;
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img2.mlx_img,img2.img_widht, img2.img_height);
+	// img2.widht = 50;
+	// img2.height = 50;
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img2.mlx_img,img2.widht, img2.height);
 
 
 /* Affichage XPM selon chiffre de la map .ber */
 		/* XPM */
 	// ft_generate_xpm(&data, &generate); // ? v1
-	ft_generate_path_file(&data, &generate); // ? v2
+	ft_generate_path_file(&data); // ? v2
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
 

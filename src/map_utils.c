@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 13:43:19 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:47:11 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,13 +206,13 @@ void	ft_map_check_extention(t_data *data, char *filename_main)
 // }
 
 /*** Génère le string_map dans un tableau  */
-void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
+void	ft_generate_string_map(t_data *data) // ? v4
 {
 	char	*line;
 
 	data->generate.fd = open(data->filename, O_RDWR);
 	if (data->generate.fd < 0 || data->generate.fd > 1024)
-		ft_message_error("ft_generate_string_map : Cannot open this !", data, generate);
+		ft_message_error("ft_generate_string_map : Cannot open this !", data);
 	data->row_size_map = 0;
 	/* v3 */ // OK
 	data->string_map = get_next_line(data->generate.fd);
@@ -221,7 +221,7 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 	line = get_next_line(data->generate.fd);
 	data->row_size_map++;
 	if (data->string_map == NULL || line == NULL)
-		ft_message_error("ft_generate_string_map : First line of this file is empty.", data, generate);
+		ft_message_error("ft_generate_string_map : First line of this file is empty.", data);
 		// printf("c'est NULL 1\n"); // ! a supprimer
 	while (data->string_map)
 	{
@@ -237,16 +237,16 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 		// printf("bonjour\n");
 		// free(data->string_map);
 		close(data->generate.fd);
-		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data, generate);
+		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data);
 	}
 	free(line);
 	if (close(data->generate.fd) == -1)
-		ft_message_error("ft_generate_string_map : Close of file failed.", data, generate);
-	ft_generate_string_map_tab(data, generate);
+		ft_message_error("ft_generate_string_map : Close of file failed.", data);
+	ft_generate_string_map_tab(data);
 }
 
 /*** Génère le string_map dans un tableau de tableau  */
-void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
+void	ft_generate_string_map_tab(t_data *data)
 {
 	// generate->string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v1
 	data->generate.string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v2
@@ -272,7 +272,7 @@ void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 }
 
 
-void	ft_generate_path_file(t_data *data, t_generate *generate)
+void	ft_generate_path_file(t_data *data)
 {
 	t_img	img0;
 	t_img	img1;
@@ -287,67 +287,67 @@ void	ft_generate_path_file(t_data *data, t_generate *generate)
 	imgP.relative_path = data->path_xpmP;
 
 	/* classic */
-	// if (!(img0.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.img_widht, &img0.img_height)))
+	// if (!(img0.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.widht, &img0.height)))
 	// 	ft_message_error("Error open xpm 1 \n");
- 	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+ 	// if (!(img1.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.widht, &img1.height)))
 	// 	ft_message_error("Error open xpm 2 \n");
 	// 
 	// img0.addr = mlx_get_data_addr(img0.mlx_img, &img0.bpp, &img0.line_len, &img0.endian);
-	// img0.img_widht = 0;
-	// img0.img_height = 0;
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img0.mlx_img, img0.img_widht, img0.img_height);
+	// img0.widht = 0;
+	// img0.height = 0;
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img0.mlx_img, img0.widht, img0.height);
 	// 
 	// img1.addr = mlx_get_data_addr(img1.mlx_img, &img1.bpp, &img1.line_len, &img1.endian);
-	// img1.img_widht = 50;
-	// img1.img_height = 50;
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img,img1.img_widht, img1.img_height);	
+	// img1.widht = 50;
+	// img1.height = 50;
+	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img,img1.widht, img1.height);	
 
-	if (!(data->generate.mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm0, &data->img.img_widht, &data->img.img_height)))
-		ft_message_error("ft_generate_xpm : Open xpm 0 fail", data, generate);
+	if (!(data->generate.mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm0, &data->img.widht, &data->img.height)))
+		ft_message_error("ft_generate_xpm : Open xpm 0 fail", data);
 		// ft_message_error("Open xpm 0 fail");
 
- 	if (!(data->generate.mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm1, &data->img.img_widht, &data->img.img_height)))
-		ft_message_error("ft_generate_xpm : Open xpm 1 fail", data, generate);
+ 	if (!(data->generate.mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm1, &data->img.widht, &data->img.height)))
+		ft_message_error("ft_generate_xpm : Open xpm 1 fail", data);
 		// ft_message_error("Open xpm 1 fail");
 
-	if (!(data->generate.mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmC, &data->img.img_widht, &data->img.img_height)))
-		ft_message_error("ft_generate_xpm : Open xpm C fail", data, generate);
+	if (!(data->generate.mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmC, &data->img.widht, &data->img.height)))
+		ft_message_error("ft_generate_xpm : Open xpm C fail", data);
 		// ft_message_error("Open xpm C fail");
 
- 	if (!(data->generate.mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmE, &data->img.img_widht, &data->img.img_height)))
-		ft_message_error("ft_generate_xpm : Open xpm E fail", data, generate);
+ 	if (!(data->generate.mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmE, &data->img.widht, &data->img.height)))
+		ft_message_error("ft_generate_xpm : Open xpm E fail", data);
 		// ft_message_error("Open xpm E fail");
 
-	if (!(data->generate.mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmP, &data->img.img_widht, &data->img.img_height)))
-		ft_message_error("ft_generate_xpm : Open xpm P fail", data, generate);
+	if (!(data->generate.mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmP, &data->img.widht, &data->img.height)))
+		ft_message_error("ft_generate_xpm : Open xpm P fail", data);
 		// ft_message_error("Open xpm P fail");
 }
 
 /*** Génère l'afichage des XPM  */
-void	ft_generate_xpm(t_data *data, t_generate *generate)
+void	ft_generate_xpm(t_data *data)
 {
 
 	// img0.addr = mlx_get_data_addr(generate->mlx_img0, &img0.bpp, &img0.line_len, &img0.endian); // ! fonctionne sans
-	// img0.img_widht = 0;
-	// img0.img_height = 0;
-	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht, img0.img_height);
+	// img0.widht = 0;
+	// img0.height = 0;
+	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.widht, img0.height);
 
 	// // img1.addr = mlx_get_data_addr(generate->mlx_img1, &img1.bpp, &img1.line_len, &img1.endian); // ! fonctionne sans
-	// img1.img_widht = 0;
-	// img1.img_height = 0;
-	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1,img1.img_widht, img1.img_height);
+	// img1.widht = 0;
+	// img1.height = 0;
+	// // mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1,img1.widht, img1.height);
 
 	// // imgC.addr = mlx_get_data_addr(generate->mlx_imgC, &imgC.bpp, &imgC.line_len, &imgC.endian); // ! fonctionne sans
-	// imgC.img_widht = 0;
-	// imgC.img_height = 0;
+	// imgC.widht = 0;
+	// imgC.height = 0;
 
 	// // imgE.addr = mlx_get_data_addr(generate->mlx_imgE, &imgE.bpp, &imgE.line_len, &imgE.endian); // ! fonctionne sans
-	// imgE.img_widht = 0;
-	// imgE.img_height = 0;
+	// imgE.widht = 0;
+	// imgE.height = 0;
 
 	// // imgP.addr = mlx_get_data_addr(generate->mlx_imgP, &imgP.bpp, &imgP.line_len, &imgP.endian); // ! fonctionne sans
-	// imgP.img_widht = 0;
-	// imgP.img_height = 0;
+	// imgP.widht = 0;
+	// imgP.height = 0;
 
 
 	// char *ber = "212122110111111111111111112";
@@ -364,9 +364,9 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// 		while (ber[i] != '\0')
 	// 		{
 	// 			if (ber[i] == '1')
-	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht + x, img0.img_height + y);
+	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.widht + x, img0.height + y);
 	// 			else if (ber[i] == '2')
-	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
+	// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.widht + x, img1.height + y);
 	// 			i++;
 	// 		}
 	// 		x += 60;
@@ -387,16 +387,16 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// 	while (ber[i] != '\0' && x < data->colomn_size_win)
 	// 	{
 	// 		if (ber[i] == '0')
-	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.img_height + y);
-	// 			// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht + x, img0.img_height + y);
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.height + y);
+	// 			// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.widht + x, img0.height + y);
 	// 		else if (ber[i] == '1')
-	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht + x, img1.img_height + y);
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.widht + x, img1.height + y);
 	// 		else if (ber[i] == 'C')
-	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht + x, imgC.img_height + y);
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.widht + x, imgC.height + y);
 	// 		else if (ber[i] == 'E')
-	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht + x, imgE.img_height + y);
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.widht + x, imgE.height + y);
 	// 		else if (ber[i] == 'P')
-	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht + x, imgP.img_height + y);
+	// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.widht + x, imgP.height + y);
 	// 		i++;
 	// 		x += ECART_XPM;
 	// 	}
@@ -415,20 +415,20 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 		while (ber[y][x])
 		{
 			if (ber[y][x] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
-				// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.img_height + y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
+				// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.height + y);
 			else if (ber[y][x] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img1, data->img.img_widht * x, data->img.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img1, data->img.widht * x, data->img.height * y);
 			else if (ber[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgC, data->img.img_widht * x, data->img.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgC, data->img.widht * x, data->img.height * y);
 			else if (ber[y][x] == 'E')
 			{
 				data->generate.player.pos_exit_y = y;
 				data->generate.player.pos_exit_x = x;
 				if (ber[y][x] == 'E' && data->generate.number_of_C == 0)
-					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
+					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
 						
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgE, data->img.img_widht * x, data->img.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgE, data->img.widht * x, data->img.height * y);
 			}	
 			else if (ber[y][x] == 'P')
 			{
@@ -436,7 +436,7 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 				// generate->player.pos_x = x; // ? v1
 				data->generate.player.pos_y = y; // ? v2
 				data->generate.player.pos_x = x; // ? v2
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgP, data->img.img_widht * x, data->img.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgP, data->img.widht * x, data->img.height * y);
 			}
 			x++;
 			// x += ECART_XPM;
@@ -445,6 +445,6 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 		// y += ECART_XPM;
 	}
 	if (ber[data->generate.player.pos_exit_y][data->generate.player.pos_exit_x] == 'E' && data->generate.number_of_C == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
 
 }
