@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 19:14:35 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:43:19 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,15 +210,15 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 {
 	char	*line;
 
-	generate->fd = open(data->filename, O_RDWR);
-	if (generate->fd < 0 || generate->fd > 1024)
+	data->generate.fd = open(data->filename, O_RDWR);
+	if (data->generate.fd < 0 || data->generate.fd > 1024)
 		ft_message_error("ft_generate_string_map : Cannot open this !", data, generate);
 	data->row_size_map = 0;
 	/* v3 */ // OK
-	data->string_map = get_next_line(generate->fd);
+	data->string_map = get_next_line(data->generate.fd);
 
 	data->row_size_map++;
-	line = get_next_line(generate->fd);
+	line = get_next_line(data->generate.fd);
 	data->row_size_map++;
 	if (data->string_map == NULL || line == NULL)
 		ft_message_error("ft_generate_string_map : First line of this file is empty.", data, generate);
@@ -227,7 +227,7 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 	{
 		data->string_map = ft_strjoin_gnl(data->string_map, line);
 		free(line);
-		line = get_next_line(generate->fd);
+		line = get_next_line(data->generate.fd);
 		if (line == NULL)
 			break;
 		data->row_size_map++;
@@ -236,11 +236,11 @@ void	ft_generate_string_map(t_data *data, t_generate *generate) // ? v4
 	{
 		// printf("bonjour\n");
 		// free(data->string_map);
-		close(generate->fd);
+		close(data->generate.fd);
 		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data, generate);
 	}
 	free(line);
-	if (close(generate->fd) == -1)
+	if (close(data->generate.fd) == -1)
 		ft_message_error("ft_generate_string_map : Close of file failed.", data, generate);
 	ft_generate_string_map_tab(data, generate);
 }
@@ -272,8 +272,7 @@ void	ft_generate_string_map_tab(t_data *data, t_generate *generate)
 }
 
 
-/*** Génère l'afichage des XPM  */
-void	ft_generate_xpm(t_data *data, t_generate *generate)
+void	ft_generate_path_file(t_data *data, t_generate *generate)
 {
 	t_img	img0;
 	t_img	img1;
@@ -281,11 +280,11 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	t_img	imgE;
 	t_img	imgP;
 
-	img0.relative_path = data->file_xpm0;
-	img1.relative_path = data->file_xpm1;
-	imgC.relative_path = data->file_xpmC;
-	imgE.relative_path = data->file_xpmE;
-	imgP.relative_path = data->file_xpmP;
+	img0.relative_path = data->path_xpm0; // ? mettre directement le data->path_xpm0 dans la fonction mlx_xpm_file_to_image()
+	img1.relative_path = data->path_xpm1;
+	imgC.relative_path = data->path_xpmC;
+	imgE.relative_path = data->path_xpmE;
+	imgP.relative_path = data->path_xpmP;
 
 	/* classic */
 	// if (!(img0.mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.img_widht, &img0.img_height)))
@@ -303,25 +302,30 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 	// img1.img_height = 50;
 	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img1.mlx_img,img1.img_widht, img1.img_height);	
 
-	if (!(generate->mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, img0.relative_path, &img0.img_widht, &img0.img_height)))
+	if (!(data->generate.mlx_img0 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm0, &data->img.img_widht, &data->img.img_height)))
 		ft_message_error("ft_generate_xpm : Open xpm 0 fail", data, generate);
 		// ft_message_error("Open xpm 0 fail");
 
- 	if (!(generate->mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, img1.relative_path, &img1.img_widht, &img1.img_height)))
+ 	if (!(data->generate.mlx_img1 = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpm1, &data->img.img_widht, &data->img.img_height)))
 		ft_message_error("ft_generate_xpm : Open xpm 1 fail", data, generate);
 		// ft_message_error("Open xpm 1 fail");
 
-	if (!(generate->mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, imgC.relative_path, &imgC.img_widht, &imgC.img_height)))
+	if (!(data->generate.mlx_imgC = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmC, &data->img.img_widht, &data->img.img_height)))
 		ft_message_error("ft_generate_xpm : Open xpm C fail", data, generate);
 		// ft_message_error("Open xpm C fail");
 
- 	if (!(generate->mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, imgE.relative_path, &imgE.img_widht, &imgE.img_height)))
+ 	if (!(data->generate.mlx_imgE = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmE, &data->img.img_widht, &data->img.img_height)))
 		ft_message_error("ft_generate_xpm : Open xpm E fail", data, generate);
 		// ft_message_error("Open xpm E fail");
 
-	if (!(generate->mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, imgP.relative_path, &imgP.img_widht, &imgP.img_height)))
+	if (!(data->generate.mlx_imgP = mlx_xpm_file_to_image(data->mlx_ptr, data->path_xpmP, &data->img.img_widht, &data->img.img_height)))
 		ft_message_error("ft_generate_xpm : Open xpm P fail", data, generate);
 		// ft_message_error("Open xpm P fail");
+}
+
+/*** Génère l'afichage des XPM  */
+void	ft_generate_xpm(t_data *data, t_generate *generate)
+{
 
 	// img0.addr = mlx_get_data_addr(generate->mlx_img0, &img0.bpp, &img0.line_len, &img0.endian); // ! fonctionne sans
 	// img0.img_widht = 0;
@@ -411,20 +415,20 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 		while (ber[y][x])
 		{
 			if (ber[y][x] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
 				// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, generate->string_map_ber_tab[x], img0.img_height + y);
 			else if (ber[y][x] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img1, img1.img_widht * x, img1.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img1, data->img.img_widht * x, data->img.img_height * y);
 			else if (ber[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgC, imgC.img_widht * x, imgC.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgC, data->img.img_widht * x, data->img.img_height * y);
 			else if (ber[y][x] == 'E')
 			{
 				data->generate.player.pos_exit_y = y;
 				data->generate.player.pos_exit_x = x;
 				if (ber[y][x] == 'E' && data->generate.number_of_C == 0)
-					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
+					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
 						
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgE, imgE.img_widht * x, imgE.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgE, data->img.img_widht * x, data->img.img_height * y);
 			}	
 			else if (ber[y][x] == 'P')
 			{
@@ -432,7 +436,7 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 				// generate->player.pos_x = x; // ? v1
 				data->generate.player.pos_y = y; // ? v2
 				data->generate.player.pos_x = x; // ? v2
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_imgP, imgP.img_widht * x, imgP.img_height * y);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgP, data->img.img_widht * x, data->img.img_height * y);
 			}
 			x++;
 			// x += ECART_XPM;
@@ -441,6 +445,6 @@ void	ft_generate_xpm(t_data *data, t_generate *generate)
 		// y += ECART_XPM;
 	}
 	if (ber[data->generate.player.pos_exit_y][data->generate.player.pos_exit_x] == 'E' && data->generate.number_of_C == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, generate->mlx_img0, img0.img_widht * x, img0.img_height * y);
-		
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.img_widht * x, data->img.img_height * y);
+
 }

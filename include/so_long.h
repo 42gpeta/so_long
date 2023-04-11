@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 19:07:52 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:38:45 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,11 @@ typedef struct s_data
 	char		*filename;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	char		*file_xpm0;
-	char		*file_xpm1;
-	char		*file_xpmC;
-	char		*file_xpmE;
-	char		*file_xpmP;
+	char		*path_xpm0;
+	char		*path_xpm1;
+	char		*path_xpmC;
+	char		*path_xpmE;
+	char		*path_xpmP;
 	int			row_size_map;
 	int			colomn_size_map;
 	int			row_size_win;
@@ -175,7 +175,8 @@ pixel.c
 int	render(t_data *data);
 int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
-int	render_no_action(t_data *data);
+// int	render_no_action(t_data *data); // ? v1
+int	render_no_action(t_data *data, t_generate *generate); // ? v1
 
 /*************
 pixel_utils.c
@@ -202,6 +203,8 @@ void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
 
 void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
 
+
+void	ft_generate_path_file(t_data *data, t_generate *generate);
 
 // void	ft_generate_xpm(t_data *data); // ? v1
 void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2

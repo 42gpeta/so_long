@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 18:23:35 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:09:04 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 {
 	static long long int i = 0;	
 
-	if (key_symbol == XK_Escape)
+	// if (key_symbol == XK_Escape)
+	if (key_symbol == 65307)
 	{
 		printf("Letter ESC | Key %d\n", key_symbol);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -88,7 +89,7 @@ int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate) // ? v3
 // int	ft_key_hook(int key_symbol, t_data *data) // ? v2
 // {
 // 	static long long int i = 0;
-
+//
 // 	if (key_symbol == XK_Escape)
 // 	{
 // 		printf("Letter ESC | Key %d\n", key_symbol);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 18:20:45 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/11 12:52:52 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,8 @@ void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v4
     }
 	if (left != right)
 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (left and right are not equal)", data, generate);
-	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(data->generate.string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]), left, right);
-	printf("ft_check_map_is_an_rectangle OK !\n");
+	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(data->generate.string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]), left, right); // ! a supprimer
+	printf("ft_check_map_is_an_rectangle OK !\n"); // ! a supprimer
 }
 
 // void	ft_check_surrounded_by_one(t_generate *generate) // ? v1

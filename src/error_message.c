@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:36:58 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/04 19:24:14 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/11 12:55:09 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,43 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v3
+// void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v3
+// {
+// 	int	i = 0;
+
+// 	i = 0;
+// 	write(1, "Error\n", 6);
+// 	write(1, message, ft_strlen(message));
+// 	write(1, "\n\n", 2);
+// 	if (generate->fd > 0 && generate->fd < 1024)
+// 	{
+// 		while (generate->string_map_ber_tab && generate->string_map_ber_tab[i] != NULL)
+// 			free(generate->string_map_ber_tab[i++]);
+// 			// free(generate->string_map_ber_tab[++i]);
+// 		if (generate->string_map_ber_tab)
+// 			free(generate->string_map_ber_tab);
+// 	}
+// 	// if (generate->string_map_ber_tab && generate->string_map_ber_tab[0][0] == '1'/*  != NULL */)
+// 	// 	free(generate->string_map_ber_tab);
+// 	// while (generate->string_map_ber_tab && generate->string_map_ber_tab[i] != NULL)
+// 	// 	free(generate->string_map_ber_tab[i++]);	
+	
+// 	i = 0;
+// 	// if (data->string_map[0] != '1')
+// 	if (data->string_map)
+// 	{
+// 		free(data->string_map);
+// 		// data->string_map = 0;
+// 		// free(data);
+// 	}
+// 	// free(data->string_map);
+	
+// 	if (data->mlx_ptr/*  != NULL */)
+// 		free(data->mlx_ptr);
+// 	exit(EXIT_FAILURE);
+// }
+
+void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v4
 {
 	int	i = 0;
 
@@ -49,29 +85,19 @@ void	ft_message_error(char *message, t_data *data, t_generate *generate) // ? v3
 	write(1, "Error\n", 6);
 	write(1, message, ft_strlen(message));
 	write(1, "\n\n", 2);
-	if (generate->fd > 0 && generate->fd < 1024)
+	if (data->generate.fd > 0 && data->generate.fd < 1024)
 	{
-		while (generate->string_map_ber_tab && generate->string_map_ber_tab[i] != NULL)
-			free(generate->string_map_ber_tab[i++]);
-			// free(generate->string_map_ber_tab[++i]);
-		if (generate->string_map_ber_tab)
-			free(generate->string_map_ber_tab);
+		while (data->generate.string_map_ber_tab && data->generate.string_map_ber_tab[i] != NULL)
+			free(data->generate.string_map_ber_tab[i++]);
+			// free(data->generate.string_map_ber_tab[++i]);
+		if (data->generate.string_map_ber_tab)
+			free(data->generate.string_map_ber_tab);
 	}
-	// if (generate->string_map_ber_tab && generate->string_map_ber_tab[0][0] == '1'/*  != NULL */)
-	// 	free(generate->string_map_ber_tab);
-	// while (generate->string_map_ber_tab && generate->string_map_ber_tab[i] != NULL)
-	// 	free(generate->string_map_ber_tab[i++]);	
-	
-	i = 0;
-	// if (data->string_map[0] != '1')
 	if (data->string_map)
 	{
 		free(data->string_map);
-		// data->string_map = 0;
-		// free(data);
 	}
-	// free(data->string_map);
-	
+
 	if (data->mlx_ptr/*  != NULL */)
 		free(data->mlx_ptr);
 	exit(EXIT_FAILURE);

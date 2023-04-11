@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/10 12:54:59 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:44:48 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int ac, char **av)		// v2 : avec structure
 	char	*file_ber = "maps/good/map-sujet.ber";
 	// char	*file_ber = "maps/map1.ber";
 
-	// data.file_xpm0 = "lib/libmlx/test/open30.xpm";
+	// data.path_xpm0 = "lib/libmlx/test/open30.xpm";
 
 	int		element = 0;
 	char * str;
@@ -33,11 +33,11 @@ int main(int ac, char **av)		// v2 : avec structure
 /* ************************************************************************** */
 
 
-	data.file_xpm0 = "maps/xpm/sol_foret.xpm";
-	data.file_xpm1 = "maps/xpm/tree.xpm";
-	data.file_xpmC = "maps/xpm/framboise.xpm";
-	data.file_xpmE = "maps/xpm/sortie_foret.xpm";
-	data.file_xpmP = "maps/xpm/randonneur.xpm";
+	data.path_xpm0 = "maps/xpm/sol_foret.xpm";
+	data.path_xpm1 = "maps/xpm/tree.xpm";
+	data.path_xpmC = "maps/xpm/framboise.xpm";
+	data.path_xpmE = "maps/xpm/sortie_foret.xpm";
+	data.path_xpmP = "maps/xpm/randonneur.xpm";
 
 /* ************************************************************************** */
 /*							      	 MAPS								      */
@@ -45,8 +45,8 @@ int main(int ac, char **av)		// v2 : avec structure
 	
 	data.string_map = 0;
 	data.generate.string_map_ber_tab = 0;
-	generate.string_map_ber = 0;
-	generate.string_map_ber_tab = 0;
+	// generate.string_map_ber = 0;
+	// generate.string_map_ber_tab = 0;
 	data.mlx_ptr = 0;
 
 	
@@ -99,15 +99,15 @@ int main(int ac, char **av)		// v2 : avec structure
 /* Chemin du fichier .xpm */
 	// data.img.relative_path = av[1]; // avec nom du fichier dans av[1]
 	//
-	// img1.relative_path = file_xpm0;
-	// img2.relative_path = file_xpm1;
+	// img1.relative_path = path_xpm0;
+	// img2.relative_path = path_xpm1;
 
 /* Création d'une " image " "*/ // OK
 		/* Pixel */
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDHT, WINDOW_HEIGHT);
 	// data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 		/* XPM */
-	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.file_xpm0, &data.img.img_widht, &data.img.img_height)))
+	// if (!(data.img.mlx_img = mlx_xpm_file_to_image(data.mlx_ptr, data.path_xpm0, &data.img.img_widht, &data.img.img_height)))
 	// {
 	// 	printf("KO mlx_xpm_file_to_image\n\n");
 	// 	return(1);
@@ -191,14 +191,15 @@ int main(int ac, char **av)		// v2 : avec structure
 
 /* Affichage XPM selon chiffre de la map .ber */
 		/* XPM */
-	ft_generate_xpm(&data, &generate);
-
+	// ft_generate_xpm(&data, &generate); // ? v1
+	ft_generate_path_file(&data, &generate); // ? v2
 /* Permet d'arrêter le programme si on ne met pas de 'mlx_loop_hook'  */
 	// mlx_loop_hook(data.mlx_ptr, &ft_no_event, &data);
 
 /* Print d'un pixel/image */
 	// mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_loop_hook(data.mlx_ptr, &render_no_action, &data);
+	// mlx_loop_hook(data.mlx_ptr, &render_no_action, &data); // ? v1
+	mlx_loop_hook(data.mlx_ptr, &render_no_action, &data); // ? v2
 
 /* Bouton croix pour fermer la fenêtre */
 	mlx_hook(data.win_ptr, ClientMessage, StructureNotifyMask, &ft_bouton_red_cross, &data);
@@ -225,20 +226,20 @@ int main(int ac, char **av)		// v2 : avec structure
 	mlx_loop(data.mlx_ptr);
 
 /* Fermeture fenêtre */
-	// mlx_destroy_image(data.mlx_ptr, data.file_xpm0);
+	// mlx_destroy_image(data.mlx_ptr, data.path_xpm0);
 	// mlx_destroy_image(data.mlx_ptr, &img2.mlx_img);
 
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img0);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_img1);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgC);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgE);
-	mlx_destroy_image(data.mlx_ptr, generate.mlx_imgP);
+	mlx_destroy_image(data.mlx_ptr, data.generate.mlx_img0);
+	mlx_destroy_image(data.mlx_ptr, data.generate.mlx_img1);
+	mlx_destroy_image(data.mlx_ptr, data.generate.mlx_imgC);
+	mlx_destroy_image(data.mlx_ptr, data.generate.mlx_imgE);
+	mlx_destroy_image(data.mlx_ptr, data.generate.mlx_imgP);
 	mlx_destroy_display(data.mlx_ptr);
 	// free(generate.map.up);
 	// free(generate.map.down);
-	while (generate.string_map_ber_tab[element])
-		free(generate.string_map_ber_tab[element++]);
-	free(generate.string_map_ber_tab);
+	while (data.generate.string_map_ber_tab[element])
+		free(data.generate.string_map_ber_tab[element++]);
+	free(data.generate.string_map_ber_tab);
 	free(data.string_map);
 	free(data.mlx_ptr);
 
