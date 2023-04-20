@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/20 23:43:26 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/21 00:03:31 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,15 +254,13 @@ void	ft_check_surrounded_by_one(t_data *data) // ? v4
 
 void	ft_parsing(t_data *data, int letter)
 {
-	int	i = 0;
-	int	x = 0;
-	int y = 0;
+	int	x;
+	int y;
 	char **ber;
 	
 	data->generate.number_of_C = letter;
-	
 	ber = data->generate.string_map_ber_tab; // ? v2
-	
+	y = 0;
 	while (ber[y])
 	{
 		x = 0;
@@ -282,7 +280,7 @@ void	ft_parsing(t_data *data, int letter)
 		}
 		y++;
 	}
-
+	ft_flood_fill(data);
 }
 
 

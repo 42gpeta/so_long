@@ -6,7 +6,7 @@
 /*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/20 23:44:02 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/21 00:01:00 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,5 +270,11 @@ void	ft_move_left(t_data *data); // ? v2
 // void	ft_move_right(t_data *data, t_generate *generate); // ? v1
 void	ft_move_right(t_data *data); // ? v2
 void    ft_move_exit(t_data *data); // ! non utilisé
+
+/*************
+pathfinding.c
+*************/
+
+void    ft_flood_fill(t_data *data);
 
 #endif
