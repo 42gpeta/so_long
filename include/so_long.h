@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 18:48:57 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:44:02 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,8 @@ void	ft_check_map_is_an_rectangle(t_data *data); // ? v2
 
 // void	ft_check_surrounded_by_one(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one(t_data *data); // ? v4
+
+void	ft_parsing(t_data *data, int letter);
 
 
 void	ft_check_possible_exit();

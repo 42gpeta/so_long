@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 18:16:11 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:47:53 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,8 +423,8 @@ void	ft_generate_xpm(t_data *data)
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgC, data->img.widht * x, data->img.height * y);
 			else if (ber[y][x] == 'E')
 			{
-				data->generate.player.pos_exit_y = y;
-				data->generate.player.pos_exit_x = x;
+				// data->generate.player.pos_exit_y = y; // ? cf ft_parsing()
+				// data->generate.player.pos_exit_x = x; // ? cf ft_parsing()
 				if (ber[y][x] == 'E' && data->generate.number_of_C == 0)
 					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
 						
@@ -434,8 +434,8 @@ void	ft_generate_xpm(t_data *data)
 			{
 				// generate->player.pos_y = y; // ? v1
 				// generate->player.pos_x = x; // ? v1
-				data->generate.player.pos_y = y; // ? v2
-				data->generate.player.pos_x = x; // ? v2
+				// data->generate.player.pos_y = y; // ? v2 // ? cf ft_parsing()
+				// data->generate.player.pos_x = x; // ? v2 // ? cf ft_parsing()
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgP, data->img.widht * x, data->img.height * y);
 			}
 			x++;

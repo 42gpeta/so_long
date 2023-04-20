@@ -6,7 +6,7 @@
 #    By: glodi <glodi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/04/10 11:37:41 by glodi            ###   ########.fr        #
+#    Updated: 2023/04/20 23:16:21 by glodi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ event_utils.c \
 map_check.c map_check_parameters.c map_utils.c \
 pixel.c pixel_utils.c \
 move.c \
+pathfinding.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
 

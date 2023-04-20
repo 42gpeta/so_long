@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
+/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:50:27 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:43:26 by glodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	ft_check_content(t_data *data)
 			ft_message_error("ft_check_content : This map contain an incorrect symbol !", data);
 		i++;
 	}
-	data->generate.number_of_C = letter_C;
+	// data->generate.number_of_C = letter_C;
+	ft_parsing(data, letter_C);
+
 	if (letter_E < 1 && letter_C < 1 && letter_P < 1)
 		ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
 	if (letter_E > 1 || letter_P > 1)
@@ -248,6 +250,41 @@ void	ft_check_surrounded_by_one(t_data *data) // ? v4
 	ft_check_surrounded_by_one_right(data);
 	printf("ft_check_surrounded_by_one OK !\n");
 }
+
+
+void	ft_parsing(t_data *data, int letter)
+{
+	int	i = 0;
+	int	x = 0;
+	int y = 0;
+	char **ber;
+	
+	data->generate.number_of_C = letter;
+	
+	ber = data->generate.string_map_ber_tab; // ? v2
+	
+	while (ber[y])
+	{
+		x = 0;
+		while (ber[y][x])
+		{
+			if (ber[y][x] == 'E')
+			{
+				data->generate.player.pos_exit_y = y;
+				data->generate.player.pos_exit_x = x;
+			}	
+			else if (ber[y][x] == 'P')
+			{
+				data->generate.player.pos_y = y; // ? v2
+				data->generate.player.pos_x = x; // ? v2
+			}
+			x++;
+		}
+		y++;
+	}
+
+}
+
 
 /* Vérification s'il est possible de sortir de la map */
 // void	ft_check_possible_exit()  // TODO 
