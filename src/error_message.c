@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:36:58 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:42:34 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/24 20:59:34 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ void	ft_message_error(char *message, t_data *data) // ? v5
 			// free(data->generate.string_map_ber_tab[++i]);
 		if (data->generate.string_map_ber_tab)
 			free(data->generate.string_map_ber_tab);
+		i = 0;
+		while (data->generate.string_map_pathfinding && data->generate.string_map_pathfinding[i] != NULL)
+			free(data->generate.string_map_pathfinding[i++]);
+			// free(data->generate.string_map_pathfinding[++i]);
+		if (data->generate.string_map_pathfinding)
+			free(data->generate.string_map_pathfinding);
 	}
 	if (data->string_map)
 	{

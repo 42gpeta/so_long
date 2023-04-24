@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/20 23:47:53 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/24 20:57:30 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,9 @@ void	ft_generate_string_map_tab(t_data *data)
 {
 	// generate->string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v1
 	data->generate.string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v2
-	// data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]); // ? v1
+	data->generate.string_map_pathfinding = ft_split(data->string_map, '\n'); // ? v2 // arret ICI
+	// data->generate.string_map_pathfinding = ft_strlcpy(*data->generate.string_map_pathfinding, *data->generate.string_map_ber_tab, ft_strlen(*data->generate.string_map_ber_tab)); // ? v2 // arret ICI
+	// data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]); // ? v2 // arret ICI
 	data->colomn_size_map = ft_strlen(data->generate.string_map_ber_tab[0]); // ? v2
 	
 	data->colomn_size_win = data->colomn_size_map * ECART_XPM;

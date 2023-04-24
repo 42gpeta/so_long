@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 18:52:19 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/24 20:46:11 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,10 @@ int main(int ac, char **av)		// v2 : avec structure
 	// free(generate.map.down);
 	while (data.generate.string_map_ber_tab[element])
 		free(data.generate.string_map_ber_tab[element++]);
+	while (data.generate.string_map_pathfinding[element])
+		free(data.generate.string_map_pathfinding[element++]);
 	free(data.generate.string_map_ber_tab);
+	free(data.generate.string_map_pathfinding);
 	free(data.string_map);
 	free(data.mlx_ptr);
 

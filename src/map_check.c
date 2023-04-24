@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/21 00:03:31 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/24 20:41:20 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_check_content(t_data *data)
 	int		i;
 
 	letter_E = 0;
-	letter_C = 0;
+	// letter_C = 0;
+	data->generate.number_of_C = 0;
 	letter_P = 0;
 	i = 0;
 	while (data->string_map[i] != '\0')
@@ -40,7 +41,8 @@ void	ft_check_content(t_data *data)
 		if (data->string_map[i] == 'E')
 			letter_E++;
 		else if (data->string_map[i] == 'C')
-			letter_C++;
+			data->generate.number_of_C++;
+			// letter_C++;
 		else if (data->string_map[i] == 'P')
 			letter_P++;
 		else if (data->string_map[i] != '1' && data->string_map[i] != '0' && data->string_map[i] != '\n')
@@ -48,7 +50,8 @@ void	ft_check_content(t_data *data)
 		i++;
 	}
 	// data->generate.number_of_C = letter_C;
-	ft_parsing(data, letter_C);
+	// ft_parsing(data, letter_C);
+	ft_parsing(data, data->generate.number_of_C);
 
 	if (letter_E < 1 && letter_C < 1 && letter_P < 1)
 		ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
@@ -257,8 +260,9 @@ void	ft_parsing(t_data *data, int letter)
 	int	x;
 	int y;
 	char **ber;
-	
-	data->generate.number_of_C = letter;
+
+	// data->generate.number_of_C = letter;
+	data->generate.number_of_C_pathfinding = data->generate.number_of_C;
 	ber = data->generate.string_map_ber_tab; // ? v2
 	y = 0;
 	while (ber[y])
@@ -270,7 +274,7 @@ void	ft_parsing(t_data *data, int letter)
 			{
 				data->generate.player.pos_exit_y = y;
 				data->generate.player.pos_exit_x = x;
-			}	
+			}
 			else if (ber[y][x] == 'P')
 			{
 				data->generate.player.pos_y = y; // ? v2
@@ -280,7 +284,8 @@ void	ft_parsing(t_data *data, int letter)
 		}
 		y++;
 	}
-	ft_flood_fill(data);
+	// ft_flood_fill(data);
+	ft_pathfinding_check(data);
 }
 
 

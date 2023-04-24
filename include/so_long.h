@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glodi <glodi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/21 00:01:00 by glodi            ###   ########.fr       */
+/*   Updated: 2023/04/24 19:49:20 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ typedef struct s_generate
 	void		*mlx_imgP;
 	char		*string_map_ber; 
 	char		**string_map_ber_tab;
+	char		**string_map_pathfinding;
 	int			number_of_C;
+	int			number_of_C_pathfinding;
 	t_map		map;
 	t_player	player;
 }	t_generate;
@@ -276,5 +278,8 @@ pathfinding.c
 *************/
 
 void    ft_flood_fill(t_data *data);
+void    ft_pathfinding_flood(t_data *data, int y, int x);
+void    ft_pathfinding_check(t_data *data);
+
 
 #endif
