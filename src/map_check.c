@@ -6,24 +6,13 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/24 20:41:20 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/25 14:20:32 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*
-* OK	1) regarder si map contient E C P 
-*	géré les doublons
-* 
-* OK	2) carte rectangulaire
-* 
-* OK	3) carte entouré de 1
-* 
-* 4) chemin valide
- */
-
-/* Vérification si map contient 1 : E, C, P */ // TODO == OK
+/* Vérification si map contient 1 : E, C, P */
 void	ft_check_content(t_data *data)
 {
 	int		letter_E;
@@ -32,7 +21,6 @@ void	ft_check_content(t_data *data)
 	int		i;
 
 	letter_E = 0;
-	// letter_C = 0;
 	data->generate.number_of_C = 0;
 	letter_P = 0;
 	i = 0;
@@ -42,15 +30,12 @@ void	ft_check_content(t_data *data)
 			letter_E++;
 		else if (data->string_map[i] == 'C')
 			data->generate.number_of_C++;
-			// letter_C++;
 		else if (data->string_map[i] == 'P')
 			letter_P++;
 		else if (data->string_map[i] != '1' && data->string_map[i] != '0' && data->string_map[i] != '\n')
 			ft_message_error("ft_check_content : This map contain an incorrect symbol !", data);
 		i++;
 	}
-	// data->generate.number_of_C = letter_C;
-	// ft_parsing(data, letter_C);
 	ft_parsing(data, data->generate.number_of_C);
 
 	if (letter_E < 1 && letter_C < 1 && letter_P < 1)
@@ -60,120 +45,16 @@ void	ft_check_content(t_data *data)
 }
 
 /* Vérification si map contient + de 1 : E, C, P */
-// void	ft_check_content_doublon(t_generate *generate) // ! non utilisée
+// void	ft_check_content_doublon(t_data *data, int letter_E, int letter_C, int letter_P) // ! non utilisée
 // {
-// 	int		letter_E;
-// 	int		letter_P;
-// 	int		i;
-// 
-// 	letter_E = 0;
-// 	letter_P = 0;
-// 	i = 0;
-// 
-// 	while (generate->string_map_ber[i] != '\0')
-// 	{
-// 		if (generate->string_map_ber[i] == 'e')
-// 		{
-// 			letter_E++;
-// 			if (letter_E > 1)
-// 				ft_message_error("Double exit on the map !");
-// 		}
-// 		else if (generate->string_map_ber[i] == 'p')
-// 		{
-// 			letter_P++;
-// 			if (letter_P > 1)
-// 				ft_message_error("Double character on the map !");
-// 		}
-// 		i++;
-// 	}
-// }
-
-// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v1
-// {
-// 	int left;
-//     int right;
-// 
-// 	if (ft_strlen(generate->string_map_ber_tab[0]) != ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]))
-// 		ft_message_error("Map is not a rectangle (up and down are not equal)", data, generate);
-// 
-//     left = 0;
-//     while (generate->string_map_ber_tab[left][0] && left < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[left][0] != '1')
-//             ft_message_error("The left side of the map isn't a wall of '1'", data, generate);
-//         left++;
-//     }
-//     right = 0;
-//     while (generate->string_map_ber_tab[right][data->colomn_size_map - 2] && right < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[right][data->colomn_size_map - 2] != '1')
-//             ft_message_error("The right side of the map isn't a wall of '1'", data, generate);
-//         right++;
-//     }
-// 	if (left != right)
-// 		ft_message_error("Map is not a rectangle (left and right are not equal)", data, generate);
-// 	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(generate->string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]), left, right);
-// 	printf("ft_check_map_is_an_rectangle OK !");
-// }
-
-// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v2
-// {
-// 	int left;
-//     int right;
-//
-// 	if (ft_strlen(generate->string_map_ber_tab[0]) != ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]))
-// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (up and down are not equal)", data, generate);
-//
-//     left = 0;
-//     while (generate->string_map_ber_tab[left][0] && left < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[left][0] != '1')
-//             ft_message_error("ft_check_map_is_an_rectangle : The left side of the map isn't a wall of '1'", data, generate);
-//         left++;
-//     }
-//     right = 0;
-//     while (generate->string_map_ber_tab[right][data->colomn_size_map - 2] && right < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[right][data->colomn_size_map - 2] != '1')
-//             ft_message_error("ft_check_map_is_an_rectangle : The right side of the map isn't a wall of '1'", data, generate);
-//         right++;
-//     }
-// 	if (left != right)
-// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (left and right are not equal)", data, generate);
-// 	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(generate->string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]), left, right);
-// 	printf("ft_check_map_is_an_rectangle OK !");
-// }
-
-// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *generate) // ? v3
-// {
-// 	int left;
-//     int right;
-//
-// 	if (ft_strlen(generate->string_map_ber_tab[0]) != ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]))
-// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (up and down are not equal)", data, generate);
-//
-//     left = 0;
-//     while (generate->string_map_ber_tab[left][0] && left < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[left][0] != '1')
-//             ft_message_error("ft_check_map_is_an_rectangle : The left side of the map isn't a wall of '1'", data, generate);
-//         left++;
-//     }
-//     right = 0;
-//     while (generate->string_map_ber_tab[right][data->colomn_size_map - 1] && right < data->row_size_map - 1)
-//     {
-//         if (generate->string_map_ber_tab[right][data->colomn_size_map - 1] != '1')
-//             ft_message_error("ft_check_map_is_an_rectangle : The right side of the map isn't a wall of '1'", data, generate);
-//         right++;
-//     }
-// 	if (left != right)
-// 		ft_message_error("ft_check_map_is_an_rectangle : Map is not a rectangle (left and right are not equal)", data, generate);
-// 	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(generate->string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(generate->string_map_ber_tab[data->row_size_map-1]), left, right);
-// 	printf("ft_check_map_is_an_rectangle OK !\n");
+// 		if (letter_E < 1 && letter_C < 1 && letter_P < 1)
+// 			ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
+// 		if (letter_E > 1 || letter_P > 1)
+// 			ft_message_error("ft_check_content : Letter E or P is present more than 1 time", data);
 // }
 
 
-/* Vérification si map est un rectangle */ // TODO == OK
+/* Vérification si map est un rectangle */
 void	ft_check_map_is_an_rectangle(t_data *data) // ? v4
 {
 	int left;
@@ -202,94 +83,15 @@ void	ft_check_map_is_an_rectangle(t_data *data) // ? v4
 	printf("ft_check_map_is_an_rectangle OK !\n"); // ! a supprimer
 }
 
-// void	ft_check_surrounded_by_one(t_generate *generate) // ? v1
-// {
-// 	char **first;
-// 
-// 	*first = generate->map.up;
-// 
-// 	*first = (char *)ft_split(generate->string_map_ber, '\n');
-// 	generate->map.down = ft_substr(generate->string_map_ber,
-// 		(ft_strlen(generate->string_map_ber) - ft_strlen(ft_strrchr(generate->string_map_ber, '\n'))),
-// 		(ft_strlen(generate->string_map_ber) - (ft_strlen(generate->string_map_ber) - ft_strlen(ft_strrchr(generate->string_map_ber, '\n')))));
-// 	// printf("up : %s\ndown : %s\n", generate->map.up, generate->map.down);
-// 	printf("up : %s\ndown : %s\n", *first, generate->map.down);
-// }
-
-
-// void	ft_check_surrounded_by_one(t_generate *generate, t_data *data) // ? v2  // TODO finir la vérif des côtés
-// {
-// 	int i;
-//
-// 	i = 0;
-// 	generate->map.up = 0;
-// 	generate->map.down = 0;
-//
-// 	generate->map.up = ft_substr(data->string_map, 0, (ft_strlen(data->string_map) - ft_strlen(ft_strchr(data->string_map, '\n'))));
-//
-// 	generate->map.down = ft_substr(data->string_map,
-// 		(ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n'))) + 1,
-// 		(ft_strlen(data->string_map) - (ft_strlen(data->string_map) - ft_strlen(ft_strrchr(data->string_map, '\n')))));
-// 	printf("up :\n%s\ndown :\n%s\n", generate->map.up, generate->map.down);
-//
-// 	if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
-// 		ft_message_error("Wall on top or on bottom is not complete. (1)", data, generate);
-// 	while (generate->map.up[i] == '1' && generate->map.down[i] == '1')
-// 	{
-// 		if (generate->map.up[i] != '1' || generate->map.down[i] != '1')
-// 			ft_message_error("Wall on top or on bottom is not complete. (2)", data, generate);
-// 		i++;
-// 		// generate->map.up++;
-// 		// generate->map.down++;
-// 	}
-// }
-
-/* Vérification si map est entouré de 1 */ // TODO == OK
+/* Vérification si map est entouré de '1' */
 void	ft_check_surrounded_by_one(t_data *data) // ? v4
 {
 	ft_check_surrounded_by_one_up(data);
 	ft_check_surrounded_by_one_down(data);
 	ft_check_surrounded_by_one_left(data);
 	ft_check_surrounded_by_one_right(data);
-	printf("ft_check_surrounded_by_one OK !\n");
+	printf("ft_check_surrounded_by_one OK !\n"); // ! a supprimer
 }
 
-
-void	ft_parsing(t_data *data, int letter)
-{
-	int	x;
-	int y;
-	char **ber;
-
-	// data->generate.number_of_C = letter;
-	data->generate.number_of_C_pathfinding = data->generate.number_of_C;
-	ber = data->generate.string_map_ber_tab; // ? v2
-	y = 0;
-	while (ber[y])
-	{
-		x = 0;
-		while (ber[y][x])
-		{
-			if (ber[y][x] == 'E')
-			{
-				data->generate.player.pos_exit_y = y;
-				data->generate.player.pos_exit_x = x;
-			}
-			else if (ber[y][x] == 'P')
-			{
-				data->generate.player.pos_y = y; // ? v2
-				data->generate.player.pos_x = x; // ? v2
-			}
-			x++;
-		}
-		y++;
-	}
-	// ft_flood_fill(data);
-	ft_pathfinding_check(data);
-}
-
-
-/* Vérification s'il est possible de sortir de la map */
-// void	ft_check_possible_exit()  // TODO 
 
 

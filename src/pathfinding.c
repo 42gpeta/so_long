@@ -6,53 +6,47 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:48:39 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/24 20:37:07 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/25 14:19:45 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    ft_flood_fill(t_data *data)
+/* Récupère les coordonnés de 'E' et 'P' */
+void	ft_parsing(t_data *data, int letter)
 {
-    
-    t_data *actual;
-    char **last;
-    int i = 0;
-    int d = 0;
+	int	x;
+	int y;
+	// char **ber;
 
-    actual = data;
-
-    last = actual->generate.string_map_ber_tab;
-
-    last[data->generate.player.pos_y][data->generate.player.pos_x] = '2';
-
-    // if (last[data->generate.player.pos_y - 1][data->generate.player.pos_x] == '0')
-    // // || actual[actual->generate.player.pos_y + 1][actual->generate.player.pos_x] == 'C')
-    // // // || actual[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'E')
-    // {
-    //     data->generate.player.pos_y -= 1;
-    //     // data->generate.player.pos_x ;
-    //     last[data->generate.player.pos_y - 1][data->generate.player.pos_x] = '2';
-    //     d++;
-    //     ft_flood_fill(data);
-    // }
-    if (last[data->generate.player.pos_y][data->generate.player.pos_x + 1] == '0')
-    // || actual[actual->generate.player.pos_y + 1][actual->generate.player.pos_x] == 'C')
-    // // || actual[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'E')
-    {
-        // data->generate.player.pos_y -= 1;
-        data->generate.player.pos_x += 1;
-        last[data->generate.player.pos_y][data->generate.player.pos_x + 1] = '2';
-        d++;
-        ft_flood_fill(data);
-    }
-    
-
-    
-    printf("\n****\tMAP 2\t****\n\n");
-    while (last[++i])
-        printf("%s\n", last[i]);
-    printf("\n********************\n\n");    
+	data->generate.number_of_C_pathfinding = data->generate.number_of_C;
+	// ber = data->generate.string_map_ber_tab; // ? v2
+	y = 0;
+	// while (ber[y])
+	while (data->generate.string_map_ber_tab[y])
+	{
+		x = 0;
+		// while (ber[y][x])
+		while (data->generate.string_map_ber_tab[y][x])
+		{
+			// if (ber[y][x] == 'E')
+			if (data->generate.string_map_ber_tab[y][x] == 'E')
+			{
+				data->generate.player.pos_exit_y = y;
+				data->generate.player.pos_exit_x = x;
+			}
+			// else if (ber[y][x] == 'P')
+			else if (data->generate.string_map_ber_tab[y][x] == 'P')
+			{
+				data->generate.player.pos_y = y; // ? v2
+				data->generate.player.pos_x = x; // ? v2
+			}
+			x++;
+		}
+		y++;
+	}
+	printf("PLAYER POSITION : [%d][%d]\nEXIT POSITION : [%d][%d]\n", data->generate.player.pos_y, data->generate.player.pos_x, data->generate.player.pos_exit_y, data->generate.player.pos_exit_x); // ! a supprimer
+	ft_pathfinding_check(data);
 }
 
 /* Place des 2 partouts */

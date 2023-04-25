@@ -6,35 +6,38 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/24 20:57:30 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/25 16:17:33 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// char	*ft_map_control_extention(char *filename, char *filename_main) // ? v1
+// /*** Verifie si l'AV 1 est bien remplis  */
+// char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
 // {
 // 	int i;
 // 	int len;
 // 	char *endfile;
-// 
-// 	if (filename == NULL)
+
+// 	if (data->filename == NULL)
 // 	{
-// 		filename = filename_main;
-// 		printf("** filename du main\n"); // ! a supprimer
+// 		data->filename = filename_main;
+// 		printf("** filename du main : %s **\n\n", data->filename); // ! a supprimer
 // 	}
-// 
-// 	len = ft_strlen(filename) - 4;
+// 	else
+// 		printf("** filename AV[1] : %s **\n\n", data->filename); // ! a supprimer
+
+// 	len = ft_strlen(data->filename) - 4;
 // 	endfile = malloc(sizeof(char) * (4 + 1));
 // 	if (!endfile)
 // 		return (NULL);
 // 		// exit(EXIT_FAILURE);
 // 	i = 0;
-// 
-// 	printf("Filename = %s\n", filename);
-// 	while (filename[len] != '\0')
+
+// 	// printf("Filename = %s\n", data->filename);
+// 	while (data->filename[len] != '\0')
 // 	{
-// 		endfile[i] = filename[len];
+// 		endfile[i] = data->filename[len];
 // 		i++;
 // 		len++;
 // 	}
@@ -43,167 +46,43 @@
 // }
 
 /*** Verifie si l'AV 1 est bien remplis  */
-char	*ft_map_control_extention(t_data *data, char *filename_main) // ? v2
+void	ft_map_control_extention(t_data *data, char *filename_main) // ? v3
 {
-	int i;
-	int len;
-	char *endfile;
-
+	data->filename = filename_main;
 	if (data->filename == NULL)
-	{
-		data->filename = filename_main;
-		printf("** filename du main : %s **\n\n", data->filename); // ! a supprimer
-	}
-	else
-		printf("** filename AV[1] : %s **\n\n", data->filename); // ! a supprimer
-
-	len = ft_strlen(data->filename) - 4;
-	endfile = malloc(sizeof(char) * (4 + 1));
-	if (!endfile)
-		return (NULL);
-		// exit(EXIT_FAILURE);
-	i = 0;
-
-	// printf("Filename = %s\n", data->filename);
-	while (data->filename[len] != '\0')
-	{
-		endfile[i] = data->filename[len];
-		i++;
-		len++;
-	}
-	endfile[i] = '\0';
-	return (endfile);
+		ft_message_error("The program need 1 parameter", data);
 }
 
 
-/*** Verifie si le fichier est un ".ber"  */
+/*** Verifie si le fichier est un ".ber" valide  */
 void	ft_map_check_extention(t_data *data, char *filename_main)
 {
 	char	*file;
 	char	*extension;
 	int		result;
 
+	file = 0;
+	// data->filename = 0;
 	extension = ".ber";
-	file = ft_map_control_extention(data, filename_main);
+	// file = ft_map_control_extention(data, filename_main);
+	// result = ft_strncmp(extension, file, 4);
+	// data->filename = ft_strrchr(data->filename, '.');
+
+	// if (!(data->filename = ft_strrchr(data->filename, '.'))
+	if (!(file = ft_strrchr(data->filename, '.'))
+		|| !(data->generate.fd = open(data->filename, O_RDWR)))
+		ft_message_error("Check the parameter", data);
+
 	result = ft_strncmp(extension, file, 4);
 
-	if(result == 0)
-		printf("STRNCMP s1 == s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
-	else
+	if (result != 0)
+	{
 		printf("STRNCMP s1 != s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
-
-	free(file);
+		ft_message_error("Check extension's program", data);
+	}
+	else
+		printf("STRNCMP s1 == s2 : (%d)\nextension : %s | file : %s\n", result, extension, file); // ! a supprimer
 }
-
-// char	*ft_generate_string_map(char *file_ber) // ? v1
-
-// char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v2
-// {
-// 	int		fd;
-// 	char	*line;
-// 	char	*string_map;
-// 
-// 	fd = open(file_ber, O_RDONLY);
-// 	data->row_size_map = 0;
-// 	/* v1 */
-// 	// line = get_next_line(fd);
-// 	// 
-// 	// if (line == NULL)
-// 	// 	printf("c'est NULL 1\n");
-// 	// 
-// 	// line = get_next_line(fd);
-// 	// string_map = ft_strdup(line);
-// 	// line = get_next_line(fd);
-// 	// string_map = ft_strjoin(line, string_map);
-// 	// line = get_next_line(fd);
-// 	// string_map = ft_strjoin(line, string_map);
-// 	// 
-// 	// 
-// 	// line = get_next_line(fd);
-// 	// while (line)
-// 	// {
-// 	// 	string_map = ft_strdup(line);
-// 	// 	string_map = ft_strjoin(line, string_map);
-// 	// 	free(line);
-// 	// 	line = get_next_line(fd);
-// 	// 
-// 	// }
-// 	// free(line);
-// 
-// 
-// 	/* v2 */ // OK
-// 	// string_map = get_next_line(fd);
-// 	// line = get_next_line(fd);
-// 	// if (string_map == NULL || line == NULL)
-// 	// 	printf("c'est NULL 1\n");
-// 	// while (string_map)
-// 	// {
-// 	// 	string_map = ft_strjoin(string_map, line);
-// 	// 	free(line);
-// 	// 	line = get_next_line(fd);
-// 	// 	if (line == NULL)
-// 	// 		break;
-// 	// }
-// 	// free(line);
-// 
-// 	/* v3 */ // OK
-// 	string_map = get_next_line(fd);
-// 	data->colomn_size_map = ft_strlen(string_map);
-// 	data->row_size_map++;
-// 	line = get_next_line(fd);
-// 	data->row_size_map++;
-// 	if (string_map == NULL || line == NULL)
-// 		printf("c'est NULL 1\n");
-// 	while (string_map)
-// 	{
-// 		string_map = ft_strjoin(string_map, line);
-// 		// free(string_map);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		if (line == NULL)
-// 			break;
-// 		data->row_size_map++;
-// 	}
-// 	free(line);
-// 
-// 	if (close(fd) == -1)
-// 		return (NULL);
-// 
-// 	return (string_map);
-// }
-
-// char	*ft_generate_string_map(char *file_ber, t_data *data) // ? v3
-// {
-// 	int		fd;
-// 	char	*line;
-//
-// 	fd = open(file_ber, O_RDONLY);
-// 	data->row_size_map = 0;
-//
-// 	/* v3 */ // OK
-// 	data->string_map = get_next_line(fd);
-// 	data->colomn_size_map = ft_strlen(data->string_map);
-// 	data->row_size_map++;
-// 	line = get_next_line(fd);
-// 	data->row_size_map++;
-// 	if (data->string_map == NULL || line == NULL)
-// 		printf("c'est NULL 1\n");
-// 	while (data->string_map)
-// 	{
-// 		data->string_map = ft_strjoin_gnl(data->string_map, line);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 		if (line == NULL)
-// 			break;
-// 		data->row_size_map++;
-// 	}
-// 	free(line);
-//
-// 	if (close(fd) == -1)
-// 		return (NULL);
-//
-// 	return (data->string_map);
-// }
 
 /*** Génère le string_map dans un tableau  */
 void	ft_generate_string_map(t_data *data) // ? v4
@@ -214,7 +93,6 @@ void	ft_generate_string_map(t_data *data) // ? v4
 	if (data->generate.fd < 0 || data->generate.fd > 1024)
 		ft_message_error("ft_generate_string_map : Cannot open this !", data);
 	data->row_size_map = 0;
-	/* v3 */ // OK
 	data->string_map = get_next_line(data->generate.fd);
 
 	data->row_size_map++;
@@ -222,7 +100,6 @@ void	ft_generate_string_map(t_data *data) // ? v4
 	data->row_size_map++;
 	if (data->string_map == NULL || line == NULL)
 		ft_message_error("ft_generate_string_map : First line of this file is empty.", data);
-		// printf("c'est NULL 1\n"); // ! a supprimer
 	while (data->string_map)
 	{
 		data->string_map = ft_strjoin_gnl(data->string_map, line);
@@ -234,8 +111,6 @@ void	ft_generate_string_map(t_data *data) // ? v4
 	}
 	if (!(data->string_map[0] == '1'))
 	{
-		// printf("bonjour\n");
-		// free(data->string_map);
 		close(data->generate.fd);
 		ft_message_error("ft_generate_string_map : First line isn't wall of 1", data);
 	}
@@ -248,32 +123,15 @@ void	ft_generate_string_map(t_data *data) // ? v4
 /*** Génère le string_map dans un tableau de tableau  */
 void	ft_generate_string_map_tab(t_data *data)
 {
-	// generate->string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v1
 	data->generate.string_map_ber_tab = ft_split(data->string_map, '\n'); // ? v2
 	data->generate.string_map_pathfinding = ft_split(data->string_map, '\n'); // ? v2 // arret ICI
-	// data->generate.string_map_pathfinding = ft_strlcpy(*data->generate.string_map_pathfinding, *data->generate.string_map_ber_tab, ft_strlen(*data->generate.string_map_ber_tab)); // ? v2 // arret ICI
-	// data->colomn_size_map = ft_strlen(generate->string_map_ber_tab[0]); // ? v2 // arret ICI
 	data->colomn_size_map = ft_strlen(data->generate.string_map_ber_tab[0]); // ? v2
-	
+
 	data->colomn_size_win = data->colomn_size_map * ECART_XPM;
 	data->row_size_win = data->row_size_map * ECART_XPM;
-	// int x = 0; // ! a supprimer
-	// int y = 0; // ! a supprimer
-	//  // ! a supprimer
-	// x = 0; // ! a supprimer
-	// y = 0; // ! a supprimer
-	// while (generate->string_map_ber_tab[y]) // ! a supprimer
-	// { // ! a supprimer
-	// 	// x = 0; // ! a supprimer
-	// 	printf("\n~ string_map_ber_tab[%d] : %s\n", y, generate->string_map_ber_tab[y]); // ! a supprimer
-	// 	y++; // ! a supprimer
-	// 	// while (generate->string_map_ber_tab[y][x]) // ! a supprimer
-	// 	// { // ! a supprimer
-	// 	// } // ! a supprimer
-	// } // ! a supprimer
 }
 
-
+/*** Génère les image dans un tableau de tableau  */
 void	ft_generate_path_file(t_data *data)
 {
 	t_img	img0;

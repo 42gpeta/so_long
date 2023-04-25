@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/24 19:49:20 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/25 14:32:45 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,8 @@ map_utils.c
 *************/
 
 // char	*ft_map_control_extention(char *filename, char *filename_main); // ? v1
-char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
+// char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
+void	ft_map_control_extention(t_data *data, char *filename_main); // ? v3
 
 // int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
 // int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
