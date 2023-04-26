@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/25 14:32:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/26 17:22:51 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,8 @@ void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 // void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
 void	ft_generate_string_map(t_data *data); // ? v5
 
+void	ft_check_string_map(t_data *data);
+
 // void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
 void	ft_generate_string_map_tab(t_data *data); // ? v2
 
@@ -230,6 +232,7 @@ map_check.c
 // void	ft_check_content(t_generate *generate, t_data *data); // ? v1
 void	ft_check_content(t_data *data); // ? v2
 
+void	ft_letter_presence(t_data *data, int letter_E, int letter_C, int letter_P); // ! non utilisée
 
 // void	ft_check_map_is_an_rectangle(t_data *data, t_generate *s_generate); // ? v1
 void	ft_check_map_is_an_rectangle(t_data *data); // ? v2
@@ -272,7 +275,8 @@ void	ft_move_down(t_data *data); // ? v2
 void	ft_move_left(t_data *data); // ? v2
 // void	ft_move_right(t_data *data, t_generate *generate); // ? v1
 void	ft_move_right(t_data *data); // ? v2
-void    ft_move_exit(t_data *data); // ! non utilisé
+// void    ft_move_exit(t_data *data); // ! non utilisé v1
+void    ft_move_exit(t_data *data, int move); // ? v2
 
 /*************
 pathfinding.c
@@ -280,6 +284,8 @@ pathfinding.c
 
 void    ft_flood_fill(t_data *data);
 void    ft_pathfinding_flood(t_data *data, int y, int x);
+void    ft_pathfinding_flood_y(t_data *data, int y, int x);
+void    ft_pathfinding_flood_x(t_data *data, int y, int x);
 void    ft_pathfinding_check(t_data *data);
 
 

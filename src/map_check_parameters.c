@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 16:50:11 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/25 14:21:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/26 17:31:05 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	ft_check_surrounded_by_one_right(t_data *data) // ? v3
     }
     // printf("RIGHT OK !\n"); // ! a supprimer
 }
-

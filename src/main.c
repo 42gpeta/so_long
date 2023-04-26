@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/25 15:26:07 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/26 14:55:10 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int main(int ac, char **av)		// v2 : avec structure
 	data.string_map = 0;
 	data.mlx_ptr = 0;
 	data.generate.player.mouvement = 0;
+	data.generate.string_map_ber_tab = 0;
+	data.generate.string_map_pathfinding = 0;
 
 	// printf("main : AV[1] = %s\n", av[1]);
 	

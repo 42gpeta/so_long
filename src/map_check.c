@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/25 14:20:32 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/26 17:31:28 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,18 @@ void	ft_check_content(t_data *data)
 			ft_message_error("ft_check_content : This map contain an incorrect symbol !", data);
 		i++;
 	}
+	ft_letter_presence(data, letter_E, letter_C, letter_P);
 	ft_parsing(data, data->generate.number_of_C);
-
-	if (letter_E < 1 && letter_C < 1 && letter_P < 1)
-		ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
-	if (letter_E > 1 || letter_P > 1)
-		ft_message_error("ft_check_content : Letter E or P is present more than 1 time", data);
 }
 
 /* Vérification si map contient + de 1 : E, C, P */
-// void	ft_check_content_doublon(t_data *data, int letter_E, int letter_C, int letter_P) // ! non utilisée
-// {
-// 		if (letter_E < 1 && letter_C < 1 && letter_P < 1)
-// 			ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
-// 		if (letter_E > 1 || letter_P > 1)
-// 			ft_message_error("ft_check_content : Letter E or P is present more than 1 time", data);
-// }
+void	ft_letter_presence(t_data *data, int letter_E, int letter_C, int letter_P)
+{
+		if (letter_E < 1 && letter_C < 1 && letter_P < 1)
+			ft_message_error("ft_check_content : Map don't have one E,C and P !", data);
+		if (letter_E > 1 || letter_P > 1)
+			ft_message_error("ft_check_content : Letter E or P is present more than 1 time", data);
+}
 
 
 /* Vérification si map est un rectangle */
@@ -92,6 +88,3 @@ void	ft_check_surrounded_by_one(t_data *data) // ? v4
 	ft_check_surrounded_by_one_right(data);
 	printf("ft_check_surrounded_by_one OK !\n"); // ! a supprimer
 }
-
-
-
