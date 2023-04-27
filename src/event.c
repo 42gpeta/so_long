@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/26 17:30:31 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:11:00 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_no_event(void *data)
 	return (0);
 }
 
-/** Indique le numéro du symbol appuyé */
+/** Indique le numéro du symbol appuyé */ // ! a supprimer
 // int	ft_key_hook(int key_symbol)
 // {
 // 	printf("Key %d release\n", key_symbol);

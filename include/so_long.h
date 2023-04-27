@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/26 17:22:51 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:11:59 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_player
 
 
 
-	/* map_utils.c */ /* map_check.c */
+	/* string_map.c */ /* map_check.c */
 typedef struct s_map
 {
 	char	*up; // ! utile ?
@@ -127,7 +127,7 @@ typedef struct s_rect
 	int		color;
 }	t_rect;
 
-/* Events */ /* map_utils.c */
+/* Events */ /* string_map.c */
 typedef struct s_data
 {
 	char		*filename;
@@ -153,7 +153,7 @@ typedef struct s_data
 /* ************************************************************************** */
 
 /*************
-event_utils.c
+event.c
 *************/
 
 // int	ft_close_s_keypress(int key_symbol, t_data *data);
@@ -194,17 +194,8 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type);
 
 /*************
-map_utils.c
+string_map.c
 *************/
-
-// char	*ft_map_control_extention(char *filename, char *filename_main); // ? v1
-// char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
-void	ft_map_control_extention(t_data *data, char *filename_main); // ? v3
-
-// int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
-// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
-void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
-
 // char	*ft_generate_string_map(char *file_ber); // ? v1
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
 // char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v3
@@ -223,6 +214,19 @@ void	ft_generate_path_file(t_data *data); // ? v2
 // void	ft_generate_xpm(t_data *data); // ? v1
 // void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2
 void	ft_generate_xpm(t_data *data); // ? v3
+
+/*************
+control_string_map.c
+*************/
+// char	*ft_map_control_extention(char *filename, char *filename_main); // ? v1
+// char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
+void	ft_map_control_extention(t_data *data, char *filename_main); // ? v3
+
+// int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
+// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
+void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
+
+
 
 
 /*************
@@ -287,6 +291,15 @@ void    ft_pathfinding_flood(t_data *data, int y, int x);
 void    ft_pathfinding_flood_y(t_data *data, int y, int x);
 void    ft_pathfinding_flood_x(t_data *data, int y, int x);
 void    ft_pathfinding_check(t_data *data);
+
+/*************
+so_long.c
+*************/
+void	ft_init(t_data *data);
+void	ft_start(t_data *data, char *argv);
+void	ft_mlx(t_data *data);
+void	ft_stop(t_data *data);
+
 
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: glodi <glodi@student.42.fr>                +#+  +:+       +#+         #
+#    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/04/20 23:16:21 by glodi            ###   ########.fr        #
+#    Updated: 2023/04/27 15:11:59 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,12 @@ lib/libft/include \
 SRC_DIR		:= src
 SRCS		:= \
 error_message.c \
-event_utils.c \
-map_check.c map_check_parameters.c map_utils.c \
+event.c \
+map_check.c map_check_parameters.c string_map.c control_string_map.c\
 pixel.c pixel_utils.c \
 move.c \
 pathfinding.c \
+so_long.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
 
