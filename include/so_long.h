@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:11:59 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 20:19:54 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ typedef struct s_data
 	int			colomn_size_map;
 	int			row_size_win;
 	int			colomn_size_win;
+	int			offset_y;
+	int			offset_x;
 	char		*string_map; // colecte la map dans 1 ligne
 	t_img		img;
 	t_generate	generate;
@@ -156,23 +158,16 @@ typedef struct s_data
 event.c
 *************/
 
-// int	ft_close_s_keypress(int key_symbol, t_data *data);
 int	ft_bouton_red_cross(t_data *data);
-// int	ft_key_hook(int key_symbol); // ? v1
-// int	ft_key_hook(int key_symbol, t_data *data); // ? v2
-// int	ft_key_hook(int key_symbol, t_data *data, t_generate *generate); // ? v3
-int	ft_key_hook(int key_symbol, t_data *data); // ? v4
+int	ft_key_hook(int key_symbol, t_data *data);
 int	ft_no_event(void *data);
+int	render_no_action(t_data *data); // ? v2
 
 /*************
 error_message.c
 *************/
 
-// void	ft_message_error(char *message); // ? v1
-// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v2
-// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v3
-// void	ft_message_error(char *message, t_data *data, t_generate *generate); // ? v4
-void	ft_message_error(char *message, t_data *data); // ? v5
+void	ft_message_error(char *message, t_data *data);
 
 
 /*************
@@ -182,9 +177,6 @@ pixel.c
 int	render(t_data *data);
 int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
-// int	render_no_action(t_data *data); // ? v1
-// int	render_no_action(t_data *data, t_generate *generate); // ? v1
-int	render_no_action(t_data *data); // ? v2
 
 /*************
 pixel_utils.c
@@ -196,34 +188,18 @@ int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int t
 /*************
 string_map.c
 *************/
-// char	*ft_generate_string_map(char *file_ber); // ? v1
-// char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v2
-// char	*ft_generate_string_map(char *file_ber, t_data *data); // ? v3
-// void	ft_generate_string_map(t_data *data, t_generate *generate); // ? v4
+
 void	ft_generate_string_map(t_data *data); // ? v5
-
 void	ft_check_string_map(t_data *data);
-
-// void	ft_generate_string_map_tab(t_data *data, t_generate *generate); // ? v1
 void	ft_generate_string_map_tab(t_data *data); // ? v2
-
-
-// void	ft_generate_path_file(t_data *data, t_generate *generate); // ? v1
 void	ft_generate_path_file(t_data *data); // ? v2
-
-// void	ft_generate_xpm(t_data *data); // ? v1
-// void	ft_generate_xpm(t_data *data, t_generate *generate); // ? v2
 void	ft_generate_xpm(t_data *data); // ? v3
 
 /*************
 control_string_map.c
 *************/
-// char	*ft_map_control_extention(char *filename, char *filename_main); // ? v1
-// char	*ft_map_control_extention(t_data *data, char *filename_main); // ? v2
-void	ft_map_control_extention(t_data *data, char *filename_main); // ? v3
 
-// int	ft_map_check_extention(char *filename, char *filename_main); // ? v1
-// int	ft_map_check_extention(t_data *data, char *filename_main); // ? v2
+void	ft_map_control_extention(t_data *data, char *filename_main); // ? v3
 void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 
 
@@ -233,19 +209,10 @@ void	ft_map_check_extention(t_data *data, char *filename_main); // ? v3
 map_check.c
 *************/
 
-// void	ft_check_content(t_generate *generate, t_data *data); // ? v1
 void	ft_check_content(t_data *data); // ? v2
-
 void	ft_letter_presence(t_data *data, int letter_E, int letter_C, int letter_P); // ! non utilisée
-
-// void	ft_check_map_is_an_rectangle(t_data *data, t_generate *s_generate); // ? v1
 void	ft_check_map_is_an_rectangle(t_data *data); // ? v2
-
-
-// void	ft_check_surrounded_by_one(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one(t_data *data); // ? v4
-
-void	ft_parsing(t_data *data, int letter);
 
 
 void	ft_check_possible_exit();
@@ -254,16 +221,9 @@ void	ft_check_possible_exit();
 /*************
 map_check_paraneters.c
 *************/
-// void	ft_check_surrounded_by_one_up(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one_up(t_data *data); // ? v2
-
-// void	ft_check_surrounded_by_one_down(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one_down(t_data *data); // ? v2
-
-// void	ft_check_surrounded_by_one_left(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one_left(t_data *data); // ? v2
-
-// void	ft_check_surrounded_by_one_right(t_generate *generate, t_data *data); // ? v1
 void	ft_check_surrounded_by_one_right(t_data *data); // ? v2
 
 
@@ -271,35 +231,37 @@ void	ft_check_surrounded_by_one_right(t_data *data); // ? v2
 move.c
 *************/
 
-// void	ft_move_up(t_data *data, t_generate *generate); // ? v1
 void	ft_move_up(t_data *data); // ? v2
-// void	ft_move_down(t_data *data, t_generate *generate); // ? v1
 void	ft_move_down(t_data *data); // ? v2
-// void	ft_move_left(t_data *data, t_generate *generate); // ? v1
 void	ft_move_left(t_data *data); // ? v2
-// void	ft_move_right(t_data *data, t_generate *generate); // ? v1
 void	ft_move_right(t_data *data); // ? v2
-// void    ft_move_exit(t_data *data); // ! non utilisé v1
-void    ft_move_exit(t_data *data, int move); // ? v2
+void    ft_move_exit(t_data *data);
+
+
 
 /*************
 pathfinding.c
 *************/
 
-void    ft_flood_fill(t_data *data);
+void	ft_parsing(t_data *data, int letter);
 void    ft_pathfinding_flood(t_data *data, int y, int x);
-void    ft_pathfinding_flood_y(t_data *data, int y, int x);
-void    ft_pathfinding_flood_x(t_data *data, int y, int x);
 void    ft_pathfinding_check(t_data *data);
+void    ft_is_collectible1(t_data *data, int y, int x);
+void    ft_is_collectible2(t_data *data, int y, int x);
 
 /*************
 so_long.c
 *************/
+
 void	ft_init(t_data *data);
 void	ft_start(t_data *data, char *argv);
 void	ft_mlx(t_data *data);
 void	ft_stop(t_data *data);
 
+
+
+void print_map_pathfinding(t_data * data, char *name); // ! a supprimer
+void print_map(t_data * data); // ! a supprimer
 
 
 #endif

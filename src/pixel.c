@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:45 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/11 14:43:19 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:22:49 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,4 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-int	render_no_action(t_data *data)
-{
-	if (data->win_ptr != NULL)
-		ft_generate_xpm(data);
-	return (0);
-}
+

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_utils.c                                      :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:11:00 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:22:58 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ int	ft_no_event(void *data)
 	return (0);
 }
 
+int	render_no_action(t_data *data)
+{
+	if (data->win_ptr != NULL)
+		ft_generate_xpm(data);
+	return (0);
+}
 /** Indique le numéro du symbol appuyé */ // ! a supprimer
 // int	ft_key_hook(int key_symbol)
 // {

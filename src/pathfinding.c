@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:48:39 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/26 17:26:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 20:21:37 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,46 +46,83 @@ void	ft_parsing(t_data *data, int letter)
 /* Place des '2' partouts */
 void    ft_pathfinding_flood(t_data *data, int y, int x) // ? v2
 {
-        ft_pathfinding_flood_y(data, y, x);
-        ft_pathfinding_flood_x(data, y, x);
-}
-
-/* Place des '2' partouts : y */
-void    ft_pathfinding_flood_y(t_data *data, int y, int x)
-{
     if (data->generate.string_map_pathfinding[y - 1][x] == '0' || data->generate.string_map_pathfinding[y - 1][x] == 'C')
     {
-        if (data->generate.string_map_pathfinding[y - 1][x] == 'C')
-            data->generate.number_of_C_pathfinding--;
+        ft_is_collectible2(data, y - 1, x);
         data->generate.string_map_pathfinding[y - 1][x] = '2';
-        ft_pathfinding_flood_y(data, y - 1, x);
+        ft_pathfinding_flood(data, y - 1, x);
     }
     if (data->generate.string_map_pathfinding[y + 1][x] == '0' || data->generate.string_map_pathfinding[y + 1][x] == 'C')
     {
-        if (data->generate.string_map_pathfinding[y + 1][x] == 'C')
-            data->generate.number_of_C_pathfinding--;
+        ft_is_collectible2(data, y + 1, x);
         data->generate.string_map_pathfinding[y + 1][x] = '2';
-        ft_pathfinding_flood_y(data, y + 1, x);
+        ft_pathfinding_flood(data, y + 1, x);
     }
-}
-
-/* Place des '2' partouts : x */
-void    ft_pathfinding_flood_x(t_data *data, int y, int x)
-{
     if (data->generate.string_map_pathfinding[y][x - 1] == '0' || data->generate.string_map_pathfinding[y][x - 1] == 'C')
     {
-        if (data->generate.string_map_pathfinding[y][x - 1] == 'C')
-            data->generate.number_of_C_pathfinding--;
+        ft_is_collectible2(data, y, x - 1);
         data->generate.string_map_pathfinding[y][x - 1] = '2';
-        ft_pathfinding_flood_x(data, y, x - 1);
+        ft_pathfinding_flood(data, y, x - 1);
     }
     if (data->generate.string_map_pathfinding[y][x + 1] == '0' || data->generate.string_map_pathfinding[y][x + 1] == 'C')
     {
-        if (data->generate.string_map_pathfinding[y][x + 1] == 'C')
-            data->generate.number_of_C_pathfinding--;
+        ft_is_collectible2(data, y, x + 1);
         data->generate.string_map_pathfinding[y][x + 1] = '2';
-        ft_pathfinding_flood_x(data, y, x + 1);
+        ft_pathfinding_flood(data, y, x + 1);
     }
+}
+
+/* Place des '2' partouts : y */
+// void    ft_pathfinding_flood_y(t_data *data, int y, int x)
+// {
+//     // if (data->generate.string_map_pathfinding[y][x] == 'C')
+//     //         data->generate.number_of_C_pathfinding--;
+//     if (data->generate.string_map_pathfinding[y - 1][x] == '0' || data->generate.string_map_pathfinding[y - 1][x] == 'C')
+//     {
+//         // if (data->generate.string_map_pathfinding[y - 1][x] == 'C')
+//         //     data->generate.number_of_C_pathfinding--;
+//         ft_pathfinding_flood_x(data, y - 1, x);
+//         data->generate.string_map_pathfinding[y - 1][x] = '2';
+//         ft_pathfinding_flood_y(data, y - 1, x);
+//     }
+//     if (data->generate.string_map_pathfinding[y + 1][x] == '0' || data->generate.string_map_pathfinding[y + 1][x] == 'C')
+//     {
+//         // if (data->generate.string_map_pathfinding[y + 1][x] == 'C')
+//         //     data->generate.number_of_C_pathfinding--;
+//         ft_pathfinding_flood_x(data, y + 1, x);
+//         data->generate.string_map_pathfinding[y + 1][x] = '2';
+//         ft_pathfinding_flood_y(data, y + 1, x);
+//     }
+//     if (data->generate.string_map_pathfinding[y][x - 1] == '0' || data->generate.string_map_pathfinding[y][x - 1] == 'C')
+//     {
+//         // if (data->generate.string_map_pathfinding[y][x - 1] == 'C')
+//         //     data->generate.number_of_C_pathfinding--;
+//         ft_pathfinding_flood_x(data, y, x - 1);
+//         data->generate.string_map_pathfinding[y][x - 1] = '2';
+//         ft_pathfinding_flood_y(data, y, x - 1);
+//     }
+//     if (data->generate.string_map_pathfinding[y][x + 1] == '0' || data->generate.string_map_pathfinding[y][x + 1] == 'C')
+//     {
+//         // if (data->generate.string_map_pathfinding[y][x + 1] == 'C')
+//         //     data->generate.number_of_C_pathfinding--;
+//         ft_pathfinding_flood_x(data, y, x + 1);
+//         data->generate.string_map_pathfinding[y][x + 1] = '2';
+//         ft_pathfinding_flood_y(data, y, x + 1);
+//     }
+// }
+
+/* Verifie si la position future est un 'C' pour string_map_ber_tab */
+void    ft_is_collectible1(t_data *data, int y, int x)
+{
+        if (data->generate.string_map_ber_tab[y][x] == 'C')
+            data->generate.number_of_C--;
+}
+
+/* Verifie si la position future est un 'C' pour string_map_ber_pathfinding */
+void    ft_is_collectible2(t_data *data, int y, int x)
+{
+    if (data->generate.string_map_pathfinding[y][x] == 'C')
+        data->generate.number_of_C_pathfinding--;
 }
 
 /* Regarde si entourer de 1 + si collectibles sont à 0 */
@@ -104,10 +141,7 @@ void    ft_pathfinding_check(t_data *data)
 
     ft_pathfinding_flood(data, data->generate.player.pos_y, data->generate.player.pos_x);
 
-    printf("\n****\tMAP PATHFINDING\t****\n\n"); // ! a supprimer
-    while (data->generate.string_map_pathfinding[i]) // ! a supprimer
-        printf("%s\n", data->generate.string_map_pathfinding[i++]); // ! a supprimer
-    printf("\n********************\n\n"); // ! a supprimer
+    print_map_pathfinding(data, "ft_pathfinding_check"); // ! a supprimer
 
     i = 0; // ! a supprimer
     printf("ft_pathfinding_check : %i APRES\n", data->generate.number_of_C_pathfinding); // ! a supprimer
@@ -115,6 +149,5 @@ void    ft_pathfinding_check(t_data *data)
      if (data->generate.number_of_C_pathfinding != 0)
         ft_message_error("No solution to exit : all of collectibles are not consume !", data);
     printf("ft_pathfinding_check : OK !\n"); // ! a supprimer
-
 
 }

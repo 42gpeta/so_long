@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:16:37 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 16:05:57 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,41 @@ void	ft_generate_path_file(t_data *data)
 }
 
 /*** Génère l'afichage des XPM  */
-void	ft_generate_xpm(t_data *data)
+// void	ft_generate_xpm(t_data *data) // ? v1
+// {
+// 	int	x;
+// 	int y;
+
+// 	ft_generate_offset(data);
+// 	y = 0;
+// 	while (data->generate.string_map_ber_tab[y])
+// 	{
+// 		x = 0;
+// 		while (data->generate.string_map_ber_tab[y][x])
+// 		{
+// 			if (data->generate.string_map_ber_tab[y][x] == '0')
+// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img0, data->img.widht * x, data->img.height * y);
+// 			else if (data->generate.string_map_ber_tab[y][x] == '1')
+// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_img1, data->img.widht * x, data->img.height * y);
+// 			else if (data->generate.string_map_ber_tab[y][x] == 'C')
+// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgC, data->img.widht * x, data->img.height * y);
+// 			else if (data->generate.string_map_ber_tab[y][x] == 'E')
+// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgE, data->img.widht * x, data->img.height * y);
+// 			else if (data->generate.string_map_ber_tab[y][x] == 'P')
+// 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->generate.mlx_imgP, data->img.widht * x, data->img.height * y);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+/*** Génère l'afichage des XPM  */
+void	ft_generate_xpm(t_data *data) // ? v2
 {
 	int	x;
 	int y;
 
+	// ft_generate_offset(data);
 	y = 0;
 	while (data->generate.string_map_ber_tab[y])
 	{
@@ -105,3 +135,14 @@ void	ft_generate_xpm(t_data *data)
 		y++;
 	}
 }
+
+// void	ft_generate_offset(t_data *data)
+// {
+// 	data->offset_y = 0;
+// 	data->offset_x = 0;
+
+// 	if (data->row_size_win > WINDOW_HEIGHT_MAX)
+// 		data->offset_y -= 40;
+// 	if (data->colomn_size_win > WINDOW_WIDHT_MAX)
+// 		data->offset_x -= 22;
+// }

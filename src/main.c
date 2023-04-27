@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:00:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:07:57 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,22 @@ int main(int ac, char **av)		// v2 : avec structure
 	ft_stop(&data);
 
 	return (0);
+}
+
+
+void print_map_pathfinding(t_data * data, char *name) // ! a supprimer
+{
+    int i = 0; // ! a supprimer
+
+	    printf("\n****\tMAP %s\t****\n\n", name); // ! a supprimer
+    while (data->generate.string_map_pathfinding[i]) // ! a supprimer
+        printf("%s\n", data->generate.string_map_pathfinding[i++]); // ! a supprimer
+    printf("\n********************\n\n"); // ! a supprimer
+}
+
+void print_map(t_data * data) // ! a supprimer
+{
+	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data->string_map);
+	printf("x / widht = %d \ny / height = %d\n\n", data->colomn_size_win, data->row_size_win);
+
 }

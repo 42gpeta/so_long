@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:01:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:05:10 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	ft_start(t_data *data, char *argv)
 	ft_generate_string_map(data);
 
 	/* affichage de la MAP */
-	printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data->string_map);
-	printf("x / widht = %d \ny / height = %d\n\n", data->colomn_size_win, data->row_size_win);
-
+	// printf("\n****\tMAP\t****\n\n%s\n\n********************\n\n", data->string_map);
+	// printf("x / widht = %d \ny / height = %d\n\n", data->colomn_size_win, data->row_size_win);
+	print_map(data);
+	
 	/* map's content */
 	ft_check_content(data);
 	ft_check_surrounded_by_one(data);

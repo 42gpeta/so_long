@@ -13,10 +13,11 @@
             "program": "${workspaceFolder}/so_long", //path to your programs exe and exe name
             // "args": [], // WITHOUT AV[1]  ~~ Good file
             // "args": ["2"],
-            "args": [".ber"],
+            // "args": [".ber"],
             // "args": ["maps/bad/map6.ber"], // WITH AV[1]    ~~ Bad file
             // "args": ["maps/bad/bad.ber"], // WITH AV[1]    ~~ Bad folder
             // "args": ["maps/good/map-sujet.ber"], // WITH AV[1]    ~~ Good file
+            "args": ["maps/good/small1.ber"], // WITH AV[1]    ~~ Good file
             // "args": ["maps/bad/no_consume_collect.ber"], // WITH AV[1]    ~~ Bad file
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
