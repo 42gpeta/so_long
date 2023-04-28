@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/28 17:43:59 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 20:11:07 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_mlx(t_data *data)
 		ft_message_error("MLX_NEW_WINDOW FAIL", data);
 	}
 	ft_generate_path_file(data); // ? v2
+	// mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 50, WHITE_PIXEL, "TEST COMPTEUR"); // TODO afficher le compteur sur l'écran
 	mlx_loop_hook(data->mlx_ptr, &render_no_action, data); // ? v2
 	mlx_hook(data->win_ptr, ClientMessage, StructureNotifyMask, &ft_bouton_red_cross, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &ft_key_hook, data);
