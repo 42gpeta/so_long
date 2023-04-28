@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/28 17:08:07 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 19:58:44 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ event.c
 *************/
 
 int		ft_bouton_red_cross(t_data *data);
-int		ft_key_hook(t_data *data, int key_symbol);
+int		ft_key_hook(int key_symbol, t_data *data);
 void	ft_escape_key(t_data *data);
 int		render_no_action(t_data *data); // ? v2
 void	ft_print_informations(t_data *data);
@@ -239,6 +239,7 @@ void	ft_stop(t_data *data);
 
 void print_map_pathfinding(t_data * data, char *name); // ! a supprimer
 void print_map(t_data * data); // ! a supprimer
-
+void player_position(t_data *data); // ! a supprimer
+void number_of_C_pathfinding(t_data *data, char *time, int i); // ! a supprimer
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/28 14:33:19 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 17:43:59 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_init(t_data *data)
 	data->generate.player.mouvement = 0;
 	data->generate.string_map_ber_tab = 0;
 	data->generate.string_map_pathfinding = 0;
+	data->generate.number_of_C = 0;
 }
 
 void	ft_start(t_data *data, char *argv)

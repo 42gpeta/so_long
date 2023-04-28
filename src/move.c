@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/28 17:09:21 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 19:30:33 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_move_up(t_data *data) // ? v3
         data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = 'E';
         data->generate.player.pos_y -= 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == '0'
         || data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'C')
@@ -29,15 +30,16 @@ void	ft_move_up(t_data *data) // ? v3
         data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_y -= 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] == 'E')
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y - 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_y -= 1;
+        data->generate.player.mouvement++;
         ft_move_exit(data);
     }
-    // data->generate.player.mouvement++;
 }
 
 /* Déplace le personnage vers le bas */
@@ -49,6 +51,7 @@ void	ft_move_down(t_data *data) // ? v3
         data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = 'E';
         data->generate.player.pos_y += 1;
+        data->generate.player.mouvement++;
     } 
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == '0'
         || data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'C')
@@ -57,15 +60,16 @@ void	ft_move_down(t_data *data) // ? v3
         data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_y += 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] == 'E')
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y + 1][data->generate.player.pos_x] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_y += 1;
+        data->generate.player.mouvement++;
         ft_move_exit(data);
     }
-    // data->generate.player.mouvement++;
 }
 
 /* Déplace le personnage vers la gauche */
@@ -76,7 +80,8 @@ void	ft_move_left(t_data *data) // ? v2
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = 'E';
-        data->generate.player.pos_x -= 1;        
+        data->generate.player.pos_x -= 1;
+        data->generate.player.mouvement++;        
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == '0'
         || data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == 'C')
@@ -85,15 +90,16 @@ void	ft_move_left(t_data *data) // ? v2
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_x -= 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] == 'E')
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x - 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_x -= 1;
+        data->generate.player.mouvement++;
         ft_move_exit(data);
     }
-    // data->generate.player.mouvement++;
 }
 
 // void	ft_move_right(t_data *data) // ? v2
@@ -137,7 +143,8 @@ void	ft_move_right(t_data *data) // ? v3
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = 'E';
-        data->generate.player.pos_x += 1;        
+        data->generate.player.pos_x += 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == '0'
         || data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == 'C')
@@ -146,15 +153,16 @@ void	ft_move_right(t_data *data) // ? v3
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_x += 1;
+        data->generate.player.mouvement++;
     }
     else if (data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] == 'E')
     {
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x + 1] = 'P';
         data->generate.string_map_ber_tab[data->generate.player.pos_y][data->generate.player.pos_x] = '0';
         data->generate.player.pos_x += 1;
+        data->generate.player.mouvement++;
         ft_move_exit(data);
     }
-    // data->generate.player.mouvement++;
 }
 
 /* Vérifie qu'il n'y a plus de collectible */

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 15:15:40 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 19:44:06 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_check_content(t_data *data)
 	int		i;
 
 	letter_E = 0;
-	data->generate.number_of_C = 0;
+	// data->generate.number_of_C = 0;
 	letter_P = 0;
 	i = 0;
 	while (data->string_map[i] != '\0')
@@ -57,7 +57,6 @@ void	ft_check_map_is_an_rectangle(t_data *data) // ? v4
 
 	if (ft_strlen(data->generate.string_map_ber_tab[0]) != ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]))
 		ft_message_error("Map is not a rectangle (up and down are not equal)", data);
-
     left = 0;
     while (data->generate.string_map_ber_tab[left][0] && left < data->row_size_map - 1)
     {
@@ -74,7 +73,6 @@ void	ft_check_map_is_an_rectangle(t_data *data) // ? v4
     }
 	if (left != right)
 		ft_message_error("Map is not a rectangle (left and right are not equal)", data);
-	printf("tab[0] = %zu | tab[%d] = %zu\nleft = %d | right = %d\n",ft_strlen(data->generate.string_map_ber_tab[0]), data->row_size_map-1,ft_strlen(data->generate.string_map_ber_tab[data->row_size_map-1]), left, right); // ! a supprimer
 	printf("ft_check_map_is_an_rectangle OK !\n"); // ! a supprimer
 }
 
