@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:01:31 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 16:05:57 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 14:30:05 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ void	ft_generate_string_map_tab(t_data *data)
 	data->generate.string_map_pathfinding = ft_split(data->string_map, '\n'); // ? v2 // arret ICI
 	data->colomn_size_map = ft_strlen(data->generate.string_map_ber_tab[0]); // ? v2
 	data->colomn_size_win = data->colomn_size_map * ECART_XPM;
+	if (data->colomn_size_win > WINDOW_WIDHT_MAX)
+		ft_message_error("Map to big. (widht)", data);
 	data->row_size_win = data->row_size_map * ECART_XPM;
+	if (data->row_size_win > WINDOW_HEIGHT_MAX)
+		ft_message_error("Map to big. (height)", data);
 }
 
 /*** Initie les XPM en image */

@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/27 20:22:43 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 17:09:21 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_move_up(t_data *data) // ? v3
         data->generate.player.pos_y -= 1;
         ft_move_exit(data);
     }
+    // data->generate.player.mouvement++;
 }
 
 /* Déplace le personnage vers le bas */
@@ -64,6 +65,7 @@ void	ft_move_down(t_data *data) // ? v3
         data->generate.player.pos_y += 1;
         ft_move_exit(data);
     }
+    // data->generate.player.mouvement++;
 }
 
 /* Déplace le personnage vers la gauche */
@@ -91,6 +93,7 @@ void	ft_move_left(t_data *data) // ? v2
         data->generate.player.pos_x -= 1;
         ft_move_exit(data);
     }
+    // data->generate.player.mouvement++;
 }
 
 // void	ft_move_right(t_data *data) // ? v2
@@ -151,6 +154,7 @@ void	ft_move_right(t_data *data) // ? v3
         data->generate.player.pos_x += 1;
         ft_move_exit(data);
     }
+    // data->generate.player.mouvement++;
 }
 
 /* Vérifie qu'il n'y a plus de collectible */
@@ -159,6 +163,6 @@ void    ft_move_exit(t_data *data)
         if (data->generate.number_of_C == 0)
         {
             mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-            data->win_ptr = NULL; // fermeture de la fenêtre       
+            data->win_ptr = NULL;
         }
 }

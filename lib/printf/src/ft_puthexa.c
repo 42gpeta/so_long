@@ -6,11 +6,11 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 17:12:57 by gpeta             #+#    #+#             */
-/*   Updated: 2023/01/24 16:18:25 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 16:16:30 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_puthexa(unsigned int n, char c)
 {

@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/03/10 10:08:35 by gpeta            ###   ########.fr        #
+#    Updated: 2023/04/28 16:28:37 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ ft_lstadd_back.c \
 ft_lstdelone.c \
 ft_lstclear.c \
 ft_lstiter.c \
-ft_lstmap.c
+ft_lstmap.c \
+f_check.c ft_puthexa.c ft_putnbr_u.c ft_printf.c ft_puthexa_p.c ft_putstr.c ft_putchar.c ft_putnbr.c
+
 SRC			:= $(SRC:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build

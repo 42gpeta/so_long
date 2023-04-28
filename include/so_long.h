@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/27 20:19:54 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/04/28 17:08:07 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ y = height = hauteur
 #include "libft.h"
 #include <stdlib.h>
 #include "get_next_line.h"
-#include "ft_printf.h"
+// #include "ft_printf.h"
 
 
 
@@ -66,22 +66,10 @@ typedef struct s_player
 {
 	int	pos_y;
 	int	pos_x;
-	int	pos_exit_y; // ! utile ?
-	int	pos_exit_x; // ! utile ?
-	// static int	mouvement;
+	int	pos_exit_y;
+	int	pos_exit_x;
 	int	mouvement;
 }	t_player;
-
-
-
-	/* string_map.c */ /* map_check.c */
-typedef struct s_map
-{
-	char	*up; // ! utile ?
-	char	*down; // ! utile ?
-	char	*left; // ! utile ?
-	char	*right; // ! utile ?
-}	t_map;
 
 
 typedef struct s_generate
@@ -97,7 +85,6 @@ typedef struct s_generate
 	char		**string_map_pathfinding;
 	int			number_of_C;
 	int			number_of_C_pathfinding;
-	t_map		map;
 	t_player	player;
 }	t_generate;
 
@@ -113,19 +100,8 @@ typedef struct s_img
 	char	*relative_path;
 	int		widht;
 	int		height;
-	int		win_widht; // ! test
-	int		win_height; // ! test
 }	t_img;
 
-	/* pixel_tils.c */
-typedef struct s_rect
-{
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	int		color;
-}	t_rect;
 
 /* Events */ /* string_map.c */
 typedef struct s_data
@@ -158,10 +134,11 @@ typedef struct s_data
 event.c
 *************/
 
-int	ft_bouton_red_cross(t_data *data);
-int	ft_key_hook(int key_symbol, t_data *data);
-int	ft_no_event(void *data);
-int	render_no_action(t_data *data); // ? v2
+int		ft_bouton_red_cross(t_data *data);
+int		ft_key_hook(t_data *data, int key_symbol);
+void	ft_escape_key(t_data *data);
+int		render_no_action(t_data *data); // ? v2
+void	ft_print_informations(t_data *data);
 
 /*************
 error_message.c
@@ -175,7 +152,7 @@ pixel.c
 *************/
 
 int	render(t_data *data);
-int	render_rect(t_img *img, t_rect rect);
+// int	render_rect(t_img *img, t_rect rect);
 void	render_background(t_img *img, int color);
 
 /*************

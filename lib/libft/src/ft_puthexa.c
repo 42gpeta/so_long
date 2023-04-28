@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 19:07:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/03/09 15:13:59 by gpeta            ###   ########.fr       */
+/*   Created: 2022/12/24 17:12:57 by gpeta             #+#    #+#             */
+/*   Updated: 2023/04/28 16:16:30 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_puthexa(unsigned int n, char c);
-int	ft_puthexa_p(void *n);
-int	ft_putnbr(int n);
-int	ft_putnbr_u(unsigned int n);
-int	ft_putstr(char *s);
-int	f_check(va_list args, char c);
-
-#endif
+int	ft_puthexa(unsigned int n, char c)
+{
+	unsigned int	count;
+	char			*base;
+	
+	if (c == 'x')
+		base = "0123456789abcdef";
+	else if (c == 'X')
+		base = "0123456789ABCDEF";
+	count = 0;
+	if (n >= 0 && n < 16)
+	{
+		ft_putchar(base[n]);
+		count++;
+	}
+	else
+	{
+		count += ft_puthexa(n / 16, c);
+		count += ft_puthexa(n % 16, c);
+	}
+	return (count);
+}

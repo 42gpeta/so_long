@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/04/27 15:11:59 by gpeta            ###   ########.fr        #
+#    Updated: 2023/04/28 17:12:26 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,12 @@ SRCS		:= \
 error_message.c \
 event.c \
 map_check.c map_check_parameters.c string_map.c control_string_map.c\
-pixel.c pixel_utils.c \
 move.c \
 pathfinding.c \
 so_long.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
+# pixel.c pixel_utils.c \
 
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
