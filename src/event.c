@@ -6,13 +6,13 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/28 20:08:58 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:05:45 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** Ferme la fenêtre en arrêtant mlx_ptr et win_ptr issue de la structure créée */
+/** Close the window when you click on red cross's bouton */
 int	ft_bouton_red_cross(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -20,7 +20,7 @@ int	ft_bouton_red_cross(t_data *data)
 	return (0);
 }
 
-/** Indique le numéro du symbol appuyé + gère les mouvements */
+/** Action when you tap bouton W,A,S and D */
 int	ft_key_hook(int key_symbol, t_data *data)
 {
 	if (key_symbol == 65307)
@@ -47,27 +47,24 @@ void	ft_escape_key(t_data *data)
 int	render_no_action(t_data *data)
 {
 	if (data->win_ptr != NULL)
+	{
+		// mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 50, WHITE_PIXEL, "TEST COMPTEUR"); // TODO afficher le compteur sur l'écran
 		ft_generate_xpm(data);
+	}
 	return (0);
 }
 
 void	ft_print_informations(t_data *data)
 {
-	// printf("------------------\nCOMPTEUR MVT : %d\nCOLLECTIBLES : %d\nPLAYER POSITION [%d][%d]\n",
-	// data->generate.player.mouvement, data->generate.number_of_C, data->generate.player.pos_y, data->generate.player.pos_x);
-	// ft_printf("PLAYER POSITION [%d][%d]\n", data->generate.player.pos_y, data->generate.player.pos_x);
-	// ft_printf("EXIT POSITION [%d][%d]\n", data->generate.player.pos_exit_y, data->generate.player.pos_exit_x);
 	ft_printf("-------------\n");
-	ft_printf("Number of movements : %d\n", data->generate.player.mouvement);
-	if (data->generate.player.pos_y == data->generate.player.pos_exit_y
-		&& data->generate.player.pos_x == data->generate.player.pos_exit_x
-		&& data->generate.number_of_C == 0)
+	ft_printf("Number of movements : %d\n", data->gen.player.nb_move);
+	if (data->gen.number_of_C > 0)
+		ft_printf("%d collectibles left\n", data->gen.number_of_C);
+	else
+		ft_printf("Now, you can go :)\n");
+	
+	if (data->gen.player.pos_y == data->gen.player.pos_exit_y
+		&& data->gen.player.pos_x == data->gen.player.pos_exit_x
+		&& data->gen.number_of_C == 0)
 		ft_printf("\n***\nYou finish !\n***\n\n");
 }
-
-/** Indique le numéro du symbol appuyé */ // ! a supprimer
-// int	ft_key_hook(t_data *data, int key_symbol)
-// {
-// 	printf("Key %d release\n", key_symbol);
-// 	return (0);
-// }

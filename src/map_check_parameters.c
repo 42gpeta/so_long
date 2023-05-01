@@ -6,72 +6,67 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 16:50:11 by glodi             #+#    #+#             */
-/*   Updated: 2023/04/27 15:14:47 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 16:32:53 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-/*** Vérification si map est entouré de '1' : haut  */
-void	ft_check_surrounded_by_one_up(t_data *data) // ? v3
+/*** Checks if top of is surronded by '1' */
+void	ft_check_surrounded_by_one_up(t_data *data)
 {
-    int x;
+	int		x;
 
-    x = 0;
-    while (data->generate.string_map_ber_tab[0][x])
-    {
-        if (data->generate.string_map_ber_tab[0][x] != '1')
-            ft_message_error("The top side of the map isn't a wall of '1'", data);
-        x++;
-    }
-    // printf("UP OK !\n"); // ! a supprimer
+	x = 0;
+	while (data->gen.str_tab[0][x])
+	{
+		if (data->gen.str_tab[0][x] != '1')
+			ft_message_error("Top side of map isn't a wall of '1'", data);
+		x++;
+	}
 }
 
-/*** Vérification si map est entouré de '1' : bas  */
-void	ft_check_surrounded_by_one_down(t_data *data) // ? v2
+/*** Checks if down of map is surronded by '1' */
+void	ft_check_surrounded_by_one_down(t_data *data)
 {
-    int x;
+	int		x;
 
-    x = 0;
-    while (data->generate.string_map_ber_tab[data->row_size_map - 1][x])
-    {
-        if (data->generate.string_map_ber_tab[data->row_size_map - 1][x] != '1')
-            ft_message_error("The bottom side of the map isn't a wall of '1'", data);
-        x++;
-    }
-    // printf("DOWN OK !\n"); // ! a supprimer
+	x = 0;
+	while (data->gen.str_tab[data->row_size_map - 1][x])
+	{
+		if (data->gen.str_tab[data->row_size_map - 1][x] != '1')
+			ft_message_error("Bottom side of map isn't a wall of '1'", data);
+		x++;
+	}
 }
 
-/*** Vérification si map est entouré de '1' : gauche  */
-void	ft_check_surrounded_by_one_left(t_data *data) // ? v2
+/*** Checks if left of map is surronded by '1' */
+void	ft_check_surrounded_by_one_left(t_data *data)
 {
-    int y;
+	int		y;
 
-    y = 0;
-    while (data->generate.string_map_ber_tab[y][0] && y < data->row_size_map - 1)
-    {
-        if (data->generate.string_map_ber_tab[y][0] != '1')
-            ft_message_error("The left side of the map isn't a wall of '1'", data);
-        y++;
-    }
-    // printf("LEFT OK !\n"); // ! a supprimer
+	y = 0;
+	while (data->gen.str_tab[y][0] && y < data->row_size_map - 1)
+	{
+		if (data->gen.str_tab[y][0] != '1')
+			ft_message_error("Left side of map isn't a wall of '1'", data);
+		y++;
+	}
 }
 
-/*** Vérification si map est entouré de '1' : droit  */
-void	ft_check_surrounded_by_one_right(t_data *data) // ? v3
+/*** Checks if right of map is surronded by '1' */
+void	ft_check_surrounded_by_one_right(t_data *data)
 {
-    int y;
+	int		y;
 
-    y = 0;
-
-    if (!(data->generate.string_map_ber_tab[y][data->colomn_size_map - 1]))
-        ft_message_error("The right side is smaller than the left side", data);
-    while (data->generate.string_map_ber_tab[y][data->colomn_size_map] && y < data->row_size_map - 1)
-    {
-        if (data->generate.string_map_ber_tab[y][data->colomn_size_map] != '1')
-            ft_message_error("The right side of the map isn't a wall of '1'", data);
-        y++;
-    }
-    // printf("RIGHT OK !\n"); // ! a supprimer
+	y = 0;
+	if (!(data->gen.str_tab[y][data->colomn_size_map - 1]))
+		ft_message_error("The right side is smaller than the left side", data);
+	while (data->gen.str_tab[y][data->colomn_size_map]
+		&& y < data->row_size_map - 1)
+	{
+		if (data->gen.str_tab[y][data->colomn_size_map] != '1')
+			ft_message_error("Right side of map isn't a wall of '1'", data);
+		y++;
+	}
 }

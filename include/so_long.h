@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/04/28 19:58:44 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:35:28 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ y = height = hauteur
 
 typedef struct s_player
 {
-	int	pos_y;
-	int	pos_x;
-	int	pos_exit_y;
-	int	pos_exit_x;
-	int	mouvement;
+	int		pos_y;
+	int		pos_x;
+	int		pos_exit_y;
+	int		pos_exit_x;
+	int		nb_move;
+	char	*move;
+	// char	*move;
 }	t_player;
 
 
@@ -80,9 +82,8 @@ typedef struct s_generate
 	void		*mlx_imgC;
 	void		*mlx_imgE;
 	void		*mlx_imgP;
-	char		*string_map_ber; 
-	char		**string_map_ber_tab;
-	char		**string_map_pathfinding;
+	char		**str_tab; // str_map_ber_tab
+	char		**str_map_pathfinding;
 	int			number_of_C;
 	int			number_of_C_pathfinding;
 	t_player	player;
@@ -103,7 +104,7 @@ typedef struct s_img
 }	t_img;
 
 
-/* Events */ /* string_map.c */
+/* Events */ /* str_map.c */
 typedef struct s_data
 {
 	char		*filename;
@@ -120,9 +121,9 @@ typedef struct s_data
 	int			colomn_size_win;
 	int			offset_y;
 	int			offset_x;
-	char		*string_map; // colecte la map dans 1 ligne
+	char		*str_map; // colecte la map dans 1 ligne
 	t_img		img;
-	t_generate	generate;
+	t_generate	gen;
 }	t_data;
 
 
@@ -163,7 +164,7 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type);
 
 /*************
-string_map.c
+str_map.c
 *************/
 
 void	ft_generate_string_map(t_data *data); // ? v5
@@ -187,7 +188,7 @@ map_check.c
 *************/
 
 void	ft_check_content(t_data *data); // ? v2
-void	ft_letter_presence(t_data *data, int letter_E, int letter_C, int letter_P); // ! non utilisée
+void	ft_nb_presence(t_data *data, int nb_e, int nb_c, int nb_p);
 void	ft_check_map_is_an_rectangle(t_data *data); // ? v2
 void	ft_check_surrounded_by_one(t_data *data); // ? v4
 
@@ -234,6 +235,10 @@ void	ft_init(t_data *data);
 void	ft_start(t_data *data, char *argv);
 void	ft_mlx(t_data *data);
 void	ft_stop(t_data *data);
+void	ft_put_img_to_win(t_data *data, int y, int x);
+void	ft_put_img(t_data *data, char *img, int w, int h);
+
+
 
 
 
