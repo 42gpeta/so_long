@@ -118,8 +118,8 @@ void	ft_generate_path_file(t_data *data)
 // 	int y;
 // 	char *text;
 	
-// 	data->gen.player.move = ft_itoa(data->gen.player.nb_move);
-// 	text = ft_strjoin("Number of movements : ", data->gen.player.move);
+// 	data->gen.man.move = ft_itoa(data->gen.man.nb_move);
+// 	text = ft_strjoin("Number of movements : ", data->gen.man.move);
 // 	y = -1;
 // 	while (data->gen.str_tab[++y])
 // 	{
@@ -162,8 +162,8 @@ void	ft_put_img_to_win(t_data *data, int y, int x)
 	int		w;
 	int		h;
 	
-	data->gen.player.move = ft_itoa(data->gen.player.nb_move);
-	text = ft_strjoin("Number of movements : ", data->gen.player.move);
+	data->gen.man.move = ft_itoa(data->gen.man.nb_move);
+	text = ft_strjoin("Number of movements : ", data->gen.man.move);
 	w =  data->img.widht * x;
 	h =  data->img.height * y;
 	if (data->gen.str_tab[y][x] == '0')
@@ -177,7 +177,7 @@ void	ft_put_img_to_win(t_data *data, int y, int x)
 	else if (data->gen.str_tab[y][x] == 'P')
 		ft_put_img(data, data->gen.mlx_imgP, w, h);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 50, WHITE_PIXEL, text); // TODO afficher le compteur sur l'écran
-	free(data->gen.player.move);
+	free(data->gen.man.move);
 	free(text);
 }
 

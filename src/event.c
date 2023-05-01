@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 17:05:45 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 18:04:33 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	render_no_action(t_data *data)
 void	ft_print_informations(t_data *data)
 {
 	ft_printf("-------------\n");
-	ft_printf("Number of movements : %d\n", data->gen.player.nb_move);
+	ft_printf("Number of movements : %d\n", data->gen.man.nb_move);
 	if (data->gen.number_of_C > 0)
 		ft_printf("%d collectibles left\n", data->gen.number_of_C);
 	else
 		ft_printf("Now, you can go :)\n");
 	
-	if (data->gen.player.pos_y == data->gen.player.pos_exit_y
-		&& data->gen.player.pos_x == data->gen.player.pos_exit_x
+	if (data->gen.man.y == data->gen.man.pos_exit_y
+		&& data->gen.man.x == data->gen.man.pos_exit_x
 		&& data->gen.number_of_C == 0)
 		ft_printf("\n***\nYou finish !\n***\n\n");
 }

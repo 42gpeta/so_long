@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 17:35:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 18:22:47 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,19 @@ y = height = hauteur
 
 typedef struct s_player
 {
-	int		pos_y;
-	int		pos_x;
+	int		y;
+	int		x;
 	int		pos_exit_y;
 	int		pos_exit_x;
 	int		nb_move;
 	char	*move;
-	// char	*move;
 }	t_player;
 
+typedef struct s_exit // ! non uilisée
+{
+	int	y;
+	int	x;
+}	t_exit;
 
 typedef struct s_generate
 {
@@ -86,7 +90,8 @@ typedef struct s_generate
 	char		**str_map_pathfinding;
 	int			number_of_C;
 	int			number_of_C_pathfinding;
-	t_player	player;
+	t_player	man;
+	t_exit		exit;
 }	t_generate;
 
 
@@ -200,7 +205,7 @@ void	ft_check_possible_exit();
 map_check_paraneters.c
 *************/
 void	ft_check_surrounded_by_one_up(t_data *data); // ? v2
-void	ft_check_surrounded_by_one_down(t_data *data); // ? v2
+void	ft_check_surrounded_by_one_bottom(t_data *data); // ? v2
 void	ft_check_surrounded_by_one_left(t_data *data); // ? v2
 void	ft_check_surrounded_by_one_right(t_data *data); // ? v2
 
@@ -213,9 +218,17 @@ void	ft_move_up(t_data *data); // ? v2
 void	ft_move_down(t_data *data); // ? v2
 void	ft_move_left(t_data *data); // ? v2
 void	ft_move_right(t_data *data); // ? v2
+// void	ft_move_man(t_data *data, int y, int x, char letter);
 void    ft_move_exit(t_data *data);
 
+/*************
+move_parameters.c
+*************/
 
+void	ft_move_man_up(t_data *data, int y, int x, char letter);
+void	ft_move_man_down(t_data *data, int y, int x, char letter);
+void	ft_move_man_left(t_data *data, int y, int x, char letter);
+void	ft_move_man_right(t_data *data, int y, int x, char letter);
 
 /*************
 pathfinding.c

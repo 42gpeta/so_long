@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:13 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:53:41 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_check_map_is_an_rectangle(t_data *data)
 void	ft_check_surrounded_by_one(t_data *data)
 {
 	ft_check_surrounded_by_one_up(data);
-	ft_check_surrounded_by_one_down(data);
+	ft_check_surrounded_by_one_bottom(data);
 	ft_check_surrounded_by_one_left(data);
 	ft_check_surrounded_by_one_right(data);
 }

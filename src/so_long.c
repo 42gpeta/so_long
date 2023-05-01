@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 17:45:35 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 20:03:33 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_init(t_data *data)
 	data->gen.fd = 0;
 	data->str_map = 0;
 	data->mlx_ptr = 0;
-	data->gen.player.nb_move = 0;
-	// data->gen.player.move = ft_itoa(data->gen.player.nb_move);
+	data->gen.man.nb_move = 0;
+	// data->gen.man.move = ft_itoa(data->gen.man.nb_move);
 	data->gen.str_tab = 0;
 	data->gen.str_map_pathfinding = 0;
 	data->gen.number_of_C = 0;
@@ -38,11 +38,11 @@ void	ft_start(t_data *data, char *argv)
 	ft_map_check_extention(data, argv);
 	ft_generate_string_map(data);
 
-	print_map(data); // ! a supprimer
+	// print_map(data); // ! a supprimer
 
-	ft_check_content(data);
 	ft_check_surrounded_by_one(data);
 	ft_check_map_is_an_rectangle(data);
+	ft_check_content(data);
 }
 
 /* Initialisation de MLX */

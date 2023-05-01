@@ -6,13 +6,13 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 16:50:11 by glodi             #+#    #+#             */
-/*   Updated: 2023/05/01 16:32:53 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/01 19:16:10 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*** Checks if top of is surronded by '1' */
+/*** Checks if top of map is surronded by '1' */
 void	ft_check_surrounded_by_one_up(t_data *data)
 {
 	int		x;
@@ -26,8 +26,8 @@ void	ft_check_surrounded_by_one_up(t_data *data)
 	}
 }
 
-/*** Checks if down of map is surronded by '1' */
-void	ft_check_surrounded_by_one_down(t_data *data)
+/*** Checks if bottom of map is surronded by '1' */
+void	ft_check_surrounded_by_one_bottom(t_data *data)
 {
 	int		x;
 
@@ -40,7 +40,7 @@ void	ft_check_surrounded_by_one_down(t_data *data)
 	}
 }
 
-/*** Checks if left of map is surronded by '1' */
+/*** Checks if left side of map is surronded by '1' */
 void	ft_check_surrounded_by_one_left(t_data *data)
 {
 	int		y;
@@ -54,7 +54,7 @@ void	ft_check_surrounded_by_one_left(t_data *data)
 	}
 }
 
-/*** Checks if right of map is surronded by '1' */
+/*** Checks if right side of map is surronded by '1' */
 void	ft_check_surrounded_by_one_right(t_data *data)
 {
 	int		y;
