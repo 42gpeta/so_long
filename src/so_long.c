@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 20:32:04 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:39:48 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_start(t_data *data, char *argv, int ac)
 	ft_map_control_extention(data, argv, ac);
 	ft_map_check_extention(data);
 	ft_generate_string_map(data);
-	// print_map(data); // ! a supprimer
 	ft_check_map_is_an_rectangle(data);
 	ft_check_surrounded_by_one(data);
 	ft_check_content(data);

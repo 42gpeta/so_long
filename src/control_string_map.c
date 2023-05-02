@@ -6,13 +6,13 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:33:05 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 20:35:32 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:39:15 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*** Checks argv[1] */
+/*** Checks av[1] and ac */
 void	ft_map_control_extention(t_data *data, char *filename_main, int ac)
 {
 	data->ac = ac;

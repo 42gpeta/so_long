@@ -1,58 +1,58 @@
 ******* 1 first_line_isnt_wall_of_1.ber
-==86964==   total heap usage: 64 allocs, 64 frees, 2,014 bytes allocated
-==86964== All heap blocks were freed -- no leaks are possible
-==86964== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105587==   total heap usage: 64 allocs, 64 frees, 2,014 bytes allocated
+==105587== All heap blocks were freed -- no leaks are possible
+==105587== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 2 incorrect_symbol.ber
-==86968==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
-==86968== All heap blocks were freed -- no leaks are possible
-==86968== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105591==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
+==105591== All heap blocks were freed -- no leaks are possible
+==105591== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 3 no_consume_collect.ber
-==86985==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
-==86985== All heap blocks were freed -- no leaks are possible
-==86985== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105607==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
+==105607== All heap blocks were freed -- no leaks are possible
+==105607== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 4 no_deplacement_of_P.ber
-==86997==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
-==86997== All heap blocks were freed -- no leaks are possible
-==86997== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105620==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
+==105620== All heap blocks were freed -- no leaks are possible
+==105620== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 5 no_E_C_P.ber
-==87004==   total heap usage: 73 allocs, 73 frees, 2,683 bytes allocated
-==87004== All heap blocks were freed -- no leaks are possible
-==87004== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105624==   total heap usage: 73 allocs, 73 frees, 2,683 bytes allocated
+==105624== All heap blocks were freed -- no leaks are possible
+==105624== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 6 no_exit.ber
-==87009==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
-==87009== All heap blocks were freed -- no leaks are possible
-==87009== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105628==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
+==105628== All heap blocks were freed -- no leaks are possible
+==105628== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 7 no_rectangle.ber
-==87025==   total heap usage: 77 allocs, 77 frees, 2,795 bytes allocated
-==87025== All heap blocks were freed -- no leaks are possible
-==87025== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105636==   total heap usage: 77 allocs, 77 frees, 2,795 bytes allocated
+==105636== All heap blocks were freed -- no leaks are possible
+==105636== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 8 no_rectangle_wall_of_1.ber
-==87033==   total heap usage: 33 allocs, 33 frees, 461 bytes allocated
-==87033== All heap blocks were freed -- no leaks are possible
-==87033== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105654==   total heap usage: 33 allocs, 33 frees, 461 bytes allocated
+==105654== All heap blocks were freed -- no leaks are possible
+==105654== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 
 ******* 9 side_left_and_right_without_1.ber
-==87043==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
-==87043== All heap blocks were freed -- no leaks are possible
-==87043== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105658==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
+==105658== All heap blocks were freed -- no leaks are possible
+==105658== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ******* 10 maptest.ber
-==87047==   total heap usage: 33 allocs, 33 frees, 461 bytes allocated
-==87047== All heap blocks were freed -- no leaks are possible
-==87047== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==105669==   total heap usage: 33 allocs, 33 frees, 461 bytes allocated
+==105669== All heap blocks were freed -- no leaks are possible
+==105669== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 

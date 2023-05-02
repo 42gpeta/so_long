@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/05/02 20:21:01 by gpeta            ###   ########.fr        #
+#    Updated: 2023/05/02 20:48:15 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
 MLX_FLAGS	:= -lXext -lX11 -lz -lm
-NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader *.c *.h
+# NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader *.c *.h
+NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader ./*/*.c ./*/*.h
 
 #-------------------------------------------------------#
 #	UTENSILS											#
