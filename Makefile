@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/05/02 20:48:15 by gpeta            ###   ########.fr        #
+#    Updated: 2023/05/02 21:04:48 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,15 @@ lib/libft/include \
 
 SRC_DIR		:= src
 SRCS		:= \
-error_message.c \
-event.c \
-map_check.c map_check_parameters.c string_map.c control_string_map.c xpm.c \
-move.c move_parameters.c \
-pathfinding.c pathfinding_utils.c \
-so_long.c \
-/gnl/get_next_line.c /gnl/get_next_line_utils.c \
-main.c \
-# pixel.c pixel_utils.c \
+error_message.c  \
+event.c  \
+control_string_map.c  string_map.c  xpm.c  \
+map_check.c  map_check_parameters.c  \
+move.c  move_parameters.c  \
+pathfinding.c  pathfinding_utils.c  \
+so_long.c  \
+/gnl/get_next_line.c  /gnl/get_next_line_utils.c  \
+main.c  \
 
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
@@ -54,7 +54,6 @@ CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))
 MLX_FLAGS	:= -lXext -lX11 -lz -lm
-# NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader *.c *.h
 NORMINETTE	:=	norminette -R CheckForbiddenSourceHeader ./*/*.c ./*/*.h
 
 #-------------------------------------------------------#
@@ -67,38 +66,15 @@ MAKEFLAGS	+= --silent --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
 
 
-# #*********** BONUS ***********#
-
-# BONUS_SRC_DIR := src_bonus
-# BONUS_OBJ_DIR := obj_bonus
-# BONUS_SRCS := 
-
-# BONUS_SRCS := $(BONUS_SRCS:%=$(BONUS_SRCS_DIR)/%)
-# BONUS_OBJ := $(BONUS_SRCS:$(BONUS_SRCS_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
-
 #-------------------------------------------------------#
 #	RECIPES												#
 #-------------------------------------------------------#
 
 all : $(NAME)
 
-#*******************************************************#
-# (NORMAL) linker tous les *.o dans l'executable $(NAME)
-# /!\ ATTENTION /!\ :il faut DE-masquer le main.c dans src plus haut
-#*******************************************************#
-
 $(NAME): $(OBJS) $(LIBS_TARGET)
 	$(CC) -g $(LDFLAGS) $(OBJS) $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
 	$(info EXE ./$(NAME) CREATED)
-
-#*******************************************************#
-# (TEST) linker tous les *.o dans l'executable $(NAME)
-# /!\ ATTENTION /!\ :il faut MASquer le main.c dans src plus haut
-#*******************************************************#
-
-# $(NAME): $(OBJS) $(LIBS_TARGET) mlxtest
-# 	$(CC) -g $(LDFLAGS) $(OBJS) .build/main-test.o $(LDLIBS) $(MLX_FLAGS) -o $(NAME)
-# 	$(info EXE ./$(NAME) CREATED)
 
 $(LIBS_TARGET):
 	$(MAKE) -C $(@D)
@@ -108,18 +84,9 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAG) -ggdb -c -o $@ $<
 
-# compilation fichier main de test : mlx-test
-mlxtest: ./lib/libmlx/test/main.c
-	cc -I include/ lib/libmlx lib/libft/include -c -o .build/main-test.o ./lib/libmlx/test/main.c
-
-# bonus : $(OBJS) $(BONUS_OBJ)
-# 	ar rc $(NAME) $(OBJS) $(BONUS_OBJ)
-
 clean:
 	for f in $(dir $(LIBS_TARGET)) ; do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
-	rm -f .build/main-test.o
-#	$(RM) $(OBJS) $(BONUS_OBJ)
 
 fclean: clean
 	for f in $(strip(dir $(LIBS_TARGET))) ; do $(MAKE) -C $$f fclean; done
