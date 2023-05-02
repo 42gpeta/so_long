@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/05/02 15:07:06 by gpeta            ###   ########.fr        #
+#    Updated: 2023/05/02 20:21:01 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ SRC_DIR		:= src
 SRCS		:= \
 error_message.c \
 event.c \
-map_check.c map_check_parameters.c string_map.c control_string_map.c\
+map_check.c map_check_parameters.c string_map.c control_string_map.c xpm.c \
 move.c move_parameters.c \
-pathfinding.c \
+pathfinding.c pathfinding_utils.c \
 so_long.c \
 /gnl/get_next_line.c /gnl/get_next_line_utils.c \
 main.c \
@@ -49,7 +49,7 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC 			:= cc
-# CFLAGS 		:= -Wall -Wextra -Werror 
+CFLAGS 		:= -Wall -Wextra -Werror 
 CPPFLAG		:= $(addprefix -I ,$(INCS)) -MMD -MP
 LDFLAGS		:= $(addprefix -L ,$(dir $(LIBS_TARGET)))
 LDLIBS		:= $(addprefix -l ,$(LIBS))

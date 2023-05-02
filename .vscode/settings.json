@@ -1,3 +1,6 @@
 {
-	"scm.inputFontFamily": "default"
+	"scm.inputFontFamily": "default",
+	"files.associations": {
+		"so_long.h": "c"
+	}
 }

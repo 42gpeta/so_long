@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/05/02 13:59:16 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 18:45:49 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_move_up(t_data *data)
 	}
 }
 
-/* Move player on down */
+/* Move player down */
 void	ft_move_down(t_data *data)
 {
 	if (data->gen.man.y == data->gen.exit.y
@@ -94,9 +94,9 @@ void	ft_move_right(t_data *data)
 
 void	ft_move_exit(t_data *data)
 {
-	if (data->gen.number_of_C == 0)
+	if (data->gen.number_of_c == 0)
 	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
+		mlx_destroy_window(data->mlx_p, data->win_p);
+		data->win_p = NULL;
 	}
 }

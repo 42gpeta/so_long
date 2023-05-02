@@ -6,21 +6,28 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 13:59:16 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 19:55:15 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** Close the window when you click on red cross's bouton */
-int	ft_bouton_red_cross(t_data *data)
+int	render(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
+	if (data->win_p != NULL)
+		ft_display_xpm(data);
 	return (0);
 }
 
-/** Action when you tap bouton W,A,S and D */
+/** Close the window when you click on red cross's bouton */
+int	ft_bouton_red_cross(t_data *data)
+{
+	mlx_destroy_window(data->mlx_p, data->win_p);
+	data->win_p = NULL;
+	return (0);
+}
+
+/** Action when you tap bouton W,A,S or D */
 int	ft_key_hook(int key_symbol, t_data *data)
 {
 	if (key_symbol == 65307)
@@ -40,31 +47,22 @@ int	ft_key_hook(int key_symbol, t_data *data)
 /* Destroy window when you press 'esc' */
 void	ft_escape_key(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-}
-
-int	render_no_action(t_data *data)
-{
-	if (data->win_ptr != NULL)
-	{
-		// mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 50, WHITE_PIXEL, "TEST COMPTEUR"); // TODO afficher le compteur sur l'écran
-		ft_generate_xpm(data);
-	}
-	return (0);
+	mlx_destroy_window(data->mlx_p, data->win_p);
+	data->win_p = NULL;
 }
 
 void	ft_print_informations(t_data *data)
 {
 	ft_printf("-------------\n");
 	ft_printf("Number of movements : %d\n", data->gen.man.nb_move);
-	if (data->gen.number_of_C > 0)
-		ft_printf("%d collectibles left\n", data->gen.number_of_C);
+	if (data->gen.number_of_c > 1)
+		ft_printf("%d collectibles left\n", data->gen.number_of_c);
+	else if (data->gen.number_of_c > 0)
+		ft_printf("%d collectible left\n", data->gen.number_of_c);
 	else
 		ft_printf("Now, you can go :)\n");
-	
 	if (data->gen.man.y == data->gen.exit.y
 		&& data->gen.man.x == data->gen.exit.x
-		&& data->gen.number_of_C == 0)
+		&& data->gen.number_of_c == 0)
 		ft_printf("\n***\nYou finish !\n***\n\n");
 }

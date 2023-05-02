@@ -17,8 +17,8 @@
             // "args": ["maps/bad/map6.ber"], // WITH AV[1]    ~~ Bad file
             // "args": ["maps/bad/bad.ber"], // WITH AV[1]    ~~ Bad folder
             // "args": ["maps/good/map-sujet.ber"], // WITH AV[1]    ~~ Good file
-            "args": ["maps/good/small3.ber"], // WITH AV[1]    ~~ Good file
-            // "args": ["maps/bad/side_left_and_right_without_1.ber"], // WITH AV[1]    ~~ Bad file
+            // "args": ["maps/good/small3.ber"], // WITH AV[1]    ~~ Good file
+            "args": ["maps/bad/maptest.ber"], // WITH AV[1]    ~~ Bad file
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

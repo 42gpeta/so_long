@@ -6,14 +6,14 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 16:50:11 by glodi             #+#    #+#             */
-/*   Updated: 2023/05/01 19:16:10 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 20:00:34 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /*** Checks if top of map is surronded by '1' */
-void	ft_check_surrounded_by_one_up(t_data *data)
+void	ft_check_surrounded_by_one_top(t_data *data)
 {
 	int		x;
 

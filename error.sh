@@ -9,6 +9,7 @@ file6=no_exit.ber
 file7=no_rectangle.ber
 file8=no_rectangle_wall_of_1.ber
 file9=side_left_and_right_without_1.ber
+file10=maptest.ber
 
 rm final.txt
 
@@ -78,6 +79,13 @@ echo "" >> final.txt
 
 echo "******* 9 $file9" >> final.txt
 valgrind ./so_long maps/bad/$file9 2> result.txt
+grep "total heap" ./result.txt >> ./final.txt
+grep "All heap blocks were freed" ./result.txt >> ./final.txt
+grep "ERROR SUMMARY" ./result.txt >> ./final.txt
+echo "" >> final.txt
+
+echo "******* 10 $file10" >> final.txt
+valgrind ./so_long maps/bad/$file10 2> result.txt
 grep "total heap" ./result.txt >> ./final.txt
 grep "All heap blocks were freed" ./result.txt >> ./final.txt
 grep "ERROR SUMMARY" ./result.txt >> ./final.txt
