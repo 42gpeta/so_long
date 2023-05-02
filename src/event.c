@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 18:04:33 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:59:16 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	ft_print_informations(t_data *data)
 	else
 		ft_printf("Now, you can go :)\n");
 	
-	if (data->gen.man.y == data->gen.man.pos_exit_y
-		&& data->gen.man.x == data->gen.man.pos_exit_x
+	if (data->gen.man.y == data->gen.exit.y
+		&& data->gen.man.x == data->gen.exit.x
 		&& data->gen.number_of_C == 0)
 		ft_printf("\n***\nYou finish !\n***\n\n");
 }

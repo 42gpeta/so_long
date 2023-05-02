@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:22 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 18:04:33 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:59:16 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void print_map(t_data * data) // ! a supprimer
 void player_position(t_data *data) // ! a supprimer
 {
 	printf("PLAYER POSITION : [%d][%d]\n", data->gen.man.y, data->gen.man.x); // ! a supprimer
-	printf("EXIT POSITION : [%d][%d]\n", data->gen.man.pos_exit_y, data->gen.man.pos_exit_x); // ! a supprimer
+	printf("EXIT POSITION : [%d][%d]\n", data->gen.exit.y, data->gen.exit.x); // ! a supprimer
 }
 
 void number_of_C_pathfinding(t_data *data, char *time, int i) // ! a supprimer

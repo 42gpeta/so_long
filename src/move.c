@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:37:55 by glodi             #+#    #+#             */
-/*   Updated: 2023/05/01 20:43:02 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:59:16 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /* Move player on top */
 void	ft_move_up(t_data *data)
 {
-	if (data->gen.man.y == data->gen.man.pos_exit_y
-		&& data->gen.man.x == data->gen.man.pos_exit_x
+	if (data->gen.man.y == data->gen.exit.y
+		&& data->gen.man.x == data->gen.exit.x
 		&& data->gen.str_tab[data->gen.man.y - 1][data->gen.man.x] != '1')
 		ft_move_man_up(data, data->gen.man.y, data->gen.man.x, 'E');
 	else if (data->gen.str_tab[data->gen.man.y - 1][data->gen.man.x] == '0'
@@ -35,8 +35,8 @@ void	ft_move_up(t_data *data)
 /* Move player on down */
 void	ft_move_down(t_data *data)
 {
-	if (data->gen.man.y == data->gen.man.pos_exit_y
-		& data->gen.man.x == data->gen.man.pos_exit_x
+	if (data->gen.man.y == data->gen.exit.y
+		& data->gen.man.x == data->gen.exit.x
 		&& data->gen.str_tab[data->gen.man.y + 1][data->gen.man.x] != '1')
 		ft_move_man_down(data, data->gen.man.y, data->gen.man.x, 'E');
 	else if (data->gen.str_tab[data->gen.man.y + 1][data->gen.man.x] == '0'
@@ -55,8 +55,8 @@ void	ft_move_down(t_data *data)
 /* Move player on left*/
 void	ft_move_left(t_data *data)
 {
-	if (data->gen.man.y == data->gen.man.pos_exit_y
-		&& data->gen.man.x == data->gen.man.pos_exit_x
+	if (data->gen.man.y == data->gen.exit.y
+		&& data->gen.man.x == data->gen.exit.x
 		&& data->gen.str_tab[data->gen.man.y][data->gen.man.x - 1] != '1')
 		ft_move_man_left(data, data->gen.man.y, data->gen.man.x, 'E');
 	else if (data->gen.str_tab[data->gen.man.y][data->gen.man.x - 1] == '0'
@@ -75,8 +75,8 @@ void	ft_move_left(t_data *data)
 /* Move player on right */
 void	ft_move_right(t_data *data)
 {
-	if (data->gen.man.y == data->gen.man.pos_exit_y
-		&& data->gen.man.x == data->gen.man.pos_exit_x
+	if (data->gen.man.y == data->gen.exit.y
+		&& data->gen.man.x == data->gen.exit.x
 		&& data->gen.str_tab[data->gen.man.y][data->gen.man.x + 1] != '1')
 		ft_move_man_right(data, data->gen.man.y, data->gen.man.x, 'E');
 	else if (data->gen.str_tab[data->gen.man.y][data->gen.man.x + 1] == '0'

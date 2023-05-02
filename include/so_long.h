@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/01 18:22:47 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:28:36 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,11 +234,13 @@ void	ft_move_man_right(t_data *data, int y, int x, char letter);
 pathfinding.c
 *************/
 
-void	ft_parsing(t_data *data, int letter);
-void    ft_pathfinding_flood(t_data *data, int y, int x);
-void    ft_pathfinding_check(t_data *data);
 void    ft_is_collectible1(t_data *data, int y, int x);
 void    ft_is_collectible2(t_data *data, int y, int x);
+// void	ft_pathfinding_move(t_data *data, int y, int x, char side);
+void	ft_pathfinding_move(t_data *data, int y, int x);
+void    ft_pathfinding_flood(t_data *data, int y, int x);
+void    ft_pathfinding_check(t_data *data);
+void	ft_parsing(t_data *data, int letter);
 
 /*************
 so_long.c
