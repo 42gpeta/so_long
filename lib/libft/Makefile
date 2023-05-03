@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/04/28 16:28:37 by gpeta            ###   ########.fr        #
+#    Updated: 2023/05/03 21:33:31 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,6 @@ MAKEFLAGS	+= --silent --no-print-directory
 # MAKEFLAGS	+= --no-print-directory
 DIR_DUP		= mkdir -p $(@D)
 
-# BONUS =
-# BONUS_OBJ = $(BONUS:.c=.o)
 
 #-------------------------------------------------------#
 #	RECIPES												#
@@ -79,18 +77,15 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 -include $(DEPS)
 
-# bonus: $(BONUS_OBJ)
-# 	ar rc $(NAME) $(BONUS_OBJ)
-
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJ)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re:
-	$(Make) fclean
-	$(Make) all
+	$(MAKE) fclean
+	$(MAKE) all
 
 #-------------------------------------------------------#
 #	SPEC												#

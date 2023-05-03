@@ -6,7 +6,7 @@
 #    By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 18:34:10 by gpeta             #+#    #+#              #
-#    Updated: 2023/05/02 21:04:48 by gpeta            ###   ########.fr        #
+#    Updated: 2023/05/03 21:34:06 by gpeta            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ NAME 		:= so_long
 #	INGREDIENTS											#
 #-------------------------------------------------------#
 
-LIBS		:= mlx ft
+LIBS		:= ft mlx
 LIBS_TARGET := \
-lib/libft/libft.a \
 lib/libmlx/libmlx_Linux.a \
-lib/libmlx/libmlx.a
+lib/libmlx/libmlx.a \
+lib/libft/libft.a \
 
 INCS		:= \
 include \

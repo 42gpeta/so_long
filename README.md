@@ -1,4 +1,4 @@
-# PROJET SO_LONG v2.1 2023
+# PROJET SO_LONG v2.3 2023
 
 ## Ressources du projet
 
@@ -53,6 +53,10 @@ Afficher une fênetre
    * E pour une **sortie** (E pour exit),  
    * P pour la position de départ du **personnage** 
 
+### Pathfinding
+
+[A* 1/2](https://youtu.be/0MoYR35yrBw)
+[A* 2/2](https://youtu.be/YZW0_07PdG4)
 
 
 
