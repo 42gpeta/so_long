@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 19:55:15 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:27:28 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ft_key_hook(int key_symbol, t_data *data)
 		ft_move_down(data);
 	else if (key_symbol == XK_d)
 		ft_move_right(data);
-	ft_print_informations(data);
 	return (key_symbol);
 }
 
