@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:01:40 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 20:32:18 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/04 14:38:17 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef struct s_generate
 	char		**str_map_pathfinding;
 	int			number_of_c;
 	int			number_of_c_pathfinding;
+	int			number_of_e;
+	int			number_of_e_pathfinding;
 	t_player	man;
 	t_exit		exit;
 }	t_generate;
@@ -201,6 +203,7 @@ pathfinding_utils.c
 
 void	ft_is_collectible1(t_data *data, int y, int x);
 void	ft_is_collectible2(t_data *data, int y, int x);
+void	ft_init_c_and_e(t_data *data);
 
 /*************
 pathfinding.c

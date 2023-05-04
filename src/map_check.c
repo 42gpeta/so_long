@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:28:04 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 20:22:57 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/04 14:40:39 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_parsing(t_data *data)
 	int	x;
 	int	y;
 
-	data->gen.number_of_c_pathfinding = data->gen.number_of_c;
+	// data->gen.number_of_c_pathfinding = data->gen.number_of_c;
+	ft_init_c_and_e(data);
 	y = 0;
 	while (data->gen.str_tab[y])
 	{
@@ -64,7 +65,8 @@ void	ft_check_content(t_data *data)
 	while (data->str_map[i] != '\0')
 	{
 		if (data->str_map[i] == 'E')
-			nb_e++;
+			data->gen.number_of_e++;
+			// nb_e++;
 		else if (data->str_map[i] == 'C')
 			data->gen.number_of_c++;
 		else if (data->str_map[i] == 'P')
@@ -74,7 +76,8 @@ void	ft_check_content(t_data *data)
 			ft_message_error("This map contain an incorrect symbol !", data);
 		i++;
 	}
-	ft_nb_presence(data, nb_e, data->gen.number_of_c, nb_p);
+	// ft_nb_presence(data, nb_e, data->gen.number_of_c, nb_p);
+	ft_nb_presence(data, data->gen.number_of_e, data->gen.number_of_c, nb_p);
 	ft_parsing(data);
 }
 

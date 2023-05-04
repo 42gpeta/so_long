@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:42:12 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/02 20:39:48 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/04 14:41:27 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_init(t_data *data)
 	data->gen.str_tab = 0;
 	data->gen.str_map_pathfinding = 0;
 	data->gen.number_of_c = 0;
+	data->gen.number_of_e = 0;
 }
 
 void	ft_start(t_data *data, char *argv, int ac)

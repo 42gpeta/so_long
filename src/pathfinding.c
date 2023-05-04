@@ -24,28 +24,35 @@ void	ft_pathfinding_move(t_data *data, int y, int x)
 void	ft_pathfinding_flood(t_data *data, int y, int x)
 {
 	if ((data->gen.str_map_pathfinding[y - 1][x] == '0'
-		|| data->gen.str_map_pathfinding[y - 1][x] == 'C'))
+		|| data->gen.str_map_pathfinding[y - 1][x] == 'C'
+		|| data->gen.str_map_pathfinding[y - 1][x] == 'E'))
 		ft_pathfinding_move(data, y - 1, x);
 	if ((data->gen.str_map_pathfinding[y + 1][x] == '0'
-		|| data->gen.str_map_pathfinding[y + 1][x] == 'C'))
+		|| data->gen.str_map_pathfinding[y + 1][x] == 'C'
+		|| data->gen.str_map_pathfinding[y + 1][x] == 'E'))
 		ft_pathfinding_move(data, y + 1, x);
 	if ((data->gen.str_map_pathfinding[y][x - 1] == '0'
-		|| data->gen.str_map_pathfinding[y][x - 1] == 'C'))
+		|| data->gen.str_map_pathfinding[y][x - 1] == 'C'
+		|| data->gen.str_map_pathfinding[y][x - 1] == 'E'))
 		ft_pathfinding_move(data, y, x - 1);
 	if ((data->gen.str_map_pathfinding[y][x + 1] == '0'
-		|| data->gen.str_map_pathfinding[y][x + 1] == 'C'))
+		|| data->gen.str_map_pathfinding[y][x + 1] == 'C'
+		|| data->gen.str_map_pathfinding[y][x + 1] == 'E'))
 		ft_pathfinding_move(data, y, x + 1);
 }
 
-/* Look if 'E' is surronded by '1' and if the player can exit */
+/* Look if 'E' and 'C' are accesible */
 void	ft_pathfinding_check(t_data *data)
 {
-	if (data->gen.str_tab[data->gen.exit.y + 1][data->gen.exit.x] == '1'
-		&& data->gen.str_tab[data->gen.exit.y - 1][data->gen.exit.x] == '1'
-		&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x + 1] == '1'
-		&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x - 1] == '1')
-		ft_message_error("No solution to exit !", data);
+	// if (data->gen.str_tab[data->gen.exit.y + 1][data->gen.exit.x] == '1'
+	// 	&& data->gen.str_tab[data->gen.exit.y - 1][data->gen.exit.x] == '1'
+	// 	&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x + 1] == '1'
+	// 	&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x - 1] == '1')
+	// 	ft_message_error("No solution to exit !", data);
 	ft_pathfinding_flood(data, data->gen.man.y, data->gen.man.x);
+	print_map_pathfinding(data, "test"); // ! a supprimer
+	if (data->gen.number_of_e_pathfinding != 0)
+		ft_message_error("No way to exit !", data);
 	if (data->gen.number_of_c_pathfinding != 0)
-		ft_message_error("No exit : all collectibles are not consume !", data);
+		ft_message_error("No way to all collectibles", data);
 }
