@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:38:54 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/03 18:27:28 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/04 16:59:57 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,33 @@ void	ft_escape_key(t_data *data)
 	data->win_p = NULL;
 }
 
+// void	ft_print_informations(t_data *data)
+// {
+// 	ft_printf("-------------\n");
+// 	ft_printf("Number of movements : %d\n", data->gen.man.nb_move);
+// 	if (data->gen.number_of_c > 1)
+// 		ft_printf("%d collectibles left\n", data->gen.number_of_c);
+// 	else if (data->gen.number_of_c > 0)
+// 		ft_printf("%d collectible left\n", data->gen.number_of_c);
+// 	else
+// 		ft_printf("Now, you can go :)\n");
+// 	if (data->gen.man.y == data->gen.exit.y
+// 		&& data->gen.man.x == data->gen.exit.x
+// 		&& data->gen.number_of_c == 0)
+// 		ft_printf("\n***\nYou finish !\n***\n\n");
+// }
+
 void	ft_print_informations(t_data *data)
 {
-	ft_printf("-------------\n");
-	ft_printf("Number of movements : %d\n", data->gen.man.nb_move);
+	if (data->gen.number_of_c == 0)
+		ft_printf("Number of movements : %d |  Now, you can go :) \r"
+		, data->gen.man.nb_move);
+	if (data->gen.number_of_c > 0)
+		ft_printf("Number of movements : %d | %d collectible left \r"
+		, data->gen.man.nb_move, data->gen.number_of_c);
 	if (data->gen.number_of_c > 1)
-		ft_printf("%d collectibles left\n", data->gen.number_of_c);
-	else if (data->gen.number_of_c > 0)
-		ft_printf("%d collectible left\n", data->gen.number_of_c);
-	else
-		ft_printf("Now, you can go :)\n");
+		ft_printf("Number of movements : %d | %d collectibles left\r"
+		, data->gen.man.nb_move, data->gen.number_of_c);
 	if (data->gen.man.y == data->gen.exit.y
 		&& data->gen.man.x == data->gen.exit.x
 		&& data->gen.number_of_c == 0)
