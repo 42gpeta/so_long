@@ -44,13 +44,7 @@ void	ft_pathfinding_flood(t_data *data, int y, int x)
 /* Look if 'E' and 'C' are accesible */
 void	ft_pathfinding_check(t_data *data)
 {
-	// if (data->gen.str_tab[data->gen.exit.y + 1][data->gen.exit.x] == '1'
-	// 	&& data->gen.str_tab[data->gen.exit.y - 1][data->gen.exit.x] == '1'
-	// 	&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x + 1] == '1'
-	// 	&& data->gen.str_tab[data->gen.exit.y][data->gen.exit.x - 1] == '1')
-	// 	ft_message_error("No solution to exit !", data);
 	ft_pathfinding_flood(data, data->gen.man.y, data->gen.man.x);
-	print_map_pathfinding(data, "test"); // ! a supprimer
 	if (data->gen.number_of_e_pathfinding != 0)
 		ft_message_error("No way to exit !", data);
 	if (data->gen.number_of_c_pathfinding != 0)

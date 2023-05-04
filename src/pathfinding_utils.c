@@ -6,7 +6,7 @@
 /*   By: gpeta <gpeta@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:23:42 by gpeta             #+#    #+#             */
-/*   Updated: 2023/05/04 14:39:03 by gpeta            ###   ########.fr       */
+/*   Updated: 2023/05/04 17:30:33 by gpeta            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ void	ft_init_c_and_e(t_data *data)
 {
 	data->gen.number_of_c_pathfinding = data->gen.number_of_c;
 	data->gen.number_of_e_pathfinding = data->gen.number_of_e;
-	
 }
