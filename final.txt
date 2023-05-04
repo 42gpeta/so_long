@@ -1,0 +1,71 @@
+******* 1 1_arround_E.ber
+==278017==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==278017== All heap blocks were freed -- no leaks are possible
+==278017== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 2 first_line_isnt_wall_of_1.ber
+==278038==   total heap usage: 64 allocs, 64 frees, 2,014 bytes allocated
+==278038== All heap blocks were freed -- no leaks are possible
+==278038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 3 incorrect_symbol.ber
+==278054==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
+==278054== All heap blocks were freed -- no leaks are possible
+==278054== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 4 incorrect_symbol2.ber
+==278074==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==278074== All heap blocks were freed -- no leaks are possible
+==278074== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 5 no_consume_collect.ber
+==278086==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
+==278086== All heap blocks were freed -- no leaks are possible
+==278086== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 6 no_deplacement_of_P.ber
+==278095==   total heap usage: 50 allocs, 50 frees, 857 bytes allocated
+==278095== All heap blocks were freed -- no leaks are possible
+==278095== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 7 no_E_C_P.ber
+==278107==   total heap usage: 73 allocs, 73 frees, 2,683 bytes allocated
+==278107== All heap blocks were freed -- no leaks are possible
+==278107== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 8 no_exit_way.ber
+==278113==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==278113== All heap blocks were freed -- no leaks are possible
+==278113== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 9 no_exit_way2.ber
+==278121==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==278121== All heap blocks were freed -- no leaks are possible
+==278121== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 10 no_rectangle.ber
+==278133==   total heap usage: 77 allocs, 77 frees, 2,795 bytes allocated
+==278133== All heap blocks were freed -- no leaks are possible
+==278133== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 11 no_rectangle_wall_of_1.ber
+==278139==   total heap usage: 33 allocs, 33 frees, 461 bytes allocated
+==278139== All heap blocks were freed -- no leaks are possible
+==278139== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+******* 12 side_left_and_right_without_1.ber
+==278147==   total heap usage: 71 allocs, 71 frees, 2,528 bytes allocated
+==278147== All heap blocks were freed -- no leaks are possible
+==278147== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
